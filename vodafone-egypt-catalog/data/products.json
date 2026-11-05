@@ -1,5 +1,24 @@
 [
   {
+    "id": "iphone-18-pro-256-glacier",
+    "name_ar": "Apple iPhone 18 Pro",
+    "brand": "Apple",
+    "category": "هواتف",
+    "variant": "256GB — Glacier — 5G",
+    "price": 109899,
+    "old_price": null,
+    "currency": "EGP",
+    "availability": "آخر سعر مرصود 109,899 جنيه — غير متوفر في آخر رصد",
+    "status": "out",
+    "image": "https://assets.apple.com/v/iphone-18-pro/overview/images/overview/finish/finish_glacier__f1h9r9f5k2yi_large.jpg",
+    "image_credit": "Apple product image",
+    "description": "iPhone 18 Pro بسعة 256GB ولون Glacier. السعر هو آخر سعر رصده متتبع الأسعار لفودافون بتاريخ 4 نوفمبر 2026، وليس سعراً مؤكداً متاحاً للشراء حالياً.",
+    "product_url": "https://eshop.vodafone.com.eg/ar/prod/iphone-18-pro",
+    "source_url": "https://prices.askyasser.com/en/price/iphone-18-pro-256gb-glacier-387",
+    "source_checked_at": "2026-11-04",
+    "source_note": "آخر رصد لفودافون: 109,899 جنيه، وحالة نفاد مخزون حسب متتبع الأسعار. يجب تأكيد السعر والتوفر من صفحة فودافون عند الشراء."
+  },
+  {
     "id": "iphone-17-256",
     "name_ar": "Apple iPhone 17",
     "brand": "Apple",
