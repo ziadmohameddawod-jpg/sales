@@ -57,15 +57,38 @@
         '<span class="row-tag">'+escapeHtml(row.tag)+'</span>';
       return '<tr class="'+(row.kind==="direct"?"vodafone-row":"")+(row.price===low?" market-low":"")+'"><td>'+escapeHtml(row.store)+'</td><td>'+money(row.price)+'</td><td>'+tag+'</td></tr>';
     }).join("");
-    $("marketSourceNote").textContent = record.source_note + " فارق سعر فودافون عن أقل عرض مدرج: " + (vsLow === null ? "غير متاح" : money(vsLow)) + ". لا يعني السعر الأقل تلقائياً ضماناً أفضل أو بائعاً معتمداً.";
+    $("marketSourceNote").textContent = record.source_note + " فارق سعر فودافون في الكتالوج عن أقل عرض مدرج: " + (vsLow === null ? "غير متاح" : money(vsLow)) + ". لا يعني السعر الأقل تلقائياً ضماناً أفضل أو بائعاً معتمداً.";
     $("marketSourceLinks").innerHTML =
       '<a href="'+escapeHtml(record.tracker_source)+'" target="_blank" rel="noopener">مصدر مقارنة السوق ↗</a>' +
       '<a href="'+escapeHtml(record.vodafone_source)+'" target="_blank" rel="noopener">صفحة فودافون للمنتج ↗</a>';
   }
 
-  function drawHistory(productId) {
+  function regressionForecast(points, days) {
+    const xs=points.map(p=>Date.parse(p.date+"T00:00:00Z")/86400000);
+    const ys=points.map(p=>Math.log(Number(p.price)));
+    const n=xs.length;
+    const meanX=xs.reduce((a,b)=>a+b,0)/n;
+    const meanY=ys.reduce((a,b)=>a+b,0)/n;
+    const sxx=xs.reduce((sum,x)=>sum+(x-meanX)**2,0);
+    if (!sxx || n<3) return null;
+    const slope=xs.reduce((sum,x,i)=>sum+(x-meanX)*(ys[i]-meanY),0)/sxx;
+    const intercept=meanY-slope*meanX;
+    const residuals=xs.map((x,i)=>ys[i]-(intercept+slope*x));
+    const variance=residuals.reduce((sum,r)=>sum+r*r,0)/Math.max(1,n-2);
+    const lastX=xs[xs.length-1];
+    const targetX=lastX+days;
+    const predicted=Math.exp(intercept+slope*targetX);
+    const standardError=Math.sqrt(variance*(1+1/n+((targetX-meanX)**2/sxx)));
+    const low=Math.exp(intercept+slope*targetX-1.96*standardError);
+    const high=Math.exp(intercept+slope*targetX+1.96*standardError);
+    const observedChange=(Math.exp(slope*(lastX-xs[0]))-1)*100;
+    return {predicted,low,high,observedChange,weeklyTrend:(Math.exp(slope*7)-1)*100};
+  }
+
+  function drawHistory(productId,horizon) {
     const series = historyData.series.find(x => x.product_id === productId);
     const minRequired = historyData.required_observations_for_trend || 8;
+    $("trendEstimate").hidden=true;
     if (!series || !series.observations.length) {
       $("historyCount").textContent = "0 / " + minRequired + " قراءات مطلوبة";
       $("historyChart").innerHTML = '<div class="history-empty">لا يوجد سجل سعر مؤرخ لهذا الموديل بعد.</div>';
@@ -92,11 +115,16 @@
     $("historyNote").textContent=series.note || "سجل أسعار مرجعي؛ ليس بثاً مباشراً.";
     if (points.length < minRequired) {
       $("trendReadiness").textContent="لدينا "+points.length+" قراءات فقط من أصل "+minRequired+" مطلوبة للاتجاه الإحصائي. المحاكي أدناه يسمح باختبار افتراضاتك، لكنه لا يدّعي التنبؤ.";
-    } else {
-      const first=points[0],last=points[points.length-1];
-      const change=((last.price/first.price)-1)*100;
-      $("trendReadiness").textContent="تتوفر "+points.length+" قراءات. الاتجاه التاريخي من أول قراءة لآخر قراءة: "+percent(change)+". يعرض ذلك اتجاهاً وصفياً فقط، وليس ضماناً للسعر القادم.";
+      return;
     }
+    const estimate=regressionForecast(points,Number(horizon)||30);
+    if (!estimate) {
+      $("trendReadiness").textContent="البيانات المتاحة لا تكفي لحساب اتجاه زمني مستقر.";
+      return;
+    }
+    $("trendReadiness").textContent="تتوفر "+points.length+" قراءات. تغير السعر عبر فترة الرصد: "+percent(estimate.observedChange)+"؛ الاتجاه الأسبوعي الخطي: "+percent(estimate.weeklyTrend)+".";
+    $("trendEstimate").hidden=false;
+    $("trendEstimate").innerHTML='<b>استقراء اتجاه تجريبي لـ '+escapeHtml(horizon)+' يوم</b><strong>'+money(estimate.predicted)+'</strong><span>نطاق النموذج التقريبي: '+money(estimate.low)+' – '+money(estimate.high)+'</span><small>انحدار لوغاريتمي على السجل المتاح مع نطاق تنبؤ تقريبي. هذا النموذج لا يلتقط تلقائياً قرارات الاستيراد أو تغير العملة المفاجئ أو العروض؛ لا تعتبره ضماناً.</small>';
   }
 
   function renderScenario() {
@@ -115,7 +143,7 @@
     $("scenarioPrice").textContent=money(projected);
     $("scenarioDelta").textContent=percent(totalPct)+" مقابل سعر الأساس الحالي ("+money(selected.price)+") — أفق السيناريو "+horizon+" يوم";
     $("scenarioFormula").textContent="المعادلة التوضيحية: السعر الحالي × [1 + (تغير الدولار × 65% تمرير افتراضي) + ضغط المعروض − الخصم المفترض]. نسبة 65% افتراض قابل للتغيير مستقبلاً بعد جمع بيانات فعلية؛ النتيجة ليست توقعاً إحصائياً ولا توصية شراء.";
-    drawHistory(selected.id);
+    drawHistory(selected.id,horizon);
   }
 
   async function init() {
