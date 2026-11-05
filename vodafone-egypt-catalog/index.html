@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#e60000">
+  <meta name="description" content="كتالوج مستقل لمنتجات Vodafone Egypt — استعرض الأجهزة والأسعار والتوفر مع روابط المتجر الرسمي.">
+  <title>كتالوج فودافون مصر | Vodafone Catalog</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement"><span class="live-dot"></span> كتالوج مستقل — الأسعار بالجنيه المصري وقد تتغير لدى المتجر الرسمي</div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="كتالوج فودافون مصر">
+      <span class="brand-mark">v</span>
+      <span><b>Vodafone</b><small>CATALOG EGYPT</small></span>
+    </a>
+    <nav class="main-nav" aria-label="التنقل الرئيسي">
+      <a href="#catalog">المنتجات</a><a href="#how">عن الكتالوج</a><a href="#sources">مصادر الأسعار</a>
+    </nav>
+    <a class="header-cta" href="https://eshop.vodafone.com.eg/ar/" target="_blank" rel="noopener">متجر فودافون <span>↗</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">☰</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-noise"></div>
+      <div class="hero-content">
+        <div class="hero-kicker"><span></span> YOUR NEXT DEVICE STARTS HERE</div>
+        <h1>كل اللي بتدور عليه.<br><em>في مكان واحد.</em></h1>
+        <p>استكشف أجهزة ومستلزمات فودافون، قارن الأسعار، واعرف حالة التوفر قبل ما تروح للمتجر الرسمي.</p>
+        <div class="hero-actions">
+          <a class="button button-white" href="#catalog">تصفح المنتجات <span>←</span></a>
+          <a class="hero-link" href="https://eshop.vodafone.com.eg/ar/" target="_blank" rel="noopener">الانتقال لمتجر Vodafone <span>↗</span></a>
+        </div>
+        <div class="hero-meta"><span class="meta-check">✓</span> روابط مباشرة للمصدر الرسمي <i></i><span>تحديث البيانات عبر Google Sheets</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-phone"><div class="phone-camera"></div><div class="phone-screen"><span>v</span></div></div>
+        <div class="floating-tag tag-price"><small>أسعار بالجنيه</small><b>EGP <strong>↗</strong></b></div>
+        <div class="floating-tag tag-stock"><span class="stock-dot"></span><small>حالة التوفر</small><b>محدثة من المصدر</b></div>
+      </div>
+      <div class="hero-bottom"><span>01 / DISCOVER</span><span>VODAFONE EGYPT CATALOG</span></div>
+    </section>
+
+    <section class="trust-strip">
+      <div><b id="totalCount">—</b><span>منتجات في الكتالوج</span></div>
+      <div><b>EGP</b><span>الأسعار بالجنيه المصري</span></div>
+      <div><b>RTL</b><span>تجربة عربية بالكامل</span></div>
+      <div><b>5 min</b><span>فحص تحديثات الشيت</span></div>
+    </section>
+
+    <section class="catalog-section" id="catalog">
+      <div class="section-heading">
+        <div><div class="section-kicker">THE CATALOG</div><h2>اختار اللي يناسبك<span>.</span></h2><p>ابحث، صفّي النتائج، وافتح تفاصيل كل منتج.</p></div>
+        <div class="feed-status"><span class="status-pulse"></span><div><b id="feedState">جارٍ تجهيز الكتالوج</b><small id="feedDate">—</small></div></div>
+      </div>
+
+      <div class="catalog-controls">
+        <label class="search-box"><span class="search-icon">⌕</span><input type="search" id="searchInput" placeholder="بتدور على إيه؟ اكتب اسم المنتج أو الماركة..." autocomplete="off"><kbd>⌕</kbd></label>
+        <div class="select-wrap"><label for="sortSelect">ترتيب حسب</label><select id="sortSelect"><option value="featured">الأكثر صلة</option><option value="price-asc">السعر: من الأقل للأعلى</option><option value="price-desc">السعر: من الأعلى للأقل</option><option value="name">الاسم</option></select></div>
+      </div>
+
+      <div class="filter-row">
+        <div class="category-chips" id="categoryFilters" aria-label="تصفية حسب الفئة"></div>
+        <label class="availability-filter"><input type="checkbox" id="availableOnly"><span class="custom-check"></span> المتاح فقط</label>
+      </div>
+
+      <div class="results-line"><span id="resultCount">—</span><button id="resetFilters" class="reset-button">إعادة ضبط الفلاتر ↺</button></div>
+      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty-state" hidden><span>⌕</span><h3>مفيش نتائج مطابقة</h3><p>جرّب كلمة بحث مختلفة أو امسح الفلاتر.</p><button id="clearSearch" class="button button-dark">عرض كل المنتجات</button></div>
+    </section>
+
+    <section class="how-section" id="how">
+      <div class="how-intro"><div class="section-kicker light">SIMPLE & CLEAR</div><h2>اختيار أذكى.<br><em>ومعلومة أوضح.</em></h2><p>الكتالوج بيساعدك توصل للمنتج ومصدر سعره بسرعة. الشراء والتأكيد النهائي بيتم من خلال Vodafone Egypt.</p></div>
+      <div class="how-steps">
+        <article><span>01</span><div class="step-icon">⌕</div><h3>دوّر وقارن</h3><p>ابحث بالاسم أو الفئة، ورتّب المنتجات حسب السعر.</p></article>
+        <article><span>02</span><div class="step-icon">↗</div><h3>راجع المصدر</h3><p>افتح رابط المنتج على متجر فودافون وتأكد من السعر والتوفر.</p></article>
+        <article><span>03</span><div class="step-icon">⟳</div><h3>بيانات متجددة</h3><p>اربط Google Sheets علشان أي تعديل في الشيت ينعكس على الموقع تلقائياً.</p></article>
+      </div>
+    </section>
+
+    <section class="sources-section" id="sources">
+      <div><div class="section-kicker">TRANSPARENCY FIRST</div><h2>السعر له مصدر<span>.</span></h2><p>نعرض السعر كما ظهر في صفحة المنتج الرسمية وقت مراجعة البيانات. الأسعار والتوفر والعروض ممكن تتغير بدون إشعار؛ تأكيد الطلب النهائي من متجر فودافون.</p></div>
+      <a class="source-card" href="https://eshop.vodafone.com.eg/ar/" target="_blank" rel="noopener"><span class="source-icon">v</span><span><b>Vodafone Egypt E-Shop</b><small>المصدر الأساسي للأسعار والمنتجات</small></span><strong>↗</strong></a>
+    </section>
+
+    <div class="legal-note">هذا موقع كتالوج مستقل وغير تابع أو معتمد رسمياً من Vodafone Egypt. العلامات التجارية والصور تعود لأصحابها. الأسعار المعروضة معلومات إرشادية وليست عرض بيع أو ضماناً لتوفر المنتج.</div>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark">v</span><span><b>Vodafone Catalog</b><small>INDEPENDENT PROJECT</small></span></a><span>صُنع لتسهيل المقارنة والوصول للمصدر الرسمي.</span><a href="#catalog">العودة للأعلى ↑</a></footer>
+
+  <dialog id="productDialog" class="product-dialog">
+    <button class="dialog-close" id="dialogClose" aria-label="إغلاق">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
