@@ -1,5 +1,5 @@
 {
-  "required_observations_for_trend": 6,
+  "required_observations_for_trend": 8,
   "series": [
     {
       "product_id": "iphone-17-256",
@@ -25,7 +25,7 @@
           "price": 74499
         }
       ],
-      "note": "Four weekly observations only; insufficient for a statistical forecast. This series is a third-party price tracker snapshot, not a direct Vodafone feed."
+      "note": "أربع قراءات أسبوعية فقط؛ لا تكفي لتوقع إحصائي. نحتاج ثماني قراءات أسبوعية على الأقل لنموذج اتجاه خطي تجريبي. السلسلة من متتبع أسعار طرف ثالث وليست تغذية مباشرة من فودافون."
     }
   ]
 }
