@@ -121,7 +121,8 @@
           "status": "in_stock",
           "condition": "new",
           "warranty": "غير مؤكد من لقطة المتتبع",
-          "variant_note": "256GB Glacier — Dual-SIM; updated about 2 hours before the 5 Nov snapshot"
+          "variant_note": "256GB Glacier — Dual-SIM; updated about 2 hours before the 5 Nov snapshot",
+          "comparison_status": "same_core_variant"
         },
         {
           "store": "B.TECH (seller: drmobile)",
@@ -129,7 +130,8 @@
           "status": "in_stock",
           "condition": "new",
           "warranty": "غير مؤكد من لقطة المتتبع",
-          "variant_note": "256GB — eSIM; separate SIM configuration"
+          "variant_note": "256GB — eSIM; separate SIM configuration",
+          "comparison_status": "different_sim_configuration"
         },
         {
           "store": "2B",
@@ -137,7 +139,8 @@
           "status": "sold_out",
           "condition": "new",
           "warranty": "غير مؤكد",
-          "variant_note": "256GB Glacier in the version table; last price, sold out"
+          "variant_note": "256GB Glacier in the version table; last price, sold out",
+          "comparison_status": "same_core_variant"
         },
         {
           "store": "Tradeline",
@@ -145,7 +148,8 @@
           "status": "sold_out",
           "condition": "new",
           "warranty": "غير مؤكد",
-          "variant_note": "256GB Glacier in the version table; last price, sold out"
+          "variant_note": "256GB Glacier in the version table; last price, sold out",
+          "comparison_status": "same_core_variant"
         }
       ],
       "excluded_offers": [
