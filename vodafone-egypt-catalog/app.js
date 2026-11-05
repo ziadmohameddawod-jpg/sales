@@ -37,7 +37,7 @@ function fromSheet(row) {
     variant: row.variant || "", price: Number(String(row.price||"").replace(/[^0-9.]/g,"")),
     old_price: row.old_price ? Number(String(row.old_price).replace(/[^0-9.]/g,"")) : null,
     availability: row.availability || "تحقق من التوفر",
-    status: /غير متوفر|نفد/i.test(row.availability||"") ? "out" : /محدود/i.test(row.availability||"") ? "limited" : "check",
+    status: /غير متوفر|نفد/i.test(row.availability||"") ? "out" : /محدود/i.test(row.availability||"") ? "limited" : /متوفر|متاح|available/i.test(row.availability||"") ? "in" : "check",
     image: row.image_url || row.image || null, description: row.description || "",
     product_url: row.product_url || "", source_url: row.source_url || row.product_url || "",
     source_checked_at: row.source_checked_at || "", source_note: row.source_note || ""
