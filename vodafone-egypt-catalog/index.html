@@ -75,6 +75,93 @@
       <div id="emptyState" class="empty-state" hidden><span>⌕</span><h3>مفيش نتائج مطابقة</h3><p>جرّب كلمة بحث مختلفة أو امسح الفلاتر.</p><button id="clearSearch" class="button button-dark">عرض كل المنتجات</button></div>
     </section>
 
+    
+    <section class="intelligence-section" id="market-intelligence">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">MARKET INTELLIGENCE</div>
+          <h2>السوق بيقول إيه؟<span>.</span></h2>
+          <p>قارن نفس الموديل والنسخة بين فودافون والمتاجر المصرية، مع تاريخ ومصدر كل سعر.</p>
+        </div>
+        <div class="feed-status"><span class="status-pulse"></span><div><b>لقطات سوق موثقة بالمصدر</b><small>آخر مراجعة: 5 نوفمبر 2026</small></div></div>
+      </div>
+
+      <div class="bf-highlight">
+        <div class="bf-label">BLACK FRIDAY 2026</div>
+        <div class="bf-copy"><b>متابعين عروض الجمعة البيضاء</b><span>العروض والكوبونات تتغير بسرعة — قارن السعر الفعلي بتاريخ السعر قبل ما تعتبر أي خصم حقيقي.</span></div>
+        <a href="https://eshop.vodafone.com.eg/ar/black-friday" target="_blank" rel="noopener">عروض فودافون الرسمية ↗</a>
+      </div>
+
+      <div class="analytics-toolbar">
+        <label>اختر المنتج للمقارنة
+          <select id="marketProductSelect"></select>
+        </label>
+        <span class="snapshot-chip">لقطة أسعار مؤرخة وليست بثاً مباشراً</span>
+      </div>
+      <div id="marketSummary" class="market-summary"></div>
+      <div class="comparison-panel">
+        <div class="panel-heading"><div><b>مقارنة المتاجر</b><small id="marketVariant">—</small></div><span id="marketAsOf">—</span></div>
+        <div class="table-scroll">
+          <table class="market-table">
+            <thead><tr><th>المتجر</th><th>السعر</th><th>حالة البيانات</th></tr></thead>
+            <tbody id="marketRows"></tbody>
+          </table>
+        </div>
+        <div id="marketSourceNote" class="source-disclaimer"></div>
+        <div class="source-links" id="marketSourceLinks"></div>
+      </div>
+
+      <div class="forecast-layout">
+        <div class="forecast-copy">
+          <div class="section-kicker">PRICE SCENARIO LAB</div>
+          <h3>محاكي تقلبات السعر</h3>
+          <p>جرّب تأثير تغيّر سعر الدولار وضغط المعروض والخصومات على السعر. دي محاكاة افتراضية وليست وعداً بسعر مستقبلي.</p>
+          <div class="forecast-warning"><b>تنبيه الدقة</b><span id="trendReadiness">لا توجد بيانات تاريخية كافية لإصدار توقع إحصائي موثوق.</span></div>
+          <div class="history-card">
+            <div class="history-title"><b>سجل السعر المتاح</b><small id="historyCount">—</small></div>
+            <div id="historyChart" class="history-chart"></div>
+            <div id="historyNote" class="history-note"></div>
+          </div>
+        </div>
+        <div class="scenario-panel">
+          <div class="panel-heading"><div><b>اختبر سيناريو السوق</b><small>عدّل الافتراضات وشاهد أثرها الحسابي</small></div><span class="beta-pill">BETA</span></div>
+          <label class="scenario-field">الهاتف
+            <select id="forecastProductSelect"></select>
+          </label>
+          <label class="scenario-field">الفترة الافتراضية
+            <select id="forecastHorizon"><option value="30">30 يوم</option><option value="60">60 يوم</option><option value="90">90 يوم</option></select>
+          </label>
+          <div class="range-field">
+            <div><label for="fxChange">تغير الدولار مقابل الجنيه</label><b id="fxChangeValue">0%</b></div>
+            <input id="fxChange" type="range" min="-10" max="15" step="1" value="0">
+            <small>افتراض المستخدم — وليس سعر صرف متوقعاً.</small>
+          </div>
+          <div class="range-field">
+            <div><label for="supplyChange">ضغط المعروض / الاستيراد</label><b id="supplyChangeValue">0%</b></div>
+            <input id="supplyChange" type="range" min="-10" max="15" step="1" value="0">
+            <small>الموجب يعني نقص المعروض وارتفاع التكلفة؛ السالب يعني تحسن المعروض.</small>
+          </div>
+          <div class="range-field">
+            <div><label for="promoChange">خصم / عروض إضافية</label><b id="promoChangeValue">0%</b></div>
+            <input id="promoChange" type="range" min="0" max="20" step="1" value="0">
+            <small>خصم إضافي مفترض على سعر السيناريو.</small>
+          </div>
+          <div class="scenario-result">
+            <small>سعر السيناريو المحسوب</small>
+            <strong id="scenarioPrice">—</strong>
+            <span id="scenarioDelta">—</span>
+          </div>
+          <div id="scenarioFormula" class="formula-note"></div>
+          <button id="resetScenario" class="reset-button">إعادة الافتراضات للصفر ↺</button>
+        </div>
+      </div>
+      <div class="methodology-footnote">
+        <b>كيف نحافظ على دقة المقارنة؟</b>
+        <span>لا نخلط سعة 128GB مع 256GB، أو 4G مع 5G، أو جديد مع مستعمل. الضمان المحلي والبائع وشروط التقسيط والكوبون تُعرض منفصلة. لا نصنّف الخصم «حقيقياً» من السعر المشطوب وحده.</span>
+        <a href="https://web.vodafone.com.eg/ar/e-shop-terms-conditions" target="_blank" rel="noopener">شروط متجر فودافون ↗</a>
+      </div>
+    </section>
+
     <section class="how-section" id="how">
       <div class="how-intro"><div class="section-kicker light">SIMPLE & CLEAR</div><h2>اختيار أذكى.<br><em>ومعلومة أوضح.</em></h2><p>الكتالوج بيساعدك توصل للمنتج ومصدر سعره بسرعة. الشراء والتأكيد النهائي بيتم من خلال Vodafone Egypt.</p></div>
       <div class="how-steps">
@@ -99,6 +186,6 @@
     <div id="dialogContent"></div>
   </dialog>
   <script src="config.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js"></script>\n  <script src="analytics.js"></script>
 </body>
 </html>
