@@ -1,0 +1,31 @@
+{
+  "required_observations_for_trend": 6,
+  "series": [
+    {
+      "product_id": "iphone-17-256",
+      "title": "Apple iPhone 17 256GB",
+      "cadence": "weekly",
+      "source": "Prices Tracker — Vodafone price history table",
+      "source_url": "https://prices.askyasser.com/en/price/iphone-17-256gb-black-39007",
+      "observations": [
+        {
+          "date": "2026-10-14",
+          "price": 77499
+        },
+        {
+          "date": "2026-10-21",
+          "price": 77499
+        },
+        {
+          "date": "2026-10-28",
+          "price": 79990
+        },
+        {
+          "date": "2026-11-04",
+          "price": 74499
+        }
+      ],
+      "note": "Four weekly observations only; insufficient for a statistical forecast. This series is a third-party price tracker snapshot, not a direct Vodafone feed."
+    }
+  ]
+}
