@@ -29,38 +29,60 @@
     const record = marketData.comparisons.find(x => x.product_id === selectedId);
     if (!record) return;
 
-    const marketPrices = record.offers.map(x => Number(x.price)).filter(Number.isFinite);
-    const marketMedian = median(marketPrices);
-    const low = marketPrices.length ? Math.min(...marketPrices) : null;
-    const catalogPrice = Number(record.vodafone_catalog_price);
+    const exactOffers = record.offers.filter(x => !x.comparison_status || x.comparison_status === "same_core_variant");
+    const otherVariants = record.offers.filter(x => x.comparison_status && x.comparison_status !== "same_core_variant");
+    const prices = exactOffers.map(x => Number(x.price)).filter(x => Number.isFinite(x) && x > 0);
+    const marketMedian = median(prices);
+    const activeOffers = exactOffers.filter(x => x.status === "in_stock" && Number(x.price) > 0);
+    const activePrices = activeOffers.map(x => Number(x.price));
+    const lowestAvailable = activePrices.length ? Math.min(...activePrices) : null;
     const trackerPrice = Number(record.vodafone_tracker_price);
-    const vsMedian = marketMedian ? ((catalogPrice / marketMedian) - 1) * 100 : null;
-    const vsLow = low ? catalogPrice - low : null;
+    const catalogPrice = Number(record.vodafone_catalog_price);
+    const vodafonePrice = Number.isFinite(catalogPrice) && catalogPrice > 0 ? catalogPrice :
+      (Number.isFinite(trackerPrice) && trackerPrice > 0 ? trackerPrice : null);
+    const vodafoneUnavailable = String(record.vodafone_status || "").includes("sold_out");
+    const vsMedian = (vodafonePrice && marketMedian) ? ((vodafonePrice / marketMedian) - 1) * 100 : null;
+    const gapToAvailable = (vodafonePrice && lowestAvailable) ? lowestAvailable - vodafonePrice : null;
+    const soldOutCount = exactOffers.filter(x => x.status === "sold_out").length;
 
     $("marketSummary").innerHTML = [
-      '<div class="metric-card"><small>وسيط عروض السوق المدرجة</small><b>'+money(marketMedian)+'</b><span>وسيط البائعين المدرجين فقط، وليس متوسط كل السوق.</span></div>',
-      '<div class="metric-card"><small>أقل سعر سوقي مدرج</small><b>'+money(low)+'</b><span>من '+marketPrices.length+' عروض قابلة للمقارنة في اللقطة.</span></div>',
-      '<div class="metric-card highlight"><small>سعر فودافون في الكتالوج</small><b>'+money(catalogPrice)+'</b><span>'+(vsMedian === null ? "لا توجد مقارنة كافية" : (vsMedian >= 0 ? "أعلى من وسيط السوق بـ " : "أقل من وسيط السوق بـ ") + Math.abs(vsMedian).toFixed(1)+"%")+'</span></div>'
+      '<div class="metric-card"><small>أقل عرض متاح لنفس النسخة</small><b>'+(lowestAvailable === null ? "لا يوجد" : money(lowestAvailable))+'</b><span>'+(activeOffers.length ? activeOffers.length+" عرض متاح من "+exactOffers.length+" عروض متطابقة" : "لا توجد عروض متاحة مؤكدة في اللقطة")+'</span></div>',
+      '<div class="metric-card"><small>وسيط آخر الأسعار المسجلة</small><b>'+money(marketMedian)+'</b><span>'+exactOffers.length+" أسعار متطابقة؛ منها "+soldOutCount+" نفدت — لا تمثل كلها عروضاً قابلة للشراء.</span></div>',
+      '<div class="metric-card highlight"><small>فودافون — آخر سعر مرصود</small><b>'+(vodafonePrice === null ? "غير متاح" : money(vodafonePrice))+'</b><span>'+(vodafoneUnavailable ? "آخر رصد: غير متوفر بالمخزون" : record.vodafone_status_label || "حالة التوفر تحتاج تأكيداً")+(vsMedian === null ? "" : " · "+(vsMedian >= 0 ? "أعلى من الوسيط " : "أقل من الوسيط ")+Math.abs(vsMedian).toFixed(1)+"%")+'</span></div>'
     ].join("");
 
     $("marketVariant").textContent = record.variant;
-    $("marketAsOf").textContent = "تاريخ اللقطة: " + record.as_of;
-    let rows = record.offers.map(x=>({store:x.store,price:Number(x.price),tag:x.warranty || "الضمان غير مؤكد",kind:"market"}));
-    rows.push({store:"Vodafone Egypt — لقطة الكتالوج",price:catalogPrice,tag:"سعر المنتج المسجل",kind:"direct"});
-    if (Number.isFinite(trackerPrice) && trackerPrice !== catalogPrice) {
-      rows.push({store:"Vodafone Egypt — وفق متتبع الأسعار",price:trackerPrice,tag:"رصد طرف ثالث؛ يحتاج تأكيد المتجر",kind:"reported"});
-    }
+    $("marketAsOf").textContent = "آخر فحص للمقارنة: " + record.as_of;
+    let rows = exactOffers.map(x=>({
+      store:x.store,price:Number(x.price),tag:(x.status==="in_stock"?"متاح — ":"")+(x.status==="sold_out"?"نفد — ":"")+(x.warranty || "الضمان غير مؤكد"),
+      kind:"market",status:x.status||"unknown"
+    }));
+    if (vodafonePrice !== null) rows.push({
+      store:"Vodafone Egypt — آخر رصد",price:vodafonePrice,
+      tag:vodafoneUnavailable ? "آخر سعر معروف — غير متوفر" : (record.vodafone_status_label||"تحقق من السعر والتوفر"),
+      kind:"direct",status:vodafoneUnavailable?"sold_out":"unknown"
+    });
     rows.sort((a,b)=>a.price-b.price);
-    $("marketRows").innerHTML = rows.map(row => {
-      const tag = row.kind === "direct" ? '<span class="row-tag direct">'+escapeHtml(row.tag)+'</span>' :
-        row.kind === "reported" ? '<span class="row-tag reported">'+escapeHtml(row.tag)+'</span>' :
-        '<span class="row-tag">'+escapeHtml(row.tag)+'</span>';
-      return '<tr class="'+(row.kind==="direct"?"vodafone-row":"")+(row.price===low?" market-low":"")+'"><td>'+escapeHtml(row.store)+'</td><td>'+money(row.price)+'</td><td>'+tag+'</td></tr>';
-    }).join("");
-    $("marketSourceNote").textContent = record.source_note + " فارق سعر فودافون في الكتالوج عن أقل عرض مدرج: " + (vsLow === null ? "غير متاح" : money(vsLow)) + ". لا يعني السعر الأقل تلقائياً ضماناً أفضل أو بائعاً معتمداً.";
+    const rowHtml = row => {
+      const statusText = row.status === "in_stock" ? "متاح وقت الفحص" :
+        row.status === "sold_out" ? "آخر سعر — نفد المخزون" :
+        "حالة المخزون غير مؤكدة";
+      const tagClass = row.kind === "direct" ? "direct" : row.status === "in_stock" ? "reported" : "";
+      return '<tr class="'+(row.kind==="direct"?"vodafone-row":"")+(row.price===lowestAvailable && row.status==="in_stock"?" market-low":"")+'"><td>'+escapeHtml(row.store)+'</td><td>'+money(row.price)+'</td><td><span class="row-tag '+tagClass+'">'+escapeHtml(statusText+" · "+row.tag)+'</span></td></tr>';
+    };
+    const otherRows = otherVariants.map(x=>({
+      store:x.store,price:Number(x.price),tag:x.variant_note||"نسخة مختلفة لا تدخل في المقارنة الأساسية",
+      kind:"different",status:x.status||"unknown"
+    }));
+    $("marketRows").innerHTML = rows.map(rowHtml).join("") +
+      (otherRows.length ? '<tr><td colspan="3" style="background:#fafafa;color:#999;font-size:8px">عروض نسخ مختلفة — مستبعدة من الحساب</td></tr>'+otherRows.map(x=>'<tr><td>'+escapeHtml(x.store)+'</td><td>'+money(x.price)+'</td><td><span class="row-tag">'+escapeHtml(x.tag)+'</span></td></tr>').join("") : "");
+    const gapText = gapToAvailable === null ? "لا توجد مقارنة قابلة للشراء حالياً" :
+      (gapToAvailable >= 0 ? "أقل سعر فودافون المرجعي من أقل عرض متاح بـ " : "آخر سعر فودافون المرجعي أعلى من أقل عرض متاح بـ ") + money(Math.abs(gapToAvailable));
+    $("marketSourceNote").textContent = record.source_note + " " + gapText +
+      (record.excluded_offers?.length ? " عروض مستبعدة بسبب اختلاف النسخة/الضمان: "+record.excluded_offers.map(x=>x.store+" ("+x.reason+")").join("؛ ") : "");
     $("marketSourceLinks").innerHTML =
       '<a href="'+escapeHtml(record.tracker_source)+'" target="_blank" rel="noopener">مصدر مقارنة السوق ↗</a>' +
-      '<a href="'+escapeHtml(record.vodafone_source)+'" target="_blank" rel="noopener">صفحة فودافون للمنتج ↗</a>';
+      '<a href="'+escapeHtml(record.vodafone_source)+'" target="_blank" rel="noopener">صفحة فودافون ↗</a>';
   }
 
   function regressionForecast(points, days) {
