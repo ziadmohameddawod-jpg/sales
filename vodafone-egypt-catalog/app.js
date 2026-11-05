@@ -88,7 +88,7 @@ function filteredProducts() {
     const text = [p.name_ar,p.brand,p.category,p.variant,p.description].join(" ").toLowerCase();
     const categoryOk = state.category === "الكل" || p.category === state.category;
     const queryOk = !state.query || text.includes(state.query.toLowerCase());
-    const availableOk = !state.availableOnly || !["out"].includes(p.status);
+    const availableOk = !state.availableOnly || ["in","limited"].includes(p.status);
     return categoryOk && queryOk && availableOk;
   });
   if (state.sort === "price-asc") products.sort((a,b)=>a.price-b.price);
