@@ -103,6 +103,65 @@
       "tracker_source": "https://prices.askyasser.com/en/price/iphone-17-256gb-black-39007",
       "vodafone_source": "https://eshop.vodafone.com.eg/ar/prod/i-phone-17",
       "source_note": "Prices Tracker table dated 4 Nov 2026 lists Vodafone at EGP 74,499 and competitor observations shown here. The catalog's saved Vodafone page snapshot is EGP 74,999, a EGP 500 difference. Warranty and exact SIM/region variant must be confirmed with each seller. Ennap's EGP 52,999 international/no-local-agent-warranty listing is deliberately excluded from the comparison median."
+    },
+    {
+      "product_id": "iphone-18-pro-256-glacier",
+      "title": "Apple iPhone 18 Pro",
+      "variant": "256GB · Glacier · 5G",
+      "as_of": "2026-11-05",
+      "match_standard": "Apple iPhone 18 Pro, 256GB, 5G; color Glacier where separately identified. Seller/channel and SIM variant remain explicit.",
+      "vodafone_catalog_price": null,
+      "vodafone_tracker_price": 109899,
+      "vodafone_status": "sold_out_last_seen",
+      "vodafone_status_label": "آخر سعر مرصود 109,899 جنيه — كان غير متوفر",
+      "offers": [
+        {
+          "store": "B.TECH (seller: drmobile)",
+          "price": 124850,
+          "status": "in_stock",
+          "condition": "new",
+          "warranty": "غير مؤكد من لقطة المتتبع",
+          "variant_note": "256GB Glacier — Dual-SIM; updated about 2 hours before the 5 Nov snapshot"
+        },
+        {
+          "store": "B.TECH (seller: drmobile)",
+          "price": 127000,
+          "status": "in_stock",
+          "condition": "new",
+          "warranty": "غير مؤكد من لقطة المتتبع",
+          "variant_note": "256GB — eSIM; separate SIM configuration"
+        },
+        {
+          "store": "2B",
+          "price": 109899,
+          "status": "sold_out",
+          "condition": "new",
+          "warranty": "غير مؤكد",
+          "variant_note": "256GB Glacier in the version table; last price, sold out"
+        },
+        {
+          "store": "Tradeline",
+          "price": 109900,
+          "status": "sold_out",
+          "condition": "new",
+          "warranty": "غير مؤكد",
+          "variant_note": "256GB Glacier in the version table; last price, sold out"
+        }
+      ],
+      "excluded_offers": [
+        {
+          "store": "Ennap",
+          "price": 84999,
+          "status": "in_stock",
+          "condition": "new",
+          "warranty": "No local agent warranty",
+          "reason": "International version without local agent warranty. Excluded from the like-for-like comparison."
+        }
+      ],
+      "tracker_source": "https://prices.askyasser.com/en/price/iphone-18-pro-256gb-glacier-387",
+      "vodafone_source": "https://eshop.vodafone.com.eg/ar/prod/iphone-18-pro-max",
+      "competitor_source": "https://2b.com.eg/en/apple-iphone-18-pro-256gb-black.html",
+      "source_note": "The Prices Tracker page updated on 5 Nov 2026 reports B.TECH (drmobile) at EGP 124,850 in stock for 256GB Glacier Dual-SIM, and EGP 127,000 for a distinct eSIM version. It shows Vodafone Egypt's last known 256GB Glacier price as EGP 109,899, last seen 4 Nov and sold out; Tradeline last EGP 109,900 and 2B last EGP 109,899 are also sold out. Ennap at EGP 84,999 is an international version with no local agent warranty and is excluded. Vodafone's public category listing gives a Pro starting price but the currently searchable direct detail page is not a clean live 256GB Glacier confirmation; verify with Vodafone before purchase. Therefore the Vodafone figure is a last-known reference, not an available price quote."
     }
   ]
 }
