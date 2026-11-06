@@ -145,6 +145,21 @@
           <label class="scenario-field">الهاتف
             <select id="forecastProductSelect"></select>
           </label>
+          <div class="scenario-bulk-filters" id="scenarioBulkCard">
+            <div class="scenario-bulk-heading"><b>تحليل الكتالوج بالكامل</b><small id="scenarioBulkCount">—</small></div>
+            <div class="scenario-filter-grid">
+              <label class="scenario-field">الفئة<select id="forecastCategoryFilter"><option value="الكل">كل الفئات</option></select></label>
+              <label class="scenario-field">الماركة<select id="forecastBrandFilter"><option value="الكل">كل الماركات</option></select></label>
+            </div>
+            <label class="scenario-field">ابحث عن منتج<input id="forecastSearchFilter" type="search" placeholder="اسم المنتج أو السعة أو الماركة"></label>
+            <div class="scenario-table-wrap">
+              <table class="scenario-bulk-table">
+                <thead><tr><th>المنتج والنسخة</th><th>السعر الحالي</th><th>سعر السيناريو</th><th>التغير</th><th>أسبوعي</th><th>يومي</th><th>جاهزية التوقع</th></tr></thead>
+                <tbody id="scenarioBulkBody"></tbody>
+              </table>
+            </div>
+            <p id="scenarioBulkNote" class="scenario-bulk-note"></p>
+          </div>
           <label class="scenario-field">متجر سجل السعر اليومي
             <select id="forecastStoreSelect"></select>
           </label>
