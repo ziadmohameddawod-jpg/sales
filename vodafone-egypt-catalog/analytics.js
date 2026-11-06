@@ -5,6 +5,7 @@
   let marketData = null;
   let historyData = null;
   let products = [];
+  const ALL_PRODUCTS = "__ALL_PRODUCTS__";
 
   async function readJson(path) {
     const response = await fetch(path + "?v=" + Date.now(), { cache: "no-store" });
@@ -71,13 +72,140 @@
     $("forecast48h").innerHTML='<b>'+(passes?'اتجاه تجريبي وفق السجل: '+names[direction]:'لا يعرض النموذج توقعاً اتجاهياً')+'</b><span>'+testSummary+(passes?'النموذج تجاوز خط الأساس في هذا الاختبار المحدود.':'لم يتجاوز النموذج خط الأساس؛ يلزم جمع بيانات ومراجعة المنهج قبل استخدامه.')+'</span><small>'+distinct.length+' قراءة لنفس المنتج والمتجر؛ '+windows.length+' فترة 48 ساعة غير متداخلة. قد تظل النتائج مترابطة زمنياً. لا تُعرض احتمالات رقمية قبل اختبار المعايرة.</small>';
   }
 
+  function productHistoryStats(productId, store) {
+    const weekly = (historyData.series || []).find(item => item.product_id === productId);
+    const weeklyPoints = (weekly?.observations || []).filter(point =>
+      Number(point.price) > 0 && /^\d{4}-\d{2}-\d{2}$/.test(point.date)
+    ).slice().sort((a,b)=>a.date.localeCompare(b.date));
+    const daily = (historyData.daily_series || []).find(item =>
+      item.product_id === productId && item.store === store
+    );
+    const dailyPoints = [...new Map((daily?.observations || [])
+      .filter(point => Number(point.price) > 0 && /^\d{4}-\d{2}-\d{2}$/.test(point.date))
+      .map(point => [point.date, point])).values()].sort((a,b)=>a.date.localeCompare(b.date));
+    return {weeklyPoints, dailyPoints};
+  }
+
+  function assess48HourForecast(productId, store) {
+    const minRequired = historyData.short_term_forecast_requirements?.min_daily_observations || 90;
+    const stats = productHistoryStats(productId, store);
+    const dailyPoints = stats.dailyPoints;
+    if (dailyPoints.length < minRequired) {
+      return {ready:false, label:"غير متاح · "+dailyPoints.length+"/"+minRequired, detail:"قراءات يومية مطلوبة لنفس المنتج والمتجر"};
+    }
+    const day = 86400000;
+    const windows = [];
+    for (let i=0; i<dailyPoints.length-2; i+=2) {
+      const first=dailyPoints[i], last=dailyPoints[i+2];
+      if (Date.parse(last.date+"T00:00:00Z")-Date.parse(first.date+"T00:00:00Z")!==2*day) continue;
+      const label=Number(last.price)>Number(first.price)?"increase":Number(last.price)<Number(first.price)?"decrease":"steady";
+      windows.push({startIndex:i,endIndex:i+2,label});
+    }
+    if (windows.length < 30) {
+      return {ready:false,label:"غير متاح · نوافذ اختبار قليلة",detail:windows.length+" نافذة 48 ساعة؛ نحتاج 30 على الأقل"};
+    }
+    const split=Math.ceil(windows.length*.75), holdout=windows.slice(split), results=[];
+    holdout.forEach(test=>{
+      const training=windows.filter(window=>window.endIndex<test.startIndex);
+      if(training.length<10)return;
+      const counts={increase:0,decrease:0,steady:0};
+      training.forEach(window=>counts[window.label]++);
+      const prediction=Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0];
+      results.push({prediction,actual:test.label});
+    });
+    if(results.length<10) return {ready:false,label:"غير متاح · اختبار رجعي محدود",detail:results.length+" نتيجة اختبار فقط؛ نحتاج 10 على الأقل"};
+    const correct=results.filter(result=>result.prediction===result.actual).length;
+    const accuracy=correct/results.length*100;
+    const baseline=results.filter(result=>result.actual==="steady").length/results.length*100;
+    const counts={increase:0,decrease:0,steady:0};
+    windows.forEach(window=>counts[window.label]++);
+    const direction=Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0];
+    const names={increase:"زيادة",decrease:"انخفاض",steady:"استقرار"};
+    const passes=accuracy>baseline;
+    return {ready:passes,label:passes?"اتجاه تجريبي · "+names[direction]:"لم يجتز خط الأساس",
+      detail:"اختبار خارج العينة "+correct+"/"+results.length+" ("+accuracy.toFixed(1)+"%) مقابل خط أساس "+baseline.toFixed(1)+"%"};
+  }
+
   function populateForecastStores() {
     const productId=$("forecastProductSelect").value;
-    const stores=[...new Set((historyData.daily_series||[]).filter(item=>item.product_id===productId).map(item=>item.store).filter(Boolean))];
-    if(!stores.length)stores.push("Vodafone Egypt");
+    const series=(historyData.daily_series||[]).filter(item =>
+      productId===ALL_PRODUCTS || item.product_id===productId
+    );
+    const stores=[...new Set(series.map(item=>item.store).filter(Boolean))];
+    if(!stores.includes("Vodafone Egypt")) stores.unshift("Vodafone Egypt");
     const previous=$("forecastStoreSelect").value;
     $("forecastStoreSelect").innerHTML=stores.map(store=>'<option value="'+escapeHtml(store)+'">'+escapeHtml(store)+'</option>').join("");
-    $("forecastStoreSelect").value=stores.includes(previous)?previous:stores[0];
+    $("forecastStoreSelect").value=stores.includes(previous)?previous:"Vodafone Egypt";
+  }
+
+  function populateBulkBrands() {
+    const category=$("forecastCategoryFilter").value || "الكل";
+    const previous=$("forecastBrandFilter").value || "الكل";
+    const brands=[...new Set(products
+      .filter(product=>category==="الكل" || product.category===category)
+      .map(product=>product.brand))].sort((a,b)=>a.localeCompare(b,"ar"));
+    $("forecastBrandFilter").innerHTML=['<option value="الكل">كل الماركات</option>',...brands.map(brand=>'<option value="'+escapeHtml(brand)+'">'+escapeHtml(brand)+'</option>')].join("");
+    $("forecastBrandFilter").value=brands.includes(previous)?previous:"الكل";
+  }
+
+  function populateBulkFilters() {
+    const categories=[...new Set(products.map(product=>product.category))].sort((a,b)=>a.localeCompare(b,"ar"));
+    $("forecastCategoryFilter").innerHTML=['<option value="الكل">كل الفئات</option>',...categories.map(category=>'<option value="'+escapeHtml(category)+'">'+escapeHtml(category)+'</option>')].join("");
+    populateBulkBrands();
+  }
+
+  function renderBulkResults(totalPct) {
+    const category=$("forecastCategoryFilter").value || "الكل";
+    const brand=$("forecastBrandFilter").value || "الكل";
+    const query=String($("forecastSearchFilter").value||"").trim().toLocaleLowerCase("ar");
+    const store=$("forecastStoreSelect").value || "Vodafone Egypt";
+    const weeklyRequired=Number(historyData.required_observations_for_trend||8);
+    const dailyRequired=Number(historyData.short_term_forecast_requirements?.min_daily_observations||90);
+    const results=products.filter(product=>{
+      const searchable=[product.name_ar,product.brand,product.category,product.variant].join(" ").toLocaleLowerCase("ar");
+      return (category==="الكل" || product.category===category) &&
+        (brand==="الكل" || product.brand===brand) &&
+        (!query || searchable.includes(query)) &&
+        Number(product.price)>0;
+    }).sort((a,b)=>a.category.localeCompare(b.category,"ar") ||
+      a.brand.localeCompare(b.brand,"ar") || a.name_ar.localeCompare(b.name_ar,"ar") ||
+      String(a.variant).localeCompare(String(b.variant),"ar"));
+
+    $("scenarioBulkCount").textContent=results.length.toLocaleString("ar-EG")+" من "+products.length.toLocaleString("ar-EG")+" منتج";
+    $("scenarioBulkBody").innerHTML=results.map(product=>{
+      const base=Number(product.price), projected=base*(1+totalPct/100), delta=projected-base;
+      const stats=productHistoryStats(product.id,store);
+      const assessment=assess48HourForecast(product.id,store);
+      const statusLabel=product.status==="in"?"متاح وقت الرصد":product.status==="limited"?"مخزون محدود":product.status==="out"?"آخر رصد: غير متاح":"التوفر يحتاج مراجعة";
+      const deltaClass=delta>0?"up":delta<0?"down":"flat";
+      const forecastClass=assessment.ready?"ready":"pending";
+      return '<tr><td><b>'+escapeHtml(product.name_ar)+'</b><small>'+escapeHtml(product.brand)+' · '+escapeHtml(product.category)+' · '+escapeHtml(product.variant)+'</small><small>'+escapeHtml(statusLabel)+' · آخر رصد '+escapeHtml(product.source_checked_at||"غير محدد")+'</small></td>'+
+        '<td>'+money(base)+'</td><td class="scenario-price-cell">'+money(projected)+'</td>'+
+        '<td><span class="scenario-delta '+deltaClass+'">'+percent(totalPct)+'</span><small>'+money(Math.abs(delta))+'</small></td>'+
+        '<td>'+stats.weeklyPoints.length+'/'+weeklyRequired+'</td><td>'+stats.dailyPoints.length+'/'+dailyRequired+'</td>'+
+        '<td><span class="scenario-status '+forecastClass+'">'+escapeHtml(assessment.label)+'</span><small>'+escapeHtml(assessment.detail)+'</small></td></tr>';
+    }).join("");
+    $("scenarioBulkNote").textContent="النتائج تعرض سعر الأساس المسجل لكل منتج وتطبيق الافتراضات نفسها عليه. السجل الأسبوعي واليومي منفصل لكل SKU ومتجر؛ لا يتم تعميم تاريخ موديل على آخر. الأسعار المرجعية قد تكون آخر سعر معروف حتى لو المنتج غير متاح حالياً.";
+    if(!results.length) $("scenarioBulkBody").innerHTML='<tr><td colspan="7" class="bulk-empty">لا توجد منتجات مطابقة للفلاتر الحالية.</td></tr>';
+  }
+
+  function drawAllProductsHistory() {
+    const store=$("forecastStoreSelect").value || "Vodafone Egypt";
+    const weeklyKnown=products.filter(product=>productHistoryStats(product.id,store).weeklyPoints.length>0).length;
+    const weeklyReady=products.filter(product=>productHistoryStats(product.id,store).weeklyPoints.length>=(historyData.required_observations_for_trend||8)).length;
+    const dailyKnown=products.filter(product=>productHistoryStats(product.id,store).dailyPoints.length>0).length;
+    const dailyReady=products.filter(product=>productHistoryStats(product.id,store).dailyPoints.length>=(historyData.short_term_forecast_requirements?.min_daily_observations||90)).length;
+    $("historyCount").textContent=weeklyKnown+" / "+products.length+" لها سجل أسبوعي";
+    $("historyChart").innerHTML='<div class="history-overview">'+
+      '<div><b>'+products.length.toLocaleString("ar-EG")+'</b><small>منتج داخل المحاكي</small></div>'+
+      '<div><b>'+weeklyKnown.toLocaleString("ar-EG")+'</b><small>لها سجل أسبوعي</small></div>'+
+      '<div><b>'+weeklyReady.toLocaleString("ar-EG")+'</b><small>مكتمل 8 قراءات أسبوعية</small></div>'+
+      '<div><b>'+dailyKnown.toLocaleString("ar-EG")+'</b><small>لها قراءة يومية لدى '+escapeHtml(store)+'</small></div>'+
+      '<div><b>'+dailyReady.toLocaleString("ar-EG")+'</b><small>مكتمل 90 قراءة يومية</small></div></div>';
+    $("historyNote").textContent="كل منتج له سجل مستقل. وجود سعر حالي لا يعني وجود تاريخ كافٍ؛ لن نخلط تاريخ موديل بآخر أو متجر بآخر.";
+    $("trendReadiness").textContent="المحاكي يطبق السيناريو على "+products.length+" منتجاً. يوجد سجل أسبوعي لـ "+weeklyKnown+" منتجاً، و"+weeklyReady+" فقط لديهم 8 قراءات. هذا لا يكفي وحده لتوقع 48 ساعة.";
+    $("trendEstimate").hidden=true;
+    $("forecast48h").innerHTML='<b>حالة التوقع الإحصائي حسب كل منتج</b><span>'+dailyKnown+' منتجاً لديهم قراءة يومية واحدة على الأقل لدى '+escapeHtml(store)+'، و'+dailyReady+' أكملوا 90 قراءة يومية. التفاصيل لكل منتج في جدول النتائج.</span><small>لا يوجد توقع موحد للكتالوج؛ كل توقع يجب أن يعتمد على سجل النسخة والمتجر نفسهما واختبار رجعي مستقل.</small>';
   }
 
   function renderComparison() {
@@ -209,21 +337,42 @@
     $("trendEstimate").innerHTML='<b>استقراء اتجاه تجريبي لـ '+escapeHtml(horizon)+' يوم</b><strong>'+money(estimate.predicted)+'</strong><span>نطاق النموذج التقريبي: '+money(estimate.low)+' – '+money(estimate.high)+'</span><small>انحدار لوغاريتمي على السجل المتاح مع نطاق تنبؤ تقريبي. هذا النموذج لا يلتقط تلقائياً قرارات الاستيراد أو تغير العملة المفاجئ أو العروض؛ لا تعتبره ضماناً.</small>';
   }
 
+  function scenarioPercent() {
+    return (Number($("fxChange").value)*0.65)+Number($("supplyChange").value)-
+      Number($("promoChange").value)+Number($("priceChange").value);
+  }
+
   function renderScenario() {
-    const selected = products.find(p=>String(p.id)===$("forecastProductSelect").value);
-    if (!selected) return;
+    const selectedId=$("forecastProductSelect").value;
     const fx=Number($("fxChange").value);
     const supply=Number($("supplyChange").value);
     const promo=Number($("promoChange").value);
     const direct=Number($("priceChange").value);
     const horizon=$("forecastHorizon").value;
-    const passThrough=0.65;
-    const totalPct=(fx*passThrough)+supply-promo+direct;
-    const projected=Number(selected.price)*(1+totalPct/100);
+    const totalPct=(fx*0.65)+supply-promo+direct;
     $("fxChangeValue").textContent=percent(fx);
     $("supplyChangeValue").textContent=percent(supply);
     $("promoChangeValue").textContent=percent(promo);
     $("priceChangeValue").textContent=percent(direct);
+
+    if(selectedId===ALL_PRODUCTS){
+      const count=products.filter(product=>Number(product.price)>0).length;
+      $("scenarioBulkCard").hidden=false;
+      $("scenarioPrice").textContent=count.toLocaleString("ar-EG")+" منتج";
+      $("scenarioDelta").textContent=percent(totalPct)+" افتراض موحد مطبق على أسعار المنتجات · أفق "+horizon+" يوم";
+      const weeklyReady=products.filter(product=>productHistoryStats(product.id,$("forecastStoreSelect").value).weeklyPoints.length>=(historyData.required_observations_for_trend||8)).length;
+      const dailyReady=products.filter(product=>assess48HourForecast(product.id,$("forecastStoreSelect").value).ready).length;
+      $("scenarioRank").textContent=weeklyReady+" منتج لديه سجل أسبوعي كافٍ · "+dailyReady+" اجتاز اختبار التوقع اليومي حالياً.";
+      $("scenarioFormula").textContent="المعادلة التوضيحية لكل منتج: سعره الحالي × [1 + (تغير الدولار × 65% تمرير افتراضي) + ضغط المعروض − الخصم المفترض + التغيير المباشر]. هذه محاكاة افتراضية وليست توقعاً إحصائياً.";
+      renderBulkResults(totalPct);
+      drawAllProductsHistory();
+      return;
+    }
+
+    $("scenarioBulkCard").hidden=true;
+    const selected=products.find(product=>String(product.id)===selectedId);
+    if(!selected)return;
+    const projected=Number(selected.price)*(1+totalPct/100);
     $("scenarioPrice").textContent=money(projected);
     $("scenarioDelta").textContent=percent(totalPct)+" مقابل سعر الأساس الحالي ("+money(selected.price)+") — أفق السيناريو "+horizon+" يوم";
     const comparison=marketData.comparisons.find(record=>record.product_id===selected.id);
@@ -244,10 +393,19 @@
         readJson("data/products.json")
       ]);
       $("marketProductSelect").innerHTML=marketData.comparisons.map(x=>'<option value="'+escapeHtml(x.product_id)+'">'+escapeHtml(x.title+' — '+x.variant)+'</option>').join("");
-      $("forecastProductSelect").innerHTML=products.filter(p=>p.category==="هواتف" && Number(p.price)>0).map(p=>'<option value="'+escapeHtml(p.id)+'">'+escapeHtml(p.name_ar+' — '+p.variant)+'</option>').join("");
+      const selectable=products.filter(product=>Number(product.price)>0).slice().sort((a,b)=>
+        a.category.localeCompare(b.category,"ar") || a.brand.localeCompare(b.brand,"ar") ||
+        a.name_ar.localeCompare(b.name_ar,"ar") || String(a.variant).localeCompare(String(b.variant),"ar"));
+      $("forecastProductSelect").innerHTML=
+        '<option value="'+ALL_PRODUCTS+'">كل المنتجات ('+selectable.length+')</option>'+
+        selectable.map(product=>'<option value="'+escapeHtml(product.id)+'">'+escapeHtml(product.name_ar+' — '+product.variant+' · '+product.category)+'</option>').join("");
+      populateBulkFilters();
       $("marketProductSelect").addEventListener("change",renderComparison);
       $("forecastProductSelect").addEventListener("change",()=>{populateForecastStores();renderScenario();});
       $("forecastStoreSelect").addEventListener("change",renderScenario);
+      $("forecastCategoryFilter").addEventListener("change",()=>{populateBulkBrands();renderBulkResults(scenarioPercent());});
+      $("forecastBrandFilter").addEventListener("change",()=>renderBulkResults(scenarioPercent()));
+      $("forecastSearchFilter").addEventListener("input",()=>renderBulkResults(scenarioPercent()));
       ["fxChange","supplyChange","promoChange","priceChange","forecastHorizon"].forEach(id=>$(id).addEventListener("input",renderScenario));
       $("resetScenario").addEventListener("click",()=>{
         $("fxChange").value=0;$("supplyChange").value=0;$("promoChange").value=0;$("priceChange").value=0;$("forecastHorizon").value="30";renderScenario();
