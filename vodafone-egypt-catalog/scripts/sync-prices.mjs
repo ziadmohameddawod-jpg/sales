@@ -401,6 +401,7 @@ async function main() {
       } catch (error) {
         if (/API 429/.test(error.message)) {
           quotaLimited = true;
+          attemptedProducts -= 1;
           break;
         }
         failures.push({ product_id: product.id, message: error.message.slice(0, 240) });
@@ -413,6 +414,7 @@ async function main() {
     if (providerProduct?.product_id) {
       if (rateLimitRemaining !== null && rateLimitRemaining <= 0) {
         quotaLimited = true;
+        attemptedProducts -= 1;
         break;
       }
       try {
@@ -426,6 +428,7 @@ async function main() {
       } catch (error) {
         if (/API 429/.test(error.message)) {
           quotaLimited = true;
+          attemptedProducts -= 1;
           break;
         }
         failures.push({ product_id: product.id, message: error.message.slice(0, 240) });

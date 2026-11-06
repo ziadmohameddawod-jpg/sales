@@ -54,3 +54,9 @@ jobs:
       - name: Validate catalogue data
         working-directory: ./vodafone-egypt-catalog
         run: node scripts/validate-data.mjs
+
+      - name: Build GitHub Pages site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./vodafone-egypt-catalog
+          destination: ./_site
