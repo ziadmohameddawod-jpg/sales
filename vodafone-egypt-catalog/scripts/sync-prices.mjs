@@ -106,9 +106,9 @@ function chooseCandidate(product, payload) {
 }
 
 function retailerAllowed(name) {
-  const value = clean(name).replace(/\s+/g, "");
-  return ALLOWED_RETAILERS.some(store => value === store.replace(/\s+/g, "") ||
-    value.startsWith(store.replace(/\s+/g, "")));
+  const key = value => clean(value).replace(/[^a-z0-9]/g, "");
+  const value = key(name);
+  return ALLOWED_RETAILERS.some(store => value === key(store) || value.startsWith(key(store)));
 }
 
 function offerMatchesVariant(product, offer) {
