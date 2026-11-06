@@ -12,9 +12,11 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: google-sheets-product-sync
+  group: catalog-data-updates
   cancel-in-progress: false
 
 jobs:
@@ -50,3 +52,34 @@ jobs:
             git commit -m "Sync product catalogue from Google Sheets"
             git push origin HEAD:main
           fi
+
+  deploy:
+    name: Publish updated catalogue
+    runs-on: ubuntu-latest
+    needs: sync
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./vodafone-egypt-catalog
+          destination: ./_site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v5

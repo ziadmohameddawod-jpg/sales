@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: price-sync-and-pages
+  group: catalog-data-updates
   cancel-in-progress: false
 
 jobs:
