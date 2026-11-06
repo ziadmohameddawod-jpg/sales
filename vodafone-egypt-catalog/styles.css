@@ -88,3 +88,37 @@
 .trend-estimate strong{font:700 20px Arial,sans-serif;color:var(--red)}
 .trend-estimate span{font-size:8px;color:#555}
 .trend-estimate small{font-size:7px;line-height:1.8;color:#999}
+
+/* ZV-EG price intelligence enhancements */
+.catalog-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0 10px}
+.catalog-filters label{display:flex;flex-direction:column;gap:5px;color:#777;font-size:9px}
+.catalog-filters select,.catalog-filters input{height:42px;border:1px solid #dedede;border-radius:5px;background:#fff;padding:0 10px;color:#222;font-size:10px;min-width:0}
+.price-range-fields{display:flex;gap:7px}.price-range-fields input{width:50%}
+.active-filter-summary{margin:8px 0 18px;padding:10px 13px;border-right:3px solid var(--red);background:#fffafa;color:#777;font-size:9px;line-height:1.8}
+.best-picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0 24px}
+.pick-card{display:flex;flex-direction:column;gap:4px;text-align:right;min-height:112px;padding:14px 16px;border:1px solid #e8e8e8;border-radius:7px;background:#fff;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s}
+.pick-card:hover{transform:translateY(-2px);border-color:#c9c9c9;box-shadow:0 9px 24px rgba(0,0,0,.06)}
+.pick-card>span{font-size:8px;color:#888}.pick-card>b{font-size:12px;color:#222}.pick-card>small{font-size:8px;color:#888;line-height:1.8}
+.pick-card.lowest{border-top:3px solid #18834a}.pick-card.saving{border-top:3px solid #d89831}.pick-card.value{border-top:3px solid var(--red)}.pick-card.muted{cursor:default;background:#fafafa}
+.recommend-badges{position:absolute;z-index:3;left:8px;top:10px;display:flex;flex-direction:column;gap:4px;align-items:flex-start;max-width:62%}
+.recommend-badge{background:#fff;border-radius:3px;padding:3px 7px;font-size:7px;font-weight:700;box-shadow:0 2px 7px rgba(0,0,0,.08)}
+.recommend-badge.lowest{color:#167147}.recommend-badge.saving{color:#946315}.recommend-badge.value{color:#b40000}
+.listing-store{display:block;margin:0 0 3px;color:#8a8a8a;font-size:8px}.listing-source{margin-top:4px;color:#999;font-size:8px}.product-info .availability{margin-top:8px}
+.transparency-banner{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;background:#fff8eb;border:1px solid #f1dfbd;border-right:3px solid #d99b3d;border-radius:6px;color:#78531b;font-size:9px;line-height:1.9;margin:0 0 15px}
+.market-table th:last-child,.market-table td:last-child{min-width:150px}.market-delta{font-size:8px;color:#777}.market-delta.best{color:#168653;font-weight:700}
+.dialog-offers{display:flex;flex-direction:column;gap:7px;margin:16px 0;padding:12px;background:#fafafa;border-radius:6px}.dialog-offers>b{font-size:9px}.dialog-offers>small{font-size:8px;color:#999}.mini-offer{display:grid;grid-template-columns:1fr auto;gap:0 10px;border-top:1px solid #eee;padding-top:7px}.mini-offer b{font-size:8px}.mini-offer span{font:bold 11px Arial;color:#222}.mini-offer small{grid-column:1/-1;font-size:7px;color:#999}
+.roadmap-section{max-width:1120px;margin:0 auto;padding:5px 0 72px}.roadmap-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.roadmap-card{border:1px solid #e7e7e7;border-radius:7px;padding:16px 15px;background:#fff;min-height:150px}.roadmap-card>span{font:700 9px Arial;color:var(--red);letter-spacing:1px}.roadmap-card>b{display:block;font-size:10px;margin:8px 0}.roadmap-card p{font-size:8px;color:#888;line-height:2;margin:0}.roadmap-state{display:inline-block!important;margin-top:10px;padding:3px 7px;border-radius:12px;background:#f4f4f4;color:#777;font-size:7px!important}
+@media(max-width:900px){.roadmap-section{width:90%}.roadmap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.catalog-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.best-picks{grid-template-columns:1fr;gap:8px}.pick-card{min-height:0}.roadmap-grid{grid-template-columns:1fr}.roadmap-card{min-height:0}.transparency-banner{font-size:8px}}
+
+.catalog-filter-note{align-self:end;padding:8px 10px;color:#888;background:#fafafa;border-radius:4px;font-size:8px;line-height:1.8}
+.brand-mark{font-size:13px!important;font-style:normal!important;letter-spacing:-1px}
+.forecast-48h{display:flex;flex-direction:column;gap:5px;margin-top:14px;padding:12px 13px;background:#f8f8f8;border-right:3px solid #777;border-radius:5px}
+.forecast-48h b{font-size:9px;color:#333}.forecast-48h span{font-size:8px;line-height:1.9;color:#666}.forecast-48h small{font-size:7px;line-height:1.8;color:#999}
+.market-table{min-width:620px}
+@media(max-width:650px){.catalog-filter-note{min-height:42px}.market-table{min-width:590px}}
+
+/* Snapshot state, not a live-feed health indicator. */
+.live-dot{background:#b6b6b6;box-shadow:none}.status-pulse{background:#d39214;box-shadow:0 0 0 4px rgba(211,146,20,.13)}
+
+.product-badge.sold_out{color:#a42c2c;background:#fff0f0}.availability.sold_out:before{background:#c64d4d}.availability.unknown:before{background:#aaa}

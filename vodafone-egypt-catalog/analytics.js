@@ -1,6 +1,6 @@
 (() => {
   const $ = (id) => document.getElementById(id);
-  const money = (value) => new Intl.NumberFormat("ar-EG", { maximumFractionDigits: 0 }).format(Math.round(Number(value) || 0)) + " ج.م";
+  const money = (value) => value === null || value === undefined || !Number.isFinite(Number(value)) ? "—" : new Intl.NumberFormat("ar-EG", { maximumFractionDigits: 0 }).format(Math.round(Number(value))) + " ج.م";
   const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
   let marketData = null;
   let historyData = null;
@@ -22,6 +22,62 @@
   function percent(value) {
     if (!Number.isFinite(value)) return "—";
     return (value > 0 ? "+" : "") + value.toFixed(1) + "%";
+  }
+
+  function draw48Hour(productId) {
+    const minRequired=historyData.short_term_forecast_requirements?.min_daily_observations||90;
+    const store=$("forecastStoreSelect").value||"Vodafone Egypt";
+    const series=(historyData.daily_series||[]).find(item=>item.product_id===productId&&item.store===store);
+    const points=(series?.observations||[]).filter(point=>Number(point.price)>0&&/^\d{4}-\d{2}-\d{2}$/.test(point.date)).slice().sort((a,b)=>a.date.localeCompare(b.date));
+    const distinct=[...new Map(points.map(point=>[point.date,point])).values()];
+    if(distinct.length<minRequired){
+      $("forecast48h").innerHTML='<b>توقع 48 ساعة غير متاح</b><span>سجل '+escapeHtml(store)+' لهذا الموديل يحتوي '+distinct.length+' من '+minRequired+' قراءة يومية مطلوبة. نحتاج ملاحظات متتابعة لنفس النسخة والمتجر.</span><small>لا نصدر توقعاً أو احتمالاً رقمياً قبل اكتمال السجل والاختبار الرجعي.</small>';
+      return;
+    }
+    const day=86400000;
+    const windows=[];
+    for(let i=0;i<distinct.length-2;i+=2){
+      const start=distinct[i],end=distinct[i+2];
+      if(Date.parse(end.date+"T00:00:00Z")-Date.parse(start.date+"T00:00:00Z")!==2*day)continue;
+      const label=Number(end.price)>Number(start.price)?"increase":Number(end.price)<Number(start.price)?"decrease":"steady";
+      windows.push({startIndex:i,endIndex:i+2,startDate:start.date,label});
+    }
+    if(windows.length<30){
+      $("forecast48h").innerHTML='<b>لا توجد نوافذ 48 ساعة كافية للاختبار</b><span>اكتملت '+distinct.length+' قراءة يومية، لكن السجل يحتوي '+windows.length+' نافذة متتابعة فقط.</span><small>أكمل ملاحظات يومية متصلة للـ SKU والمتجر نفسيهما.</small>';
+      return;
+    }
+    const split=Math.floor(windows.length*.8),holdout=windows.slice(split),results=[];
+    holdout.forEach(test=>{
+      const training=windows.filter(window=>window.endIndex<test.startIndex);
+      if(training.length<10)return;
+      const counts={increase:0,decrease:0,steady:0};
+      training.forEach(window=>counts[window.label]++);
+      const prediction=Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0];
+      results.push({prediction,actual:test.label});
+    });
+    if(results.length<10){
+      $("forecast48h").innerHTML='<b>الاختبار الرجعي غير كافٍ بعد</b><span>نحتاج 10 فترات اختبار غير متداخلة على الأقل بعد تقسيم زمني يحافظ على ترتيب التاريخ؛ وقد تظل النتائج مترابطة بمرور الوقت.</span>';
+      return;
+    }
+    const correct=results.filter(result=>result.prediction===result.actual).length;
+    const accuracy=correct/results.length*100;
+    const noChangeBaseline=results.filter(result=>result.actual==="steady").length/results.length*100;
+    const allCounts={increase:0,decrease:0,steady:0};
+    windows.forEach(window=>allCounts[window.label]++);
+    const direction=Object.keys(allCounts).sort((a,b)=>allCounts[b]-allCounts[a])[0];
+    const names={increase:"زيادة",decrease:"انخفاض",steady:"استقرار"};
+    const testSummary='اختبار زمني خارج العينة: '+correct+'/'+results.length+' ('+accuracy.toFixed(1)+'%)؛ خط أساس «لا تغير» '+noChangeBaseline.toFixed(1)+'%. ';
+    const passes=accuracy>noChangeBaseline;
+    $("forecast48h").innerHTML='<b>'+(passes?'اتجاه تجريبي وفق السجل: '+names[direction]:'لا يعرض النموذج توقعاً اتجاهياً')+'</b><span>'+testSummary+(passes?'النموذج تجاوز خط الأساس في هذا الاختبار المحدود.':'لم يتجاوز النموذج خط الأساس؛ يلزم جمع بيانات ومراجعة المنهج قبل استخدامه.')+'</span><small>'+distinct.length+' قراءة لنفس المنتج والمتجر؛ '+windows.length+' فترة 48 ساعة غير متداخلة. قد تظل النتائج مترابطة زمنياً. لا تُعرض احتمالات رقمية قبل اختبار المعايرة.</small>';
+  }
+
+  function populateForecastStores() {
+    const productId=$("forecastProductSelect").value;
+    const stores=[...new Set((historyData.daily_series||[]).filter(item=>item.product_id===productId).map(item=>item.store).filter(Boolean))];
+    if(!stores.length)stores.push("Vodafone Egypt");
+    const previous=$("forecastStoreSelect").value;
+    $("forecastStoreSelect").innerHTML=stores.map(store=>'<option value="'+escapeHtml(store)+'">'+escapeHtml(store)+'</option>').join("");
+    $("forecastStoreSelect").value=stores.includes(previous)?previous:stores[0];
   }
 
   function renderComparison() {
@@ -47,7 +103,7 @@
 
     $("marketSummary").innerHTML = [
       '<div class="metric-card"><small>أقل عرض متاح لنفس النسخة</small><b>'+(lowestAvailable === null ? "لا يوجد" : money(lowestAvailable))+'</b><span>'+(activeOffers.length ? activeOffers.length+" عرض متاح من "+exactOffers.length+" عروض متطابقة" : "لا توجد عروض متاحة مؤكدة في اللقطة")+'</span></div>',
-      '<div class="metric-card"><small>وسيط آخر الأسعار المسجلة</small><b>'+money(marketMedian)+'</b><span>'+exactOffers.length+" أسعار متطابقة؛ منها "+soldOutCount+" نفدت — لا تمثل كلها عروضاً قابلة للشراء.</span></div>',
+      '<div class="metric-card"><small>وسيط آخر الأسعار المسجلة</small><b>'+money(marketMedian)+'</b><span>'+exactOffers.length+" أسعار متطابقة؛ منها "+soldOutCount+" نفدت — لا تمثل كلها عروضاً قابلة للشراء."+'</span></div>',
       '<div class="metric-card highlight"><small>فودافون — آخر سعر مرصود</small><b>'+(vodafonePrice === null ? "غير متاح" : money(vodafonePrice))+'</b><span>'+(vodafoneUnavailable ? "آخر رصد: غير متوفر بالمخزون" : record.vodafone_status_label || "حالة التوفر تحتاج تأكيداً")+(vsMedian === null ? "" : " · "+(vsMedian >= 0 ? "أعلى من الوسيط " : "أقل من الوسيط ")+Math.abs(vsMedian).toFixed(1)+"%")+'</span></div>'
     ].join("");
 
@@ -68,14 +124,17 @@
         row.status === "sold_out" ? "آخر سعر — نفد المخزون" :
         "حالة المخزون غير مؤكدة";
       const tagClass = row.kind === "direct" ? "direct" : row.status === "in_stock" ? "reported" : "";
-      return '<tr class="'+(row.kind==="direct"?"vodafone-row":"")+(row.price===lowestAvailable && row.status==="in_stock"?" market-low":"")+'"><td>'+escapeHtml(row.store)+'</td><td>'+money(row.price)+'</td><td><span class="row-tag '+tagClass+'">'+escapeHtml(statusText+" · "+row.tag)+'</span></td></tr>';
+      const difference = lowestAvailable === null ? '<span class="market-delta">لا يوجد عرض متاح</span>' :
+        row.price === lowestAvailable ? '<span class="market-delta best">أقل عرض متاح</span>' :
+        '<span class="market-delta">'+(row.price > lowestAvailable ? "+" : "−")+money(Math.abs(row.price-lowestAvailable))+' ('+percent((row.price/lowestAvailable-1)*100)+')</span>';
+      return '<tr class="'+(row.kind==="direct"?"vodafone-row":"")+(row.price===lowestAvailable && row.status==="in_stock"?" market-low":"")+'"><td>'+escapeHtml(row.store)+'</td><td>'+money(row.price)+'</td><td><span class="row-tag '+tagClass+'">'+escapeHtml(statusText+" · "+row.tag)+'</span></td><td>'+difference+'</td></tr>';
     };
     const otherRows = otherVariants.map(x=>({
       store:x.store,price:Number(x.price),tag:x.variant_note||"نسخة مختلفة لا تدخل في المقارنة الأساسية",
       kind:"different",status:x.status||"unknown"
     }));
     $("marketRows").innerHTML = rows.map(rowHtml).join("") +
-      (otherRows.length ? '<tr><td colspan="3" style="background:#fafafa;color:#999;font-size:8px">عروض نسخ مختلفة — مستبعدة من الحساب</td></tr>'+otherRows.map(x=>'<tr><td>'+escapeHtml(x.store)+'</td><td>'+money(x.price)+'</td><td><span class="row-tag">'+escapeHtml(x.tag)+'</span></td></tr>').join("") : "");
+      (otherRows.length ? '<tr><td colspan="4" style="background:#fafafa;color:#999;font-size:8px">عروض نسخ مختلفة — مستبعدة من الحساب</td></tr>'+otherRows.map(x=>'<tr><td>'+escapeHtml(x.store)+'</td><td>'+money(x.price)+'</td><td><span class="row-tag">'+escapeHtml(x.tag)+'</span></td><td><span class="market-delta">لا تدخل في المقارنة</span></td></tr>').join("") : "");
     const gapText = gapToAvailable === null ? "لا توجد مقارنة قابلة للشراء حالياً" :
       (gapToAvailable >= 0 ? "أقل سعر فودافون المرجعي من أقل عرض متاح بـ " : "آخر سعر فودافون المرجعي أعلى من أقل عرض متاح بـ ") + money(Math.abs(gapToAvailable));
     $("marketSourceNote").textContent = record.source_note + " " + gapText +
@@ -108,6 +167,7 @@
   }
 
   function drawHistory(productId,horizon) {
+    draw48Hour(productId);
     const series = historyData.series.find(x => x.product_id === productId);
     const minRequired = historyData.required_observations_for_trend || 8;
     $("trendEstimate").hidden=true;
@@ -155,16 +215,24 @@
     const fx=Number($("fxChange").value);
     const supply=Number($("supplyChange").value);
     const promo=Number($("promoChange").value);
+    const direct=Number($("priceChange").value);
     const horizon=$("forecastHorizon").value;
     const passThrough=0.65;
-    const totalPct=(fx*passThrough)+supply-promo;
+    const totalPct=(fx*passThrough)+supply-promo+direct;
     const projected=Number(selected.price)*(1+totalPct/100);
     $("fxChangeValue").textContent=percent(fx);
     $("supplyChangeValue").textContent=percent(supply);
     $("promoChangeValue").textContent=percent(promo);
+    $("priceChangeValue").textContent=percent(direct);
     $("scenarioPrice").textContent=money(projected);
     $("scenarioDelta").textContent=percent(totalPct)+" مقابل سعر الأساس الحالي ("+money(selected.price)+") — أفق السيناريو "+horizon+" يوم";
-    $("scenarioFormula").textContent="المعادلة التوضيحية: السعر الحالي × [1 + (تغير الدولار × 65% تمرير افتراضي) + ضغط المعروض − الخصم المفترض]. نسبة 65% افتراض قابل للتغيير مستقبلاً بعد جمع بيانات فعلية؛ النتيجة ليست توقعاً إحصائياً ولا توصية شراء.";
+    const comparison=marketData.comparisons.find(record=>record.product_id===selected.id);
+    const comparable=(comparison?.offers||[]).filter(offer=>(!offer.comparison_status||offer.comparison_status==="same_core_variant")&&offer.status==="in_stock"&&Number(offer.price)>0);
+    const cheaper=comparable.filter(offer=>Number(offer.price)<projected).length;
+    $("scenarioRank").textContent=comparable.length
+      ? "ترتيب السعر الافتراضي: "+(cheaper+1)+" من "+(comparable.length+1)+" عروض متاحة في اللقطة المطابقة؛ هذا ترتيب حسابي وليس توصية شراء."
+      : "لا توجد عروض متاحة مطابقة كافية لترتيب هذا السيناريو حالياً.";
+    $("scenarioFormula").textContent="المعادلة التوضيحية: السعر الحالي × [1 + (تغير الدولار × 65% تمرير افتراضي) + ضغط المعروض − الخصم المفترض + التغيير المباشر]. نسبة 65% افتراض توضيحي؛ النتيجة ليست توقعاً إحصائياً ولا توصية شراء.";
     drawHistory(selected.id,horizon);
   }
 
@@ -178,11 +246,13 @@
       $("marketProductSelect").innerHTML=marketData.comparisons.map(x=>'<option value="'+escapeHtml(x.product_id)+'">'+escapeHtml(x.title+' — '+x.variant)+'</option>').join("");
       $("forecastProductSelect").innerHTML=products.filter(p=>p.category==="هواتف" && Number(p.price)>0).map(p=>'<option value="'+escapeHtml(p.id)+'">'+escapeHtml(p.name_ar+' — '+p.variant)+'</option>').join("");
       $("marketProductSelect").addEventListener("change",renderComparison);
-      $("forecastProductSelect").addEventListener("change",renderScenario);
-      ["fxChange","supplyChange","promoChange","forecastHorizon"].forEach(id=>$(id).addEventListener("input",renderScenario));
+      $("forecastProductSelect").addEventListener("change",()=>{populateForecastStores();renderScenario();});
+      $("forecastStoreSelect").addEventListener("change",renderScenario);
+      ["fxChange","supplyChange","promoChange","priceChange","forecastHorizon"].forEach(id=>$(id).addEventListener("input",renderScenario));
       $("resetScenario").addEventListener("click",()=>{
-        $("fxChange").value=0;$("supplyChange").value=0;$("promoChange").value=0;$("forecastHorizon").value="30";renderScenario();
+        $("fxChange").value=0;$("supplyChange").value=0;$("promoChange").value=0;$("priceChange").value=0;$("forecastHorizon").value="30";renderScenario();
       });
+      populateForecastStores();
       renderComparison();
       renderScenario();
     } catch (error) {

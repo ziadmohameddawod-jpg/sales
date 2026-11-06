@@ -4,22 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#e60000">
-  <meta name="description" content="كتالوج مستقل لمنتجات Vodafone Egypt — استعرض الأجهزة والأسعار والتوفر مع روابط المتجر الرسمي.">
-  <title>كتالوج فودافون مصر | Vodafone Catalog</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="description" content="ZV-EG: كتالوج مستقل لمقارنة أسعار المنتجات ولقطات المتاجر في مصر، مع تاريخ ومصدر كل سعر.">
+  <title>ZV-EG | محلل أسعار المنتجات في مصر</title>
+  <link rel="icon" href="logo-zv-eg.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="announcement"><span class="live-dot"></span> كتالوج مستقل — الأسعار بالجنيه المصري وقد تتغير لدى المتجر الرسمي</div>
+  <div class="announcement"><span class="live-dot"></span> لقطات أسعار مؤرخة — لا يوجد تحديث آلي مباشر حالياً</div>
   <header class="site-header">
-    <a class="brand" href="#" aria-label="كتالوج فودافون مصر">
-      <span class="brand-mark">v</span>
-      <span><b>Vodafone</b><small>CATALOG EGYPT</small></span>
+    <a class="brand" href="#" aria-label="ZV-EG محلل الأسعار">
+      <span class="brand-mark">ZV</span>
+      <span><b>ZV-EG</b><small>PRICE INTELLIGENCE</small></span>
     </a>
     <nav class="main-nav" id="mainNav" aria-label="التنقل الرئيسي">
-      <a href="#catalog">المنتجات</a><a href="#market-intelligence">مقارنة وتحليل</a><a href="#how">عن الكتالوج</a><a href="#sources">مصادر الأسعار</a>
+      <a href="#catalog">المنتجات</a><a href="#market-intelligence">مقارنة وتحليل</a><a href="#roadmap">مراحل البيانات</a><a href="#sources">مصادر الأسعار</a>
     </nav>
     <a class="header-cta" href="https://eshop.vodafone.com.eg/ar/" target="_blank" rel="noopener">متجر فودافون <span>↗</span></a>
     <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">☰</button>
@@ -29,20 +29,20 @@
     <section class="hero">
       <div class="hero-noise"></div>
       <div class="hero-content">
-        <div class="hero-kicker"><span></span> YOUR NEXT DEVICE STARTS HERE</div>
-        <h1>كل اللي بتدور عليه.<br><em>في مكان واحد.</em></h1>
-        <p>استكشف أجهزة ومستلزمات فودافون، قارن الأسعار، واعرف حالة التوفر قبل ما تروح للمتجر الرسمي.</p>
+        <div class="hero-kicker"><span></span> ZV-EG · PRICE INTELLIGENCE</div>
+        <h1>قارن السعر.<br><em>واختار بوضوح.</em></h1>
+        <p>كتالوج مستقل لمنتجات Vodafone Egypt يساعدك تفرز الخيارات وتقارن اللقطات المتاحة مع معرفة مصدر كل سعر وتاريخه.</p>
         <div class="hero-actions">
           <a class="button button-white" href="#catalog">تصفح المنتجات <span>←</span></a>
           <a class="hero-link" href="https://eshop.vodafone.com.eg/ar/" target="_blank" rel="noopener">الانتقال لمتجر Vodafone <span>↗</span></a>
         </div>
-        <div class="hero-meta"><span class="meta-check">✓</span> روابط مباشرة للمصدر الرسمي <i></i><span>تحديث البيانات عبر Google Sheets</span></div>
+        <div class="hero-meta"><span class="meta-check">✓</span> مصدر وتاريخ واضحان <i></i><span>البيانات لقطات وليست أسعاراً مباشرة</span></div>
       </div>
       <div class="hero-art" aria-hidden="true">
         <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
-        <div class="art-phone"><div class="phone-camera"></div><div class="phone-screen"><span>v</span></div></div>
+        <div class="art-phone"><div class="phone-camera"></div><div class="phone-screen"><span>ZV</span></div></div>
         <div class="floating-tag tag-price"><small>أسعار بالجنيه</small><b>EGP <strong>↗</strong></b></div>
-        <div class="floating-tag tag-stock"><span class="stock-dot"></span><small>حالة التوفر</small><b>محدثة من المصدر</b></div>
+        <div class="floating-tag tag-stock"><span class="stock-dot"></span><small>حالة التوفر</small><b>حسب آخر لقطة</b></div>
       </div>
       <div class="hero-bottom"><span>01 / DISCOVER</span><span>VODAFONE EGYPT CATALOG</span></div>
     </section>
@@ -51,7 +51,7 @@
       <div><b id="totalCount">—</b><span>منتجات في الكتالوج</span></div>
       <div><b>EGP</b><span>الأسعار بالجنيه المصري</span></div>
       <div><b>RTL</b><span>تجربة عربية بالكامل</span></div>
-      <div><b>5 min</b><span>فحص تحديثات الشيت</span></div>
+      <div><b>SNAP</b><span>لقطات أسعار مؤرخة</span></div>
     </section>
 
     <section class="catalog-section" id="catalog">
@@ -62,7 +62,7 @@
 
       <div class="catalog-controls">
         <label class="search-box"><span class="search-icon">⌕</span><input type="search" id="searchInput" placeholder="بتدور على إيه؟ اكتب اسم المنتج أو الماركة..." autocomplete="off"><kbd>⌕</kbd></label>
-        <div class="select-wrap"><label for="sortSelect">ترتيب حسب</label><select id="sortSelect"><option value="featured">الأكثر صلة</option><option value="price-asc">السعر: من الأقل للأعلى</option><option value="price-desc">السعر: من الأعلى للأقل</option><option value="name">الاسم</option></select></div>
+        <div class="select-wrap"><label for="sortSelect">ترتيب حسب</label><select id="sortSelect"><option value="featured">الأكثر صلة</option><option value="price-asc">السعر: من الأقل للأعلى</option><option value="price-desc">السعر: من الأعلى للأقل</option><option value="savings">مقدار التوفير المسجل</option><option value="value">أفضل قيمة سعرية</option><option value="name">الاسم</option></select></div>
       </div>
 
       <div class="filter-row">
@@ -70,12 +70,21 @@
         <label class="availability-filter"><input type="checkbox" id="availableOnly"><span class="custom-check"></span> المتاح فقط</label>
       </div>
 
+      <div class="catalog-filters" aria-label="فلاتر السعر والمتجر والتاريخ">
+        <label for="storeFilter">المتجر<select id="storeFilter"><option value="">كل المتاجر</option></select></label>
+        <label for="dateFilter">تاريخ لقطة السعر<select id="dateFilter"><option value="">كل تواريخ اللقطات</option></select></label>
+        <label>نطاق السعر بالجنيه المصري<span class="price-range-fields"><input id="minPrice" type="number" min="0" inputmode="numeric" placeholder="من"><input id="maxPrice" type="number" min="0" inputmode="numeric" placeholder="إلى"></span></label>
+        <div class="catalog-filter-note">يمكن مسح الفلاتر من زر إعادة الضبط. الأسعار المعروضة مرجعية حسب تاريخ اللقطة.</div>
+      </div>
+      <div id="activeFilterSummary" class="active-filter-summary"></div>
+      <div id="bestPicks" class="best-picks" aria-label="أفضل خيارات السعر"></div>
+
       <div class="results-line"><span id="resultCount">—</span><button id="resetFilters" class="reset-button">إعادة ضبط الفلاتر ↺</button></div>
       <div id="productGrid" class="product-grid" aria-live="polite"></div>
       <div id="emptyState" class="empty-state" hidden><span>⌕</span><h3>مفيش نتائج مطابقة</h3><p>جرّب كلمة بحث مختلفة أو امسح الفلاتر.</p><button id="clearSearch" class="button button-dark">عرض كل المنتجات</button></div>
     </section>
 
-    
+
     <section class="intelligence-section" id="market-intelligence">
       <div class="section-heading">
         <div>
@@ -83,7 +92,7 @@
           <h2>السوق بيقول إيه؟<span>.</span></h2>
           <p>قارن نفس الموديل والنسخة بين فودافون والمتاجر المصرية، مع تاريخ ومصدر كل سعر.</p>
         </div>
-        <div class="feed-status"><span class="status-pulse"></span><div><b>لقطات سوق موثقة بالمصدر</b><small>آخر مراجعة: 5 نوفمبر 2026</small></div></div>
+        <div class="feed-status"><span class="status-pulse"></span><div><b>لقطات سوق موثقة بالمصدر</b><small>أحدث لقطة محفوظة: <span id="sourceReviewDate">جارٍ الحساب…</span></small></div></div>
       </div>
 
       <div class="bf-highlight">
@@ -98,12 +107,13 @@
         </label>
         <span class="snapshot-chip">لقطة أسعار مؤرخة وليست بثاً مباشراً</span>
       </div>
+      <div class="transparency-banner"><b>تنبيه بيانات:</b><span>المقارنة مبنية على لقطات مؤرخة من المصادر المذكورة وليست أسعاراً مباشرة. قد يتغير السعر أو المخزون؛ طابق الموديل والسعة والنسخة والضمان ثم تحقق من المتجر قبل الشراء.</span></div>
       <div id="marketSummary" class="market-summary"></div>
       <div class="comparison-panel">
         <div class="panel-heading"><div><b>مقارنة المتاجر</b><small id="marketVariant">—</small></div><span id="marketAsOf">—</span></div>
         <div class="table-scroll">
           <table class="market-table">
-            <thead><tr><th>المتجر</th><th>السعر</th><th>حالة البيانات</th></tr></thead>
+            <thead><tr><th>المتجر</th><th>السعر</th><th>حالة البيانات</th><th>الفرق من أقل عرض متاح</th></tr></thead>
             <tbody id="marketRows"></tbody>
           </table>
         </div>
@@ -121,12 +131,16 @@
             <div class="history-title"><b>سجل السعر المتاح</b><small id="historyCount">—</small></div>
             <div id="historyChart" class="history-chart"></div>
             <div id="historyNote" class="history-note"></div><div id="trendEstimate" class="trend-estimate" hidden></div>
+            <div id="forecast48h" class="forecast-48h" aria-live="polite"></div>
           </div>
         </div>
         <div class="scenario-panel">
           <div class="panel-heading"><div><b>اختبر سيناريو السوق</b><small>عدّل الافتراضات وشاهد أثرها الحسابي</small></div><span class="beta-pill">BETA</span></div>
           <label class="scenario-field">الهاتف
             <select id="forecastProductSelect"></select>
+          </label>
+          <label class="scenario-field">متجر سجل السعر اليومي
+            <select id="forecastStoreSelect"></select>
           </label>
           <label class="scenario-field">الفترة الافتراضية
             <select id="forecastHorizon"><option value="30">30 يوم</option><option value="60">60 يوم</option><option value="90">90 يوم</option></select>
@@ -146,10 +160,16 @@
             <input id="promoChange" type="range" min="0" max="20" step="1" value="0">
             <small>خصم إضافي مفترض على سعر السيناريو.</small>
           </div>
+          <div class="range-field">
+            <div><label for="priceChange">زيادة أو خفض مباشر افتراضي</label><b id="priceChangeValue">0%</b></div>
+            <input id="priceChange" type="range" min="-30" max="30" step="1" value="0">
+            <small>تغيير تجريبي لسعر المنتج؛ لا يمثل توقعاً لسعر متجر.</small>
+          </div>
           <div class="scenario-result">
             <small>سعر السيناريو المحسوب</small>
             <strong id="scenarioPrice">—</strong>
             <span id="scenarioDelta">—</span>
+            <small id="scenarioRank">—</small>
           </div>
           <div id="scenarioFormula" class="formula-note"></div>
           <button id="resetScenario" class="reset-button">إعادة الافتراضات للصفر ↺</button>
@@ -162,12 +182,22 @@
       </div>
     </section>
 
+    <section class="roadmap-section" id="roadmap">
+      <div class="section-heading"><div><div class="section-kicker">DATA ROADMAP · ZV-EG</div><h2>مراحل بناء بيانات موثوقة<span>.</span></h2><p>الأولوية كما اتفقنا؛ كل مرحلة تعتمد على اكتمال السابقة ومصدر بيانات يمكن التحقق منه.</p></div></div>
+      <div class="roadmap-grid">
+        <article class="roadmap-card"><span>01 / INVENTORY</span><b>حصر المنتجات ومطابقة النسخ</b><p>الكتالوج الحالي يضم 52 مدخلاً أولياً. المطابقة الشاملة للموديل والسعة والشبكة والحالة ما زالت بحاجة لمراجعة موثقة.</p><span class="roadmap-state">قيد الاستكمال</span></article>
+        <article class="roadmap-card"><span>02 / COMPARISON</span><b>قاعدة عروض المنافسين</b><p>تُقارن العروض المتاحة للنسخ المطابقة فقط، مع فصل البائع والضمان والمخزون وتاريخ اللقطة.</p><span class="roadmap-state">تغطية أولية محدودة</span></article>
+        <article class="roadmap-card"><span>03 / DAILY HISTORY</span><b>تسجيل تغير السعر يومياً</b><p>سيعتمد التحديث الآلي على مصدر مصرح به يغطي مصر ويسمح بعرض الأسعار للعامة؛ لا يوجد مزود أو اتصال نشط حالياً.</p><span class="roadmap-state">ينتظر اعتماد المصدر والتكامل</span></article>
+        <article class="roadmap-card"><span>04 / 48H MODEL</span><b>توقع 48 ساعة واختبار الدقة</b><p>لا يصدر توقع قبل توفر 90 قراءة يومية لنفس الموديل والمتجر، ثم اختبار رجعي مستقل ومعايرة الأداء.</p><span class="roadmap-state">موقوف حتى اكتمال السجل</span></article>
+      </div>
+    </section>
+
     <section class="how-section" id="how">
       <div class="how-intro"><div class="section-kicker light">SIMPLE & CLEAR</div><h2>اختيار أذكى.<br><em>ومعلومة أوضح.</em></h2><p>الكتالوج بيساعدك توصل للمنتج ومصدر سعره بسرعة. الشراء والتأكيد النهائي بيتم من خلال Vodafone Egypt.</p></div>
       <div class="how-steps">
         <article><span>01</span><div class="step-icon">⌕</div><h3>دوّر وقارن</h3><p>ابحث بالاسم أو الفئة، ورتّب المنتجات حسب السعر.</p></article>
         <article><span>02</span><div class="step-icon">↗</div><h3>راجع المصدر</h3><p>افتح رابط المنتج على متجر فودافون وتأكد من السعر والتوفر.</p></article>
-        <article><span>03</span><div class="step-icon">⟳</div><h3>بيانات متجددة</h3><p>اربط Google Sheets علشان أي تعديل في الشيت ينعكس على الموقع تلقائياً.</p></article>
+        <article><span>03</span><div class="step-icon">⟳</div><h3>تحديث آلي موثوق</h3><p>يتفعّل بعد اعتماد مصدر بيانات يغطي مصر ويسمح صراحةً بنشر الأسعار.</p></article>
       </div>
     </section>
 
@@ -179,13 +209,13 @@
     <div class="legal-note">هذا موقع كتالوج مستقل وغير تابع أو معتمد رسمياً من Vodafone Egypt. العلامات التجارية والصور تعود لأصحابها. الأسعار المعروضة معلومات إرشادية وليست عرض بيع أو ضماناً لتوفر المنتج.</div>
   </main>
 
-  <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark">v</span><span><b>Vodafone Catalog</b><small>INDEPENDENT PROJECT</small></span></a><span>صُنع لتسهيل المقارنة والوصول للمصدر الرسمي.</span><a href="#catalog">العودة للأعلى ↑</a></footer>
+  <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark">ZV</span><span><b>ZV-EG</b><small>INDEPENDENT PRICE ANALYSIS</small></span></a><span>مشروع مستقل لمقارنة الأسعار بمصادر وتواريخ واضحة.</span><a href="#catalog">العودة للأعلى ↑</a></footer>
 
   <dialog id="productDialog" class="product-dialog">
     <button class="dialog-close" id="dialogClose" aria-label="إغلاق">×</button>
     <div id="dialogContent"></div>
   </dialog>
-  <script src="config.js"></script>
-  <script src="app.js"></script>\n  <script src="analytics.js"></script>
+  <script src="app.js"></script>
+  <script src="analytics.js"></script>
 </body>
 </html>
