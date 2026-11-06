@@ -38,7 +38,7 @@ jobs:
       - name: Probe official Vodafone product image metadata
         working-directory: ./vodafone-egypt-catalog
         env:
-          IMAGE_PROBE_LIMIT: "8"
+          IMAGE_PROBE_LIMIT: "160"
         run: node scripts/extract-vodafone-images.mjs --probe
 
       - name: Run sync self-tests
