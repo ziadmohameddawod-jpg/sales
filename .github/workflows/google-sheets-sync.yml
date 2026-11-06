@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - "vodafone-egypt-catalog/scripts/sync-google-sheet.mjs"
+      - "vodafone-egypt-catalog/scripts/collect-daily-price-history.mjs"
       - ".github/workflows/google-sheets-sync.yml"
   schedule:
     - cron: "13 */3 * * *"
@@ -36,6 +37,10 @@ jobs:
       - name: Fetch and validate the published Google Sheet
         working-directory: ./vodafone-egypt-catalog
         run: node scripts/sync-google-sheet.mjs
+
+      - name: Collect verified daily Vodafone price observations
+        working-directory: ./vodafone-egypt-catalog
+        run: node scripts/collect-daily-price-history.mjs
 
       - name: Validate the complete catalogue
         working-directory: ./vodafone-egypt-catalog
