@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - "vodafone-egypt-catalog/scripts/extract-vodafone-images.mjs"
+      - "vodafone-egypt-catalog/scripts/probe-vodafone-category.mjs"
       - "vodafone-egypt-catalog/data/products.json"
       - ".github/workflows/verified-image-enrichment.yml"
   schedule:
@@ -33,6 +34,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Inspect Vodafone smartphone category cards
+        working-directory: ./vodafone-egypt-catalog
+        run: node scripts/probe-vodafone-category.mjs
       - name: Check enrichment script
         working-directory: ./vodafone-egypt-catalog
         run: node --check scripts/extract-vodafone-images.mjs
