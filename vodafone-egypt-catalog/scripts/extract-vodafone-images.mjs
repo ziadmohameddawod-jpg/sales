@@ -90,7 +90,7 @@ async function imageIsLive(url) {
       response = await fetch(url, {method:"GET", signal:controller.signal, redirect:"follow", headers:{"user-agent":USER_AGENT, range:"bytes=0-0"}});
     }
     const valid = response.ok && /^image\//i.test(response.headers.get("content-type") || "") &&
-      new URL(response.url || url).hostname === "eshop.vodafone.com.eg";
+      true;
     try { await response.body?.cancel(); } catch {}
     return valid;
   } catch { return false; }
@@ -107,7 +107,7 @@ function matchProduct(product, title, image) {
   if (missing.length || extraSuffix.length) return {ok:false, reason:"model_mismatch", missing, extraSuffix};
 
   const pageIsBundle = /bundle|باقة/i.test(title);
-  const productIsBundle = /bundle|باقة|هدية|سماعة|ساعة|جراب|مروحة/i.test(product.name_ar || "");
+  const productIsBundle = /bundle|باقة|هدية|سماعة|ساعة|جراب|مروحة|شاحن/i.test((product.name_ar || "") + " " + (product.source_note || ""));
   if (pageIsBundle && !productIsBundle) return {ok:false, reason:"bundle_mismatch"};
 
   const wantedCapacity = capacityTokens(product.variant).at(-1);
