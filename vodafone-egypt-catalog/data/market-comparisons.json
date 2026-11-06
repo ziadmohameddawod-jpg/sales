@@ -1,0 +1,172 @@
+{
+  "as_of": "2026-11-05",
+  "currency": "EGP",
+  "methodology": {
+    "matching": "Exact model and storage/RAM/network variant where the source states these fields. Do not mix 4G and 5G, RAM/storage variants, used and new, or different regional versions.",
+    "warranty": "Warranty and seller identity are not confirmed for every marketplace listing. Compare price separately from warranty and seller risk.",
+    "market_statistic": "Median of the individually listed non-Vodafone offers in this snapshot. This is not an all-market weighted average.",
+    "refresh": "Research snapshot only. Prices must be rechecked at retailer checkout; no direct retailer feeds are connected yet."
+  },
+  "comparisons": [
+    {
+      "product_id": "samsung-a17-256",
+      "title": "Samsung Galaxy A17 5G",
+      "variant": "8GB RAM / 256GB / 5G",
+      "as_of": "2026-11-05",
+      "vodafone_catalog_price": 20599,
+      "vodafone_tracker_price": 19999,
+      "offers": [
+        {
+          "store": "El Avocato Mobile",
+          "price": 18300,
+          "type": "marketplace comparison",
+          "condition": "new",
+          "warranty": "غير مؤكد"
+        },
+        {
+          "store": "B.TECH",
+          "price": 18550,
+          "type": "marketplace comparison",
+          "condition": "new",
+          "warranty": "غير مؤكد"
+        },
+        {
+          "store": "Raneen",
+          "price": 18599,
+          "type": "marketplace comparison",
+          "condition": "new",
+          "warranty": "غير مؤكد"
+        },
+        {
+          "store": "2B",
+          "price": 18599,
+          "type": "marketplace comparison",
+          "condition": "new",
+          "warranty": "غير مؤكد"
+        }
+      ],
+      "tracker_source": "https://priceteq.com/eg/product/cdd0f37a-72e8-4205-9f74-6b7a00f3f621",
+      "vodafone_source": "https://eshop.vodafone.com.eg/ar/prod/samsung-galaxy-a17-5g-256gb",
+      "source_note": "PriceTeq snapshot dated 5 Nov 2026 lists Vodafone Egypt at EGP 19,999 and named retailer offers between EGP 18,300 and EGP 18,599 for the 8GB/256GB 5G variant. The current catalog's stored Vodafone page snapshot says EGP 20,599, so there is a EGP 600 source discrepancy; verify at checkout. Warranty was not confirmed for every seller."
+    },
+    {
+      "product_id": "iphone-17-256",
+      "title": "Apple iPhone 17",
+      "variant": "256GB / Black or same-storage listed offers",
+      "as_of": "2026-11-04",
+      "vodafone_catalog_price": 74999,
+      "vodafone_tracker_price": 74499,
+      "offers": [
+        {
+          "store": "Noon",
+          "price": 72900,
+          "type": "marketplace comparison",
+          "condition": "new",
+          "warranty": "نسخة/بائع/ضمان يحتاج تأكيد"
+        },
+        {
+          "store": "B.TECH",
+          "price": 77500,
+          "type": "marketplace comparison",
+          "condition": "new",
+          "warranty": "غير مؤكد"
+        },
+        {
+          "store": "2B",
+          "price": 79989,
+          "type": "marketplace comparison",
+          "condition": "new",
+          "warranty": "غير مؤكد"
+        },
+        {
+          "store": "Tradeline",
+          "price": 79990,
+          "type": "marketplace comparison",
+          "condition": "new",
+          "warranty": "غير مؤكد"
+        },
+        {
+          "store": "Dream2000",
+          "price": 84444,
+          "type": "marketplace comparison",
+          "condition": "new",
+          "warranty": "غير مؤكد"
+        }
+      ],
+      "excluded_offers": [
+        {
+          "store": "Ennap",
+          "price": 52999,
+          "reason": "The price tracker explicitly describes this as an international version without local agent warranty; excluded from like-for-like local-warranty median."
+        }
+      ],
+      "tracker_source": "https://prices.askyasser.com/en/price/iphone-17-256gb-black-39007",
+      "vodafone_source": "https://eshop.vodafone.com.eg/ar/prod/i-phone-17",
+      "source_note": "Prices Tracker table dated 4 Nov 2026 lists Vodafone at EGP 74,499 and competitor observations shown here. The catalog's saved Vodafone page snapshot is EGP 74,999, a EGP 500 difference. Warranty and exact SIM/region variant must be confirmed with each seller. Ennap's EGP 52,999 international/no-local-agent-warranty listing is deliberately excluded from the comparison median."
+    },
+    {
+      "product_id": "iphone-18-pro-256-glacier",
+      "title": "Apple iPhone 18 Pro",
+      "variant": "256GB · Glacier · 5G",
+      "as_of": "2026-11-05",
+      "match_standard": "Apple iPhone 18 Pro, 256GB, 5G; color Glacier where separately identified. Seller/channel and SIM variant remain explicit.",
+      "vodafone_catalog_price": null,
+      "vodafone_tracker_price": 109899,
+      "vodafone_status": "sold_out_last_seen",
+      "vodafone_status_label": "آخر سعر مرصود 109,899 جنيه — نفد المخزون حسب متتبع الأسعار",
+      "offers": [
+        {
+          "store": "B.TECH (seller: drmobile)",
+          "price": 124850,
+          "status": "in_stock",
+          "condition": "new",
+          "warranty": "غير مؤكد من لقطة المتتبع",
+          "variant_note": "256GB Glacier — Dual-SIM; updated about 2 hours before the 5 Nov snapshot",
+          "comparison_status": "same_core_variant"
+        },
+        {
+          "store": "B.TECH (seller: drmobile)",
+          "price": 127000,
+          "status": "in_stock",
+          "condition": "new",
+          "warranty": "غير مؤكد من لقطة المتتبع",
+          "variant_note": "256GB — eSIM; separate SIM configuration",
+          "comparison_status": "different_sim_configuration"
+        },
+        {
+          "store": "2B",
+          "price": 109899,
+          "status": "sold_out",
+          "condition": "new",
+          "warranty": "غير مؤكد",
+          "variant_note": "256GB Glacier in the version table; last price, sold out",
+          "comparison_status": "same_core_variant"
+        },
+        {
+          "store": "Tradeline",
+          "price": 109900,
+          "status": "sold_out",
+          "condition": "new",
+          "warranty": "غير مؤكد",
+          "variant_note": "256GB Glacier in the version table; last price, sold out",
+          "comparison_status": "same_core_variant"
+        }
+      ],
+      "excluded_offers": [
+        {
+          "store": "Ennap",
+          "price": 84999,
+          "status": "in_stock",
+          "condition": "new",
+          "warranty": "No local agent warranty",
+          "reason": "International version without local agent warranty. Excluded from the like-for-like comparison."
+        }
+      ],
+      "tracker_source": "https://prices.askyasser.com/en/price/iphone-18-pro-256gb-glacier-387",
+      "vodafone_source": "https://eshop.vodafone.com.eg/ar/prod/iphone-18-pro-max",
+      "competitor_source": "https://2b.com.eg/en/apple-iphone-18-pro-256gb-black.html",
+      "source_note": "Prices Tracker snapshot dated 5 Nov 2026. Exact core variant: iPhone 18 Pro 256GB Glacier. B.TECH (drmobile) 124,850 EGP, listed in stock; 2B last known 109,899 EGP and Tradeline 109,900 EGP, both marked sold out by tracker. Vodafone Egypt last known 109,899 EGP, marked sold out. Ennap at 84,999 EGP is excluded because it is an international version without local agent warranty. The market median of the three exact-core competitor references is EGP 109,900, but two are sold out; the only tracker-confirmed in-stock comparable is B.TECH at EGP 124,850. 2B's own direct product result for the Black colour showed EGP 109,899 and one unit left, but that is a different colour and its stock state conflicts with tracker observations; do not merge it into the Glacier comparison.",
+      "market_statistic": "Median of exact-core-variant last-known competitor prices, including out-of-stock observations. Current in-stock minimum is reported separately."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+name: Catalog data validation
+
+on:
+  pull_request:
+    paths:
+      - "vodafone-egypt-catalog/**"
+      - ".github/workflows/data-validation.yml"
+  push:
+    branches: ["main"]
+    paths:
+      - "vodafone-egypt-catalog/**"
+      - ".github/workflows/data-validation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Check JavaScript syntax
+        working-directory: ./vodafone-egypt-catalog
+        run: |
+          node --check app.js
+          node --check analytics.js
+          node --check scripts/sync-prices.mjs
+          node --check scripts/validate-data.mjs
+
+      - name: Run sync self-tests
+        working-directory: ./vodafone-egypt-catalog
+        run: node scripts/sync-prices.mjs --self-test
+
+      - name: Validate the published Google Sheets feed (read-only)
+        working-directory: ./vodafone-egypt-catalog
+        run: node scripts/sync-google-sheet.mjs --dry-run
+
+      - name: Validate catalogue data
+        working-directory: ./vodafone-egypt-catalog
+        run: node scripts/validate-data.mjs
