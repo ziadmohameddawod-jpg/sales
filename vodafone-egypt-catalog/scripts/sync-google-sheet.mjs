@@ -69,7 +69,7 @@ function parseCsv(input) {
       throw new Error("عدد أعمدة غير متوقع في الصف " + (rowIndex + 2) + ".");
     }
     return record;
-  }).filter(record => record.id);
+  });
 }
 
 function validHttps(value, field, id, required = false) {
