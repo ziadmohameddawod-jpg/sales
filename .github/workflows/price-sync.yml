@@ -61,6 +61,7 @@ jobs:
 
   deploy:
     name: Publish refreshed catalog
+    if: github.ref == 'refs/heads/main'
     needs: sync
     runs-on: ubuntu-latest
     steps:
