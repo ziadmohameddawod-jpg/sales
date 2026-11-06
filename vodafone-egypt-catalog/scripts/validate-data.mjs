@@ -74,6 +74,7 @@ if (Array.isArray(products)) {
     }
     validateUrl(product.product_url, `${label}.product_url`);
     validateUrl(product.source_url, `${label}.source_url`);
+    validateUrl(product.image, `${label}.image`);
   }
 } else if (products !== null) {
   errors.push("products.json: المتوقع مصفوفة منتجات.");
@@ -179,6 +180,12 @@ if (history && typeof history === "object") {
   const required = Number(history.short_term_forecast_requirements?.min_daily_observations || 0);
   if (required < 1) errors.push("price-history.json: حد القراءات اليومية المطلوبة للتوقع يجب أن يكون موجباً.");
   if (!dailyObservationCount) warnings.push("لا توجد قراءات يومية بعد؛ سيظل توقع 48 ساعة معطلاً حتى جمع بيانات فعلية.");
+  if (Array.isArray(products) && products.length) {
+    const missingImages = products.filter(product => !product.image).length;
+    const missingProductUrls = products.filter(product => !product.product_url).length;
+    if (missingImages) warnings.push(`صور ناقصة: ${missingImages} منتجاً.`);
+    if (missingProductUrls) warnings.push(`روابط منتجات مباشرة ناقصة: ${missingProductUrls} منتجاً.`);
+  }
 }
 
 if (errors.length) {
@@ -187,7 +194,11 @@ if (errors.length) {
   process.exitCode = 1;
 } else {
   console.log("نجح فحص بنية بيانات SouqScan.");
+  const imageCount = Array.isArray(products) ? products.filter(product => !!product.image).length : 0;
+  const productUrlCount = Array.isArray(products) ? products.filter(product => !!product.product_url).length : 0;
   console.log(`المنتجات: ${Array.isArray(products) ? products.length : 0}`);
+  console.log(`صور المنتجات: ${imageCount}/${Array.isArray(products) ? products.length : 0}`);
+  console.log(`روابط المنتجات المباشرة: ${productUrlCount}/${Array.isArray(products) ? products.length : 0}`);
   console.log(`عروض المقارنة: ${comparisonOfferCount + marketOfferCount}`);
   console.log(`قراءات تاريخية أسبوعية: ${weeklyObservationCount}`);
   console.log(`قراءات يومية: ${dailyObservationCount}`);
