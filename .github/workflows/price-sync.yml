@@ -1,20 +1,12 @@
 name: Price sync every 3 hours
 
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - ".github/workflows/price-sync.yml"
-      - "vodafone-egypt-catalog/scripts/sync-prices.mjs"
-      - "vodafone-egypt-catalog/data/products.json"
   schedule:
     - cron: "17 */3 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: catalog-data-updates
@@ -64,32 +56,3 @@ jobs:
             git commit -m "Refresh competitor prices"
             git push
           fi
-
-  deploy:
-    name: Publish refreshed catalog
-    if: github.ref == 'refs/heads/main'
-    needs: sync
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout latest default branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Build catalog with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./vodafone-egypt-catalog
-          destination: ./_site
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-
-      - name: Deploy Pages
-        uses: actions/deploy-pages@v5
