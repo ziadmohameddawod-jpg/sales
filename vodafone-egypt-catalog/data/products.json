@@ -2765,12 +2765,12 @@
     "currency": "EGP",
     "availability": "السعر من قائمة فودافون المنقولة بتاريخ 6 نوفمبر 2026؛ التوفر يحتاج تأكيد",
     "status": "check",
-    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/Iphone-16e--256-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
-    "image_credit": "Vodafone Egypt eShop",
+    "image": null,
+    "image_credit": null,
     "description": "خصم ظاهر 9%.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/iphone-16e-128gb",
     "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones",
     "source_checked_at": "2026-11-06",
-    "source_note": "مصدر السعر: نص قائمة Vodafone Egypt الذي أرسله المستخدم بتاريخ 6 نوفمبر 2026. لم يتم التحقق آلياً من السعر أو المخزون. خصم ظاهر 9%. · صورة من صفحة فودافون الرسمية: https://eshop.vodafone.com.eg/ar/prod/iphone-16e-128gb"
+    "source_note": "مصدر السعر: نص قائمة Vodafone Egypt الذي أرسله المستخدم بتاريخ 6 نوفمبر 2026. لم يتم التحقق آلياً من السعر أو المخزون. خصم ظاهر 9%."
   }
 ]
