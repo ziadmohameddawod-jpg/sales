@@ -2,11 +2,19 @@
 name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 
 on:
-  # Runs on pushes targeting the default branch
+  # Publish code changes merged to main.
   push:
     branches: ["main"]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Publish data updates after a successful scheduled/manual sync.
+  workflow_run:
+    workflows:
+      - "Google Sheets product sync"
+      - "Price sync every 3 hours"
+      - "Verified Vodafone product image enrichment"
+    types: [completed]
+
+  # Allows a manual publish from the Actions tab.
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -24,6 +32,7 @@ concurrency:
 jobs:
   # Build job
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

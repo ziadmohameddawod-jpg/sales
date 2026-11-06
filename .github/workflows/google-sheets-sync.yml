@@ -1,20 +1,12 @@
 name: Google Sheets product sync
 
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - "vodafone-egypt-catalog/scripts/sync-google-sheet.mjs"
-      - "vodafone-egypt-catalog/scripts/collect-daily-price-history.mjs"
-      - ".github/workflows/google-sheets-sync.yml"
   schedule:
     - cron: "13 */3 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: catalog-data-updates
@@ -57,37 +49,3 @@ jobs:
             git commit -m "Sync product catalogue from Google Sheets"
             git push origin HEAD:main
           fi
-
-  deploy:
-    name: Publish updated catalogue
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    runs-on: ubuntu-latest
-    needs: sync
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-    steps:
-      - name: Checkout latest main
-        uses: actions/checkout@v4
-        with:
-          ref: main
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Build site
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./vodafone-egypt-catalog
-          destination: ./_site
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v5
