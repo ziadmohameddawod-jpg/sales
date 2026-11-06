@@ -167,6 +167,70 @@
       "competitor_source": "https://2b.com.eg/en/apple-iphone-18-pro-256gb-black.html",
       "source_note": "Prices Tracker snapshot dated 5 Nov 2026. Exact core variant: iPhone 18 Pro 256GB Glacier. B.TECH (drmobile) 124,850 EGP, listed in stock; 2B last known 109,899 EGP and Tradeline 109,900 EGP, both marked sold out by tracker. Vodafone Egypt last known 109,899 EGP, marked sold out. Ennap at 84,999 EGP is excluded because it is an international version without local agent warranty. The market median of the three exact-core competitor references is EGP 109,900, but two are sold out; the only tracker-confirmed in-stock comparable is B.TECH at EGP 124,850. 2B's own direct product result for the Black colour showed EGP 109,899 and one unit left, but that is a different colour and its stock state conflicts with tracker observations; do not merge it into the Glacier comparison.",
       "market_statistic": "Median of exact-core-variant last-known competitor prices, including out-of-stock observations. Current in-stock minimum is reported separately."
+    },
+    {
+      "product_id": "vodafone-smart-044-samsung",
+      "title": "سامسونج Galaxy S26",
+      "variant": "12GB/256GB",
+      "as_of": "2026-11-03",
+      "vodafone_catalog_price": 50999,
+      "vodafone_source": "https://eshop.vodafone.com.eg/ar/prod/samsung-galaxy-s26-256gb",
+      "tracker_source": "https://priceteq.com/eg/product/7cb6d4bf-bf6e-4372-9ca5-a2352301c681",
+      "offers": [
+        {
+          "store": "Etisalat Egypt",
+          "price": 45650,
+          "status": "unknown",
+          "condition": "جديد — شامل الضريبة حسب المصدر",
+          "warranty": "يحتاج تأكيد من البائع",
+          "checked_at": "2026-11-03",
+          "comparison_status": "same_core_variant",
+          "source_url": "https://priceteq.com/eg/product/7cb6d4bf-bf6e-4372-9ca5-a2352301c681"
+        },
+        {
+          "store": "B.TECH",
+          "price": 47999,
+          "status": "unknown",
+          "condition": "جديد — شامل الضريبة حسب المصدر",
+          "warranty": "يحتاج تأكيد من البائع",
+          "checked_at": "2026-11-03",
+          "comparison_status": "same_core_variant",
+          "source_url": "https://priceteq.com/eg/product/7cb6d4bf-bf6e-4372-9ca5-a2352301c681"
+        },
+        {
+          "store": "Carrefour Egypt",
+          "price": 49500,
+          "status": "unknown",
+          "condition": "جديد — شامل الضريبة حسب المصدر",
+          "warranty": "يحتاج تأكيد من البائع",
+          "checked_at": "2026-11-03",
+          "comparison_status": "same_core_variant",
+          "source_url": "https://priceteq.com/eg/product/7cb6d4bf-bf6e-4372-9ca5-a2352301c681"
+        }
+      ],
+      "source_note": "لقطة PriceTeq بتاريخ 3 نوفمبر 2026 لنسخة Samsung Galaxy S26 12GB/256GB. الأسعار من Etisalat Egypt وB.TECH وCarrefour Egypt. حالة المخزون والضمان لكل بائع تحتاج تأكيداً عند فتح العرض."
+    },
+    {
+      "product_id": "samsung-a17-128",
+      "title": "Samsung Galaxy A17 5G",
+      "variant": "6GB RAM / 128GB — Black",
+      "as_of": "2026-11-02",
+      "vodafone_catalog_price": 13999,
+      "vodafone_source": "https://eshop.vodafone.com.eg/ar/prod/samsung-galaxy-a17-5g-128gb",
+      "tracker_source": "https://mob4me.com/samsung-galaxy-a17-5g",
+      "offers": [
+        {
+          "store": "Noon Egypt",
+          "price": 16499,
+          "status": "unknown",
+          "condition": "جديد بحسب بطاقة المنتج",
+          "warranty": "يحتاج تأكيد من البائع",
+          "checked_at": "2026-11-02",
+          "comparison_status": "same_core_variant",
+          "source_url": "https://mob4me.com/samsung-galaxy-a17-5g"
+        }
+      ],
+      "source_note": "لقطة Mob4me بتاريخ 2 نوفمبر 2026 لنسخة Samsung Galaxy A17 5G 6GB/128GB Black، وتشير إلى عرض Noon Egypt بسعر 16,499 جنيه. السعر والبائع والضمان يحتاجون تأكيداً عند إتمام الشراء."
     }
   ]
 }
