@@ -173,6 +173,8 @@ async function main() {
       // Empty image cells in Sheets must not erase a previously verified image.
       if (!row.image && previous.image) product.image = previous.image;
       if (!row.image_credit && previous.image_credit) product.image_credit = previous.image_credit;
+      // Keep verified Vodafone product links when the Sheet URL cell is blank.
+      if (!row.product_url && previous.product_url) product.product_url = previous.product_url;
       // Keep provenance notes when the sheet's corresponding cell is intentionally blank.
       if (!row.source_note && previous.source_note) product.source_note = previous.source_note;
     }
