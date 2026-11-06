@@ -1,7 +1,7 @@
 const $ = (id) => document.getElementById(id);
 const state = {
   products: [], category: "الكل", query: "", availableOnly: false,
-  sort: "featured", store: "", date: "", min: "", max: ""
+  sort: "featured", store: "Vodafone Egypt", date: "", min: "", max: ""
 };
 let marketRecords = [];
 const FALLBACK_IMAGE = {
@@ -10,7 +10,12 @@ const FALLBACK_IMAGE = {
   "إكسسوارات": () => '<div class="generic-art">⌁</div>'
 };
 const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const money = value => Number.isFinite(Number(value)) ? new Intl.NumberFormat("ar-EG", {maximumFractionDigits: 0}).format(Number(value)) : "—";
+const money = value => {
+  const amount = value === null || value === undefined || value === "" ? NaN : Number(value);
+  return Number.isFinite(amount) && amount > 0
+    ? new Intl.NumberFormat("ar-EG", {maximumFractionDigits: 0}).format(Math.round(amount))
+    : "—";
+};
 const normalize = value => String(value || "").toLowerCase().replace(/[^a-z0-9\u0600-\u06ff]+/g, " ").trim();
 function formatDate(value) {
   if (!value) return "تاريخ اللقطة غير محدد";
@@ -22,12 +27,33 @@ async function getJson(path) {
   if (!response.ok) throw new Error("تعذر تحميل " + path);
   return response.json();
 }
+function variantStorageTokens(value) {
+  return [...String(value || "").matchAll(/(\d+(?:\.\d+)?)\s*(GB|TB)\b/gi)]
+    .map(match => Number(match[1]) * (match[2].toUpperCase() === "TB" ? 1024 : 1));
+}
+
 function productRecords(product) {
+  const productId = String(product.id);
+  const exactIdMatches = marketRecords.filter(record =>
+    String(record.product_id || record.id || "") === productId
+  );
+  if (exactIdMatches.length) return exactIdMatches;
+
   const productName = normalize(product.name_ar);
+  const productTokens = variantStorageTokens(product.variant);
   return marketRecords.filter(record => {
-    if (String(record.product_id || record.id || "") === String(product.id)) return true;
     const recordName = normalize(record.title || record.name);
-    return !!recordName && (recordName === productName || recordName.includes(productName) || productName.includes(recordName));
+    if (!recordName || recordName !== productName) return false;
+
+    const matchStatus = String(record.match_status || "").toLowerCase();
+    if (/غير\s+قابلة|غير\s+مطابقة|different|mismatch|not\s+comparable/.test(matchStatus)) return false;
+
+    const recordTokens = variantStorageTokens(record.variant);
+    if (productTokens.length && recordTokens.length &&
+        (productTokens.length !== recordTokens.length ||
+         productTokens.some((token, index) => token !== recordTokens[index]))) return false;
+
+    return true;
   });
 }
 function normalizeStatus(status) {
@@ -40,13 +66,22 @@ function normalizeStatus(status) {
 function offersFor(product) {
   const entries = [];
   productRecords(product).forEach(record => {
+    const recordMatch = String(record.match_status || "").toLowerCase();
+    if (/غير\s+قابلة|غير\s+مطابقة|different|mismatch|not\s+comparable/.test(recordMatch)) return;
+
     const snapshotDate = record.as_of || record.checked_at || "";
     (record.offers || record.market_offers || []).forEach(offer => {
       const store = offer.store || offer.seller;
-      if (store && Number(offer.price) > 0) entries.push({
-        store, price:Number(offer.price), status:normalizeStatus(offer.status),
+      const price = offer.price === null || offer.price === undefined || offer.price === "" ? NaN : Number(offer.price);
+      if (!store || !Number.isFinite(price) || price <= 0) return;
+      if (offer.comparison_status && offer.comparison_status !== "same_core_variant") return;
+
+      entries.push({
+        store,
+        price,
+        status:normalizeStatus(offer.status),
         date:offer.checked_at || offer.as_of || snapshotDate,
-        source:record.tracker_source || record.source_url || "",
+        source:offer.source_url || offer.url || record.tracker_source || record.source_url || "",
         warranty:offer.warranty || "الضمان غير مؤكد"
       });
     });
@@ -54,29 +89,57 @@ function offersFor(product) {
   return entries;
 }
 function currentListing(product) {
-  if (!state.store || state.store === "Vodafone Egypt") return {
-    store:"Vodafone Egypt", price:Number(product.price), status:normalizeStatus(product.status),
-    date:product.source_checked_at || "", source:product.source_url || product.product_url || ""
-  };
-  const offers = offersFor(product).filter(offer => offer.store === state.store);
-  offers.sort((a,b) => (a.status === "in_stock" ? -1 : 0) - (b.status === "in_stock" ? -1 : 0) || a.price-b.price);
+  if (!state.store || state.store === "Vodafone Egypt") {
+    const price = product.price === null || product.price === undefined || product.price === "" ? NaN : Number(product.price);
+    if (!Number.isFinite(price) || price <= 0) return null;
+    return {
+      store:"Vodafone Egypt",
+      price,
+      status:normalizeStatus(product.status),
+      date:product.source_checked_at || "",
+      source:product.source_url || product.product_url || ""
+    };
+  }
+
+  let offers = offersFor(product).filter(offer =>
+    offer.store === state.store && (!state.date || offer.date === state.date)
+  );
+  if (!offers.length) return null;
+
+  if (!state.date) {
+    const datedOffers = offers.filter(offer => /^\d{4}-\d{2}-\d{2}$/.test(offer.date));
+    if (datedOffers.length) {
+      const latestDate = datedOffers.reduce((latest, offer) => offer.date > latest ? offer.date : latest, "");
+      offers = datedOffers.filter(offer => offer.date === latestDate);
+    }
+  }
+
+  const statusPriority = {in_stock:0, limited:1, unknown:2, sold_out:3};
+  offers.sort((a,b) =>
+    (statusPriority[a.status] ?? 2) - (statusPriority[b.status] ?? 2) ||
+    a.price - b.price
+  );
   return offers[0] || null;
 }
 function allStores() {
-  return [...new Set(["Vodafone Egypt", ...marketRecords.flatMap(r => (r.offers || r.market_offers || []).map(o => o.store || o.seller)).filter(Boolean)])].sort((a,b)=>a.localeCompare(b));
+  const stores = state.products.flatMap(product => offersFor(product).map(offer => offer.store));
+  return [...new Set(["Vodafone Egypt", ...stores])].sort((a,b)=>a.localeCompare(b));
 }
 function allDates() {
-  const dates = new Set(state.products.map(p=>p.source_checked_at).filter(Boolean));
-  marketRecords.forEach(r => {
-    if (r.as_of || r.checked_at) dates.add(r.as_of || r.checked_at);
-    (r.offers || r.market_offers || []).forEach(o => { if (o.checked_at || o.as_of) dates.add(o.checked_at || o.as_of); });
-  });
+  const dates = new Set(state.products.map(product => product.source_checked_at).filter(Boolean));
+  state.products.forEach(product => offersFor(product).forEach(offer => {
+    if (/^\d{4}-\d{2}-\d{2}$/.test(offer.date)) dates.add(offer.date);
+  }));
   return [...dates].sort((a,b)=>b.localeCompare(a));
 }
 function available(listing) { return !!listing && listing.status === "in_stock"; }
 function discount(product) {
-  const old = Number(product.old_price), now = Number(product.price);
-  return old > now && now > 0 ? {amount:old-now, percent:(old-now)/old*100} : {amount:0,percent:0};
+  if (state.store && state.store !== "Vodafone Egypt") return {amount:0,percent:0};
+  const old = product.old_price === null || product.old_price === undefined ? NaN : Number(product.old_price);
+  const now = product.price === null || product.price === undefined ? NaN : Number(product.price);
+  return Number.isFinite(old) && Number.isFinite(now) && old > now && now > 0
+    ? {amount:old-now, percent:(old-now)/old*100}
+    : {amount:0,percent:0};
 }
 function valueScore(product) {
   const recordedDiscount = discount(product).percent;
@@ -94,7 +157,10 @@ function applyFilters() {
       (!state.store || !!listing) && dateMatch &&
       (!state.min || price >= Number(state.min)) && (!state.max || price <= Number(state.max));
   });
-  const priceOf = product => Number(currentListing(product)?.price) || Infinity;
+  const priceOf = product => {
+    const price = Number(currentListing(product)?.price);
+    return Number.isFinite(price) && price > 0 ? price : Infinity;
+  };
   if (state.sort === "price-asc") items.sort((a,b)=>priceOf(a)-priceOf(b));
   if (state.sort === "price-desc") items.sort((a,b)=>priceOf(b)-priceOf(a));
   if (state.sort === "savings") items.sort((a,b)=>discount(b).amount-discount(a).amount);
@@ -107,11 +173,17 @@ function visualFallback(category, brand) {
   return renderer(brand || "");
 }
 function renderBestPicks(items) {
-  const availableItems = items.filter(product=>available(currentListing(product)));
-  const byPrice = (availableItems.length ? availableItems : items).slice().sort((a,b)=>Number(currentListing(a)?.price)-Number(currentListing(b)?.price));
+  const pricedItems = items.filter(product => {
+    const price = Number(currentListing(product)?.price);
+    return Number.isFinite(price) && price > 0;
+  });
+  const availableItems = pricedItems.filter(product=>available(currentListing(product)));
+  const byPrice = (availableItems.length ? availableItems : pricedItems).slice().sort((a,b)=>Number(currentListing(a).price)-Number(currentListing(b).price));
   const lowest = byPrice[0];
-  const savings = items.filter(product=>discount(product).amount>0).slice().sort((a,b)=>discount(b).amount-discount(a).amount)[0];
-  const value = items.slice().sort((a,b)=>valueScore(b)-valueScore(a) || Number(currentListing(a)?.price)-Number(currentListing(b)?.price))[0];
+  const savings = state.store === "Vodafone Egypt"
+    ? pricedItems.filter(product=>discount(product).amount>0).slice().sort((a,b)=>discount(b).amount-discount(a).amount)[0]
+    : null;
+  const value = pricedItems.slice().sort((a,b)=>valueScore(b)-valueScore(a) || Number(currentListing(a).price)-Number(currentListing(b).price))[0];
   const picks = [
     {product:lowest,label:"أقل سعر ضمن النتائج",detail:lowest?money(currentListing(lowest).price)+" جنيه"+(availableItems.length?" · توفر مؤكد في اللقطة":" · لا يوجد مخزون مؤكد في النتائج"):"لا توجد نتيجة",kind:"lowest"},
     {product:savings,label:"أكبر توفير مُسجل",detail:savings?"وفر "+money(discount(savings).amount)+" جنيه مقارنة بالسعر السابق":"لا توجد أسعار سابقة مسجلة",kind:"saving"},
@@ -173,7 +245,10 @@ function openDetails(id) {
   $("productDialog").showModal();
 }
 function populateSelectors() {
-  $("storeFilter").innerHTML = '<option value="">كل المتاجر</option>'+allStores().map(store=>'<option value="'+escapeHtml(store)+'">'+escapeHtml(store)+'</option>').join("");
+  $("storeFilter").innerHTML = allStores().map(store =>
+    '<option value="'+escapeHtml(store)+'">'+escapeHtml(store === "Vodafone Egypt" ? "Vodafone Egypt — السعر المرجعي" : store)+'</option>'
+  ).join("");
+  $("storeFilter").value = state.store;
   $("dateFilter").innerHTML = '<option value="">كل تواريخ اللقطات</option>'+allDates().map(date=>'<option value="'+escapeHtml(date)+'">'+escapeHtml(formatDate(date))+'</option>').join("");
 }
 async function loadProducts() {
@@ -201,7 +276,7 @@ $("dateFilter").addEventListener("change",event=>{state.date=event.target.value;
 $("minPrice").addEventListener("input",event=>{state.min=event.target.value;render();});
 $("maxPrice").addEventListener("input",event=>{state.max=event.target.value;render();});
 $("resetFilters").addEventListener("click",()=>{
-  Object.assign(state,{category:"الكل",query:"",availableOnly:false,sort:"featured",store:"",date:"",min:"",max:""});
+  Object.assign(state,{category:"الكل",query:"",availableOnly:false,sort:"featured",store:"Vodafone Egypt",date:"",min:"",max:""});
   $("searchInput").value="";$("availableOnly").checked=false;$("sortSelect").value="featured";
   $("storeFilter").value="";$("dateFilter").value="";$("minPrice").value="";$("maxPrice").value="";render();
 });
