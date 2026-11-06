@@ -138,8 +138,15 @@ function findOfferArray(payload) {
   const keys = new Set(["offers", "listings", "market_offers", "retailer_offers"]);
   const matches = [];
   function visit(node, depth = 0) {
-    if (!node || typeof node !== "object" || depth > 8) return;
-    if (Array.isArray(node)) return;
+    if (!node || depth > 8) return;
+    if (Array.isArray(node)) {
+      const hasOffers = node.some(item => item && typeof item === "object" &&
+        "price" in item && (item.retailer || item.store || item.seller || item.merchant));
+      if (hasOffers) matches.push(node);
+      for (const item of node) visit(item, depth + 1);
+      return;
+    }
+    if (typeof node !== "object") return;
     for (const [key, value] of Object.entries(node)) {
       if (keys.has(key) && Array.isArray(value) &&
           value.some(item => item && typeof item === "object" && ("price" in item))) {
@@ -227,6 +234,9 @@ async function writeJson(fileName, value) {
   await fs.rename(temporaryPath, filePath);
 }
 
+let rateLimitRemaining = null;
+let rateLimitLimit = null;
+
 async function apiGet(pathname) {
   const response = await fetch(API_BASE + pathname, {
     method: "GET",
@@ -236,6 +246,14 @@ async function apiGet(pathname) {
     },
     signal: AbortSignal.timeout(30000)
   });
+  const remainingHeader = response.headers.get("X-RateLimit-Remaining");
+  const limitHeader = response.headers.get("X-RateLimit-Limit");
+  if (remainingHeader !== null && Number.isFinite(Number(remainingHeader))) {
+    rateLimitRemaining = Number(remainingHeader);
+  }
+  if (limitHeader !== null && Number.isFinite(Number(limitHeader))) {
+    rateLimitLimit = Number(limitHeader);
+  }
   if (!response.ok) {
     const body = (await response.text()).slice(0, 300);
     throw new Error(`PriceLens API ${response.status} على ${pathname}: ${body}`);
@@ -312,10 +330,11 @@ async function main() {
     throw new Error("مفتاح PRICELENS_API_KEY غير مضبوط في GitHub Secrets؛ لم يتم تعديل أي سعر.");
   }
 
-  const [products, mappingFile, history] = await Promise.all([
+  const [products, mappingFile, history, previousProvider] = await Promise.all([
     readJson("products.json", []),
     readJson("price-provider-map.json", { version: 1, products: {}, unresolved: {} }),
-    readJson("price-history.json", { daily_series: [] })
+    readJson("price-history.json", { daily_series: [] }),
+    readJson("price-provider.json", { comparisons: [] })
   ]);
   if (!Array.isArray(products) || !products.length) throw new Error("كتالوج المنتجات غير صالح أو فارغ.");
 
@@ -328,12 +347,22 @@ async function main() {
   mapping.unresolved = mapping.unresolved || {};
 
   await apiGet("/whoami");
+  const previousRows = new Map(
+    (Array.isArray(previousProvider.comparisons) ? previousProvider.comparisons : [])
+      .filter(record => record && record.product_id)
+      .map(record => [String(record.product_id), record])
+  );
+  const refreshedRecords = [];
   let searched = 0;
-  let mappedCount = 0;
-  const comparisonRecords = [];
+  let quotaLimited = false;
   const failures = [];
 
   for (const product of products) {
+    if (rateLimitRemaining !== null && rateLimitRemaining <= 0) {
+      quotaLimited = true;
+      break;
+    }
+
     let providerProduct = mapping.products[product.id];
     const unresolved = mapping.unresolved[product.id];
     const retryDue = !unresolved?.checked_at ||
@@ -341,68 +370,102 @@ async function main() {
 
     if (!providerProduct && retryDue) {
       const query = encodeURIComponent(`${product.brand || ""} ${product.name_ar || ""} ${product.variant || ""}`.trim());
-      const search = await apiGet(`/search?q=${query}`);
-      searched += 1;
-      const selected = chooseCandidate(product, search);
-      if (selected) {
-        providerProduct = {
-          product_id: selected.id,
-          title: selected.title,
-          matched_at: now.toISOString()
-        };
-        mapping.products[product.id] = providerProduct;
-        delete mapping.unresolved[product.id];
-      } else {
-        mapping.unresolved[product.id] = {
-          checked_at: now.toISOString(),
-          reason: "لم يظهر تطابق وحيد ودقيق للموديل والسعة/الذاكرة في بحث PriceLens."
-        };
+      try {
+        const search = await apiGet(`/search?q=${query}`);
+        searched += 1;
+        const selected = chooseCandidate(product, search);
+        if (selected) {
+          providerProduct = {
+            product_id: selected.id,
+            title: selected.title,
+            matched_at: now.toISOString()
+          };
+          mapping.products[product.id] = providerProduct;
+          delete mapping.unresolved[product.id];
+        } else {
+          mapping.unresolved[product.id] = {
+            checked_at: now.toISOString(),
+            reason: "لم يظهر تطابق وحيد ودقيق للموديل والسعة/الذاكرة في بحث PriceLens."
+          };
+        }
+        await sleep(250);
+      } catch (error) {
+        if (/API 429/.test(error.message)) {
+          quotaLimited = true;
+          break;
+        }
+        failures.push(`${product.id}: ${error.message}`);
+        break;
+      }
+    }
+
+    let acceptedOffers = [];
+    if (providerProduct?.product_id) {
+      if (rateLimitRemaining !== null && rateLimitRemaining <= 0) {
+        quotaLimited = true;
+        break;
+      }
+      try {
+        const payload = await apiGet(
+          `/products/${encodeURIComponent(providerProduct.product_id)}/market?days=90`
+        );
+        const rawOffers = findOfferArray(payload);
+        const responseCurrency = payload.currency || payload.market?.currency || "EGP";
+        const offers = rawOffers
+          .map(offer => mapOffer(product, offer, responseCurrency, nowMs))
+          .filter(Boolean);
+        const unique = new Map();
+        for (const offer of offers) {
+          const key = `${offer.store}|${offer.price}|${offer.source_url}`;
+          unique.set(key, offer);
+        }
+        acceptedOffers = [...unique.values()];
+      } catch (error) {
+        if (/API 429/.test(error.message)) {
+          quotaLimited = true;
+          break;
+        }
+        failures.push(`${product.id}: ${error.message}`);
+        break;
       }
       await sleep(250);
     }
 
-    if (!providerProduct?.product_id) continue;
-    mappedCount += 1;
-
-    try {
-      const payload = await apiGet(
-        `/products/${encodeURIComponent(providerProduct.product_id)}/market?days=90`
-      );
-      const rawOffers = findOfferArray(payload);
-      const responseCurrency = payload.currency || payload.market?.currency || "EGP";
-      const offers = rawOffers
-        .map(offer => mapOffer(product, offer, responseCurrency, nowMs))
-        .filter(Boolean);
-
-      const unique = new Map();
-      for (const offer of offers) {
-        const key = `${offer.store}|${offer.price}|${offer.source_url}`;
-        unique.set(key, offer);
-      }
-      const acceptedOffers = [...unique.values()];
-      if (acceptedOffers.length) {
-        comparisonRecords.push({
-          product_id: product.id,
-          title: product.name_ar,
-          variant: product.variant,
-          as_of: today,
-          provider_product_id: providerProduct.product_id,
-          match_method: "مطابقة معرف المنتج لدى PriceLens مع العلامة والموديل والسعة/الذاكرة؛ اللون يُشترط عند ظهوره في تفاصيل العرض.",
-          offers: acceptedOffers
-        });
-      }
-    } catch (error) {
-      failures.push(`${product.id}: ${error.message}`);
-      break;
-    }
-    await sleep(250);
+    refreshedRecords.push({
+      product_id: product.id,
+      title: product.name_ar,
+      variant: product.variant,
+      as_of: today,
+      provider: "PriceLens",
+      provider_sync: true,
+      provider_product_id: providerProduct?.product_id || null,
+      match_method: "مطابقة معرف المنتج لدى PriceLens مع العلامة والموديل والسعة/الذاكرة؛ اللون يُشترط عند ظهوره في تفاصيل العرض.",
+      match_status: providerProduct?.product_id ? "mapped" : "unmatched",
+      offers: acceptedOffers
+    });
   }
 
   if (failures.length) {
     throw new Error("فشلت مزامنة منتج واحد أو أكثر؛ لم تُكتب لقطة أسعار جزئية. " + failures[0]);
   }
+  if (!refreshedRecords.length) {
+    throw new Error(quotaLimited
+      ? "وصل مفتاح PriceLens إلى حد الطلبات؛ لم تكتمل أي قراءة جديدة ولم يتم تعديل الملفات."
+      : "لم تُحدّث أي منتجات؛ لم يتم تعديل الملفات.");
+  }
 
-  const offersCount = comparisonRecords.reduce((sum, record) => sum + record.offers.length, 0);
+  const mergedRecords = new Map(previousRows);
+  for (const record of refreshedRecords) mergedRecords.set(record.product_id, record);
+  const mergedComparisons = products
+    .map(product => mergedRecords.get(product.id))
+    .filter(Boolean);
+
+  const offersCount = mergedComparisons.reduce((sum, record) =>
+    sum + (record.offers || []).length, 0);
+  addDailyObservations(history, refreshedRecords, today);
+  mapping.version = 1;
+  mapping.updated_at = now.toISOString();
+
   const providerData = {
     provider: "PriceLens",
     attribution: "Prices by PriceLens",
@@ -411,27 +474,29 @@ async function main() {
     refresh_cadence_hours: 3,
     stale_after_hours: 24,
     last_successful_sync: now.toISOString(),
+    sync_status: quotaLimited || refreshedRecords.length < products.length ? "partial" : "complete",
     coverage: {
       catalog_products: products.length,
-      mapped_products: mappedCount,
-      products_with_current_offers: comparisonRecords.length,
+      products_refreshed_this_run: refreshedRecords.length,
+      mapped_products: mergedComparisons.filter(record => record.provider_product_id).length,
+      products_with_current_offers: mergedComparisons.filter(record => (record.offers || []).length > 0).length,
       current_offers: offersCount,
       searches_performed: searched,
+      api_daily_limit: rateLimitLimit,
+      api_remaining_after_run: rateLimitRemaining,
       included_retailers: ["B.TECH", "2B", "Raya", "Tradeline"]
     },
-    comparisons: comparisonRecords
+    comparisons: mergedComparisons
   };
-
-  addDailyObservations(history, comparisonRecords, today);
-  mapping.version = 1;
-  mapping.updated_at = now.toISOString();
 
   await writeJson("price-provider-map.json", mapping);
   await writeJson("price-provider.json", providerData);
   await writeJson("price-history.json", history);
 
-  console.log(`اكتملت مزامنة المنافسين من PriceLens: ${offersCount} عرضاً في ${comparisonRecords.length} منتجاً.`);
-  console.log(`بحث جديد: ${searched} · منتجات مرتبطة: ${mappedCount} · التاريخ المحلي: ${today}`);
+  console.log(`اكتملت مزامنة PriceLens: ${refreshedRecords.length}/${products.length} منتجاً، ${offersCount} عرضاً محفوظاً.`);
+  console.log(`بحث جديد: ${searched} · طلبات متبقية: ${rateLimitRemaining ?? "غير معلنة"} · التاريخ المحلي: ${today}`);
+  if (quotaLimited) console.warn("تم إيقاف الدفعة عند حد API؛ البيانات غير المعاد فحصها تحتفظ بتاريخ رصدها السابق.");
+  if (refreshedRecords.length < products.length) console.warn("هذه مزامنة جزئية؛ راجع coverage.products_refreshed_this_run.");
   console.log("لم يتم تعديل أسعار Vodafone Egypt الرسمية؛ تتطلب تغذية رسمية أو إذناً كتابياً.");
 }
 
