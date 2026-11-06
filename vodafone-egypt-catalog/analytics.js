@@ -46,7 +46,7 @@
       $("forecast48h").innerHTML='<b>لا توجد نوافذ 48 ساعة كافية للاختبار</b><span>اكتملت '+distinct.length+' قراءة يومية، لكن السجل يحتوي '+windows.length+' نافذة متتابعة فقط.</span><small>أكمل ملاحظات يومية متصلة للـ SKU والمتجر نفسيهما.</small>';
       return;
     }
-    const split=Math.floor(windows.length*.8),holdout=windows.slice(split),results=[];
+    const split=Math.ceil(windows.length*.75),holdout=windows.slice(split),results=[];
     holdout.forEach(test=>{
       const training=windows.filter(window=>window.endIndex<test.startIndex);
       if(training.length<10)return;

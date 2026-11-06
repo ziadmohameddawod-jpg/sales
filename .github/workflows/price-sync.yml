@@ -1,0 +1,86 @@
+name: Price sync every 3 hours
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: price-sync-and-pages
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Refresh competitor prices
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Check JavaScript and sync tests
+        working-directory: ./vodafone-egypt-catalog
+        run: |
+          node --check app.js
+          node --check analytics.js
+          node --check scripts/sync-prices.mjs
+          node --check scripts/validate-data.mjs
+          node scripts/sync-prices.mjs --self-test
+
+      - name: Refresh approved market feed
+        working-directory: ./vodafone-egypt-catalog
+        env:
+          PRICELENS_API_KEY: ${{ secrets.PRICELENS_API_KEY }}
+        run: node scripts/sync-prices.mjs
+
+      - name: Validate saved data
+        working-directory: ./vodafone-egypt-catalog
+        run: node scripts/validate-data.mjs
+
+      - name: Commit refreshed snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vodafone-egypt-catalog/data/price-provider.json vodafone-egypt-catalog/data/price-provider-map.json vodafone-egypt-catalog/data/price-history.json
+          if git diff --cached --quiet; then
+            echo "No price data changes to commit."
+          else
+            git commit -m "Refresh competitor prices"
+            git push
+          fi
+
+  deploy:
+    name: Publish refreshed catalog
+    if: github.ref == 'refs/heads/main'
+    needs: sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build catalog with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./vodafone-egypt-catalog
+          destination: ./_site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+
+      - name: Deploy Pages
+        uses: actions/deploy-pages@v5
