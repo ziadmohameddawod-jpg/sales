@@ -158,8 +158,26 @@ async function main() {
   if (rows.length < MIN_PRODUCT_COUNT) {
     throw new Error("تم رفض التحديث الآمن: وصل " + rows.length + " صفاً فقط، والحد الأدنى " + MIN_PRODUCT_COUNT + ".");
   }
+  let existingProducts = [];
+  try {
+    existingProducts = JSON.parse(await fs.readFile(dataFile, "utf8"));
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
+  const existingById = new Map(existingProducts.map(product => [product.id, product]));
   const seen = new Set();
-  const products = rows.map((row, index) => asProduct(row, index, seen));
+  const products = rows.map((row, index) => {
+    const product = asProduct(row, index, seen);
+    const previous = existingById.get(product.id);
+    if (previous) {
+      // Empty image cells in Sheets must not erase a previously verified image.
+      if (!row.image && previous.image) product.image = previous.image;
+      if (!row.image_credit && previous.image_credit) product.image_credit = previous.image_credit;
+      // Keep provenance notes when the sheet's corresponding cell is intentionally blank.
+      if (!row.source_note && previous.source_note) product.source_note = previous.source_note;
+    }
+    return product;
+  });
   if (products.length !== rows.length) throw new Error("توجد صفوف غير مكتملة أو لا تحمل معرّفات.");
 
   const preview = {
