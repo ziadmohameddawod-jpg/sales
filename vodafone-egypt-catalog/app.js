@@ -4,6 +4,7 @@ const state = {
   sort: "featured", store: "Vodafone Egypt", date: "", min: "", max: ""
 };
 let marketRecords = [];
+let providerData = null;
 const FALLBACK_IMAGE = {
   "هواتف": brand => brand === "Samsung" ? '<div class="device-art samsung"><i class="lens"></i></div>' : '<div class="device-art"><i class="lens"></i></div>',
   "راوتر وإنترنت": () => '<div class="router-art"></div>',
@@ -37,6 +38,8 @@ function productRecords(product) {
   const exactIdMatches = marketRecords.filter(record =>
     String(record.product_id || record.id || "") === productId
   );
+  const providerMatches = exactIdMatches.filter(record => record.provider_sync === true);
+  if (providerMatches.length) return providerMatches;
   if (exactIdMatches.length) return exactIdMatches;
 
   const productName = normalize(product.name_ar);
@@ -82,6 +85,8 @@ function offersFor(product) {
         status:normalizeStatus(offer.status),
         date:offer.checked_at || offer.as_of || snapshotDate,
         source:offer.source_url || offer.url || record.tracker_source || record.source_url || "",
+        provider:offer.source_provider || record.provider || "",
+        observedAt:offer.observed_at || "",
         warranty:offer.warranty || "الضمان غير مؤكد"
       });
     });
@@ -247,7 +252,7 @@ function openDetails(id) {
   const product = state.products.find(item=>String(item.id)===String(id)); if (!product) return;
   const listing = currentListing(product);
   const visual = product.image ? '<img src="'+escapeHtml(product.image)+'" alt="'+escapeHtml(product.name_ar)+'" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">' : visualFallback(product.category,product.brand);
-  const competitorRows = offersFor(product).sort((a,b)=>a.price-b.price).slice(0,5).map(offer=>'<div class="mini-offer"><b>'+escapeHtml(offer.store)+'</b><span>'+money(offer.price)+' جنيه</span><small>'+escapeHtml(formatDate(offer.date))+' · '+escapeHtml(offer.warranty)+'</small></div>').join("");
+  const competitorRows = offersFor(product).sort((a,b)=>a.price-b.price).slice(0,5).map(offer=>'<div class="mini-offer"><b>'+escapeHtml(offer.store)+'</b><span>'+money(offer.price)+' جنيه</span><small>'+escapeHtml(offer.observedAt ? new Intl.DateTimeFormat("ar-EG",{dateStyle:"medium",timeStyle:"short",timeZone:"Africa/Cairo"}).format(new Date(offer.observedAt)) : formatDate(offer.date))+' · '+escapeHtml(offer.warranty)+(offer.provider?' · '+escapeHtml(offer.provider):"")+'</small>'+(offer.source?'<a href="'+escapeHtml(offer.source)+'" target="_blank" rel="noopener">مصدر السعر ↗</a>':"")+'</div>').join("");
   $("dialogContent").innerHTML = '<div class="dialog-product"><div class="dialog-media">'+visual+'</div><div class="dialog-info"><div class="product-category">'+escapeHtml(product.category)+' · '+escapeHtml(product.brand)+'</div><h2>'+escapeHtml(product.name_ar)+'</h2><div class="variant">'+escapeHtml(product.variant)+'</div><div class="dialog-price">'+money(listing?.price)+' <small>جنيه مصري</small></div>'+(product.old_price?'<div class="old-price">السعر السابق المُسجل: '+money(product.old_price)+' جنيه</div>':"")+'<p>'+escapeHtml(product.description)+'</p><div class="dialog-meta"><div><small>المتجر المختار</small><b>'+escapeHtml(listing?.store||"Vodafone Egypt")+'</b></div><div><small>تاريخ لقطة السعر</small><b>'+escapeHtml(formatDate(listing?.date||product.source_checked_at))+'</b></div></div><div class="dialog-offers"><b>عروض متاجر مرصودة للنسخة المطابقة</b>'+(competitorRows||'<small>لا توجد عروض منافسة مطابقة مسجلة لهذا المنتج حالياً.</small>')+'</div><p>'+escapeHtml(product.source_note||"السعر استرشادي؛ افتح المصدر وأكد السعر والتوفر قبل الشراء.")+'</p><div class="dialog-links"><a class="dialog-official" href="'+escapeHtml(product.product_url||"https://eshop.vodafone.com.eg/ar/")+'" target="_blank" rel="noopener">تحقق من Vodafone ↗</a><a class="dialog-source" href="'+escapeHtml(listing?.source||product.source_url||"https://eshop.vodafone.com.eg/ar/")+'" target="_blank" rel="noopener">مصدر اللقطة ↗</a></div></div></div>';
   $("productDialog").showModal();
 }
@@ -260,18 +265,35 @@ function populateSelectors() {
 }
 async function loadProducts() {
   try {
-    const [products,comparisons,market] = await Promise.all([
+    const [products,comparisons,market,provider] = await Promise.all([
       getJson("data/products.json"),
       getJson("data/market-comparisons.json").catch(()=>({comparisons:[]})),
-      getJson("data/market.json").catch(()=>({comparisons:[]}))
+      getJson("data/market.json").catch(()=>({comparisons:[]})),
+      getJson("data/price-provider.json").catch(()=>null)
     ]);
     state.products=products;
-    marketRecords=[...(comparisons.comparisons||[]),...(market.comparisons||[])];
+    providerData=provider;
+    marketRecords=[...(provider?.comparisons||[]),...(comparisons.comparisons||[]),...(market.comparisons||[])];
   } catch (error) { state.products=[]; console.error(error); }
   const latestDate=allDates()[0];
-  $("feedState").textContent="لقطات مؤرخة — بلا تحديث آلي";
-  $("feedDate").textContent=latestDate?"أحدث لقطة: "+formatDate(latestDate)+" · ليست أسعاراً مباشرة":"تاريخ اللقطة غير متاح";
-  $("sourceReviewDate").textContent=latestDate?formatDate(latestDate):"غير معروف";
+  const lastSync = providerData?.last_successful_sync ? new Date(providerData.last_successful_sync) : null;
+  const syncValid = lastSync && Number.isFinite(lastSync.getTime());
+  const syncAgeHours = syncValid ? (Date.now() - lastSync.getTime()) / 3600000 : Infinity;
+  const syncLabel = syncValid
+    ? new Intl.DateTimeFormat("ar-EG", {dateStyle:"medium",timeStyle:"short",timeZone:"Africa/Cairo"}).format(lastSync)
+    : "";
+  if (syncValid) {
+    const isStale = syncAgeHours > Number(providerData.stale_after_hours || 24);
+    $("feedState").textContent = isStale ? "مزامنة المنافسين متأخرة" :
+      providerData.sync_status === "partial" ? "آخر مزامنة جزئية للمنافسين" : "آخر مزامنة للمنافسين";
+    $("feedDate").textContent = "Prices by PriceLens · " + syncLabel + " بتوقيت القاهرة · " +
+      Number(providerData.coverage?.current_offers || 0).toLocaleString("ar-EG") + " عرضاً · " +
+      (isStale ? "البيانات أقدم من 24 ساعة" : "تاريخ الرصد موضح لكل عرض");
+  } else {
+    $("feedState").textContent="لا توجد مزامنة آلية مؤكدة";
+    $("feedDate").textContent=latestDate?"آخر لقطة محفوظة: "+formatDate(latestDate)+" · ليست أسعاراً مباشرة":"تاريخ اللقطة غير متاح";
+  }
+  $("sourceReviewDate").textContent=syncValid?syncLabel:(latestDate?formatDate(latestDate):"غير معروف");
   $("totalCount").textContent=state.products.length.toLocaleString("ar-EG");
   populateSelectors(); render();
 }
