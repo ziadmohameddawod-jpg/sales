@@ -45,6 +45,7 @@ const products = readJson("products.json");
 const market = readJson("market.json");
 const comparisons = readJson("market-comparisons.json");
 const history = readJson("price-history.json");
+const provider = readJson("price-provider.json");
 
 if (Array.isArray(products)) {
   const ids = new Set();
@@ -114,6 +115,31 @@ if (market) {
 let comparisonOfferCount = 0;
 if (comparisons) {
   comparisonOfferCount = validateOfferList(comparisons.comparisons, "offers", "market-comparisons.json");
+}
+
+if (provider) {
+  if (provider.provider !== "PriceLens") errors.push("price-provider.json: مزود البيانات غير معروف.");
+  if (provider.currency !== "EGP") errors.push("price-provider.json: العملة يجب أن تكون EGP.");
+  if (provider.last_successful_sync && !Number.isFinite(Date.parse(provider.last_successful_sync))) {
+    errors.push("price-provider.json: توقيت آخر مزامنة غير صالح.");
+  }
+  if (!Array.isArray(provider.comparisons)) errors.push("price-provider.json: comparisons يجب أن تكون مصفوفة.");
+  else {
+    const providerIds = new Set();
+    for (const [index, record] of provider.comparisons.entries()) {
+      const label = `price-provider.json.comparisons[${index}]`;
+      if (!record.product_id || providerIds.has(String(record.product_id))) errors.push(`${label}: معرّف المنتج مفقود أو مكرر.`);
+      providerIds.add(String(record.product_id));
+      if (record.provider_sync !== true) errors.push(`${label}: علامة المزامنة مفقودة.`);
+      if (!Array.isArray(record.offers)) errors.push(`${label}: offers يجب أن تكون مصفوفة.`);
+      else for (const [offerIndex, offer] of record.offers.entries()) {
+        const offerLabel = `${label}.offers[${offerIndex}]`;
+        if (!isPositivePrice(offer.price)) errors.push(`${offerLabel}: السعر يجب أن يكون موجباً.`);
+        if (!offer.source_url || !/^https:\/\//i.test(offer.source_url)) errors.push(`${offerLabel}: رابط PriceLens الأصلي مطلوب.`);
+        if (offer.source_provider !== "PriceLens") errors.push(`${offerLabel}: اسم مزود المصدر غير صحيح.`);
+      }
+    }
+  }
 }
 
 let weeklyObservationCount = 0;
