@@ -83,18 +83,18 @@ async function fetchText(url) {
 }
 
 function capacityTokens(value) {
-  const text = String(value || "").toLowerCase().replace(/1\\s*t(?:b)?/g, "1024gb");
-  return [...text.matchAll(/(?:^|[^0-9])(64|128|256|512|1024)\\s*(?:gb)?(?:$|[^a-z0-9])/gi)].map(match => match[1]);
+  const text = String(value || "").toLowerCase().replace(/1\s*t(?:b)?/g, "1024gb");
+  return [...text.matchAll(/(?:^|[^0-9])(64|128|256|512|1024)\s*(?:gb)?(?:$|[^a-z0-9])/gi)].map(match => match[1]);
 }
 function matchProduct(product, title, image) {
   const expected = modelTokens(product);
   const actual = normalizeTokens(title);
-  const missing = expected.filter(token => !actual.includes(token));
+  const missing = expected.filter(token => !actual.includes(token) && !(token === "galaxy" && normalizeTokens(product.brand).includes("samsung") && actual.includes("samsung")));
   const extraSuffix = actual.filter(token => MODEL_SUFFIXES.has(token) && !expected.includes(token));
   if (missing.length || extraSuffix.length) return {ok:false, reason:"model_mismatch", missing, extraSuffix};
 
   const pageIsBundle = /bundle|باقة/i.test(title);
-  const productIsBundle = /bundle|باقة|هدية|سماعة|ساعة|جراب|مروحة|شاحن/i.test((product.name_ar || "") + " " + (product.source_note || ""));
+  const productIsBundle = /bundle|باقة|هدية|هدايا|سماعة|سماعات|buds|earbuds|headphones|ساعة|جراب|مروحة|شاحن/i.test((product.name_ar || "") + " " + (product.source_note || ""));
   if (pageIsBundle && !productIsBundle) return {ok:false, reason:"bundle_mismatch"};
 
   const wantedCapacity = capacityTokens(product.variant).at(-1);
