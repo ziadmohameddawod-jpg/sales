@@ -11,28 +11,40 @@ const fetchSafe = async (url) => {
 };
 const {response:pageResponse,body:html}=await fetchSafe(pageUrl);
 if(!pageResponse.ok) throw new Error("Vodafone category returned HTTP "+pageResponse.status);
-const scriptPaths=[...html.matchAll(/<script\\b[^>]*>/gi)].map(m=>{
-  const src=m[0].match(/\\bsrc\\s*=\\s*["']([^"']+)["']/i)?.[1];
-  return src ? new URL(src,new URL(html.match(/<base[^>]+href=["']([^"']+)/i)?.[1]||"/",pageResponse.url)).href : null;
+const baseHref=html.match(/<base\b[^>]*href=["']([^"']+)["']/i)?.[1] || "/";
+const assetBase=new URL(baseHref,pageResponse.url);
+const scriptPaths=[...html.matchAll(/<script\b[^>]*>/gi)].map(m=>{
+  const src=m[0].match(/\bsrc\s*=\s*["']([^"']+)["']/i)?.[1];
+  return src ? new URL(src,assetBase).href : null;
+}).filter(Boolean);
+const modulePreloads=[...html.matchAll(/<link\b[^>]*>/gi)].map(m=>{
+  const tag=m[0];
+  const rel=tag.match(/\brel\s*=\s*["']([^"']+)["']/i)?.[1]||"";
+  const href=tag.match(/\bhref\s*=\s*["']([^"']+)["']/i)?.[1];
+  return /modulepreload/i.test(rel) && href ? new URL(href,assetBase).href : null;
 }).filter(Boolean);
 const interesting = /api|graphql|product|category|catalog|search|listing|commerce|asset|image|media|pagination|plp|sku|stock|offer|price|variant/i;
-const pathLike = /(?:https?:\\/\\/[^"'\\s<>]{8,300}|\\/[^"'\\s<>]{2,180})/g;
-const jsQueue=[...new Set(scriptPaths)].slice(0,12);
+const pathLike = /(?:https?:\/\/[^"'\s<>]{8,300}|\/[^"'\s<>]{2,180})/g;
+const jsQueue=[...new Set([...scriptPaths,...modulePreloads])].slice(0,18);
 const visited=new Set(), findings=[];
-while(jsQueue.length && visited.size<18){
+while(jsQueue.length && visited.size<28){
   const jsUrl=jsQueue.shift(); if(visited.has(jsUrl)) continue; visited.add(jsUrl);
   try {
     const {response,body}=await fetchSafe(jsUrl);
-    if(!response.ok || !/(javascript|ecmascript|text\\/plain|octet-stream)/i.test(response.headers.get("content-type")||"")) continue;
-    const sources=[...body.matchAll(/(?:import\\s*\\(\\s*|from\\s*|import\\s*)["']([^"']+\\.m?js(?:\\?[^"']*)?)["']/g)].map(m=>m[1]);
+    const type=response.headers.get("content-type")||"";
+    if(!response.ok || !/(javascript|ecmascript|text\/plain|octet-stream)/i.test(type)) {
+      findings.push({url:response.url,status:response.status,contentType:type,skipped:true});
+      continue;
+    }
+    const sources=[...body.matchAll(/(?:import\s*\(\s*|from\s*|import\s*)["']([^"']+\.m?js(?:\?[^"']*)?)["']/g)].map(m=>m[1]);
     for(const s of sources){try{const child=new URL(s,response.url).href;if(!visited.has(child)&&!jsQueue.includes(child))jsQueue.push(child);}catch{}}
-    const strings=[...body.matchAll(/["']((?:\\\\.|[^"'\\\\]){2,240})["']/g)].map(m=>m[1].replace(/\\\\\\//g,"/"));
-    const selected=[...new Set(strings.filter(s=>interesting.test(s)&&(/\\//.test(s)||/api|graphql|product|category|catalog|search/i.test(s))))].slice(0,100);
-    const paths=[...new Set(body.match(pathLike)||[])].filter(s=>interesting.test(s)).slice(0,80);
-    findings.push({url:response.url,status:response.status,bytes:body.length,contentType:response.headers.get("content-type"),selectedStrings:selected,paths});
+    const strings=[...body.matchAll(/["']((?:\\.|[^"'\\]){2,240})["']/g)].map(m=>m[1].replace(/\\\//g,"/"));
+    const selected=[...new Set(strings.filter(s=>interesting.test(s)&&(/\/|api|graphql|product|category|catalog|search/i.test(s))))].slice(0,120);
+    const paths=[...new Set(body.match(pathLike)||[])].filter(s=>interesting.test(s)).slice(0,120);
+    findings.push({url:response.url,status:response.status,bytes:body.length,contentType:type,selectedStrings:selected,paths});
   }catch(error){findings.push({url:jsUrl,error:error.message});}
 }
 console.log(JSON.stringify({
   categoryStatus:pageResponse.status, finalUrl:pageResponse.url, htmlBytes:html.length,
-  scriptPaths, bundlesInspected:visited.size, findings
+  scriptPaths, modulePreloads, bundlesInspected:visited.size, findings
 },null,2));
