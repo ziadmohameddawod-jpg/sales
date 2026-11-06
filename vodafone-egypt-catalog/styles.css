@@ -122,3 +122,56 @@
 .live-dot{background:#b6b6b6;box-shadow:none}.status-pulse{background:#d39214;box-shadow:0 0 0 4px rgba(211,146,20,.13)}
 
 .product-badge.sold_out{color:#a42c2c;background:#fff0f0}.availability.sold_out:before{background:#c64d4d}.availability.unknown:before{background:#aaa}
+
+
+/* Product taxonomy: browse by type, then brand */
+.category-chips{gap:8px}
+.category-chips .chip{display:inline-flex;align-items:center;gap:8px;border-radius:6px;padding:9px 13px}
+.category-chips .chip small{font:700 8px Arial,sans-serif;opacity:.62}
+.category-chips .chip.active small{opacity:.9}
+.brand-browser{margin:20px 0 18px;border:1px solid #ececec;border-radius:9px;background:#fff;padding:14px 14px 12px}
+.brand-browser-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.brand-browser-heading b{display:block;font-size:12px}
+.brand-browser-heading small{display:block;color:#999;font-size:8px;margin-top:4px}
+.brand-browser-heading>span{font-size:8px;color:#999;white-space:nowrap}
+.brand-tiles{display:flex;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:1px 1px 8px;scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.brand-tile{flex:0 0 132px;min-width:0;height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid #e5e5e5;border-radius:5px;background:#fff;color:#202020;cursor:pointer;scroll-snap-align:start;transition:border-color .18s,box-shadow .18s,background .18s}
+.brand-tile:hover{border-color:#aaa;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+.brand-tile.active{border-color:#d50000;box-shadow:inset 0 0 0 1px #d50000;background:#fffdfd}
+.brand-tile b{font-size:9px;line-height:1.2}
+.brand-tile small{font-size:7px;color:#aaa}
+.brand-wordmark{height:34px;max-width:112px;display:flex;align-items:center;justify-content:center;color:#111;font:700 15px Arial,sans-serif;letter-spacing:-.6px;white-space:nowrap}
+.brand-wordmark.brand-samsung{font-size:13px;letter-spacing:-1px}
+.brand-wordmark.brand-xiaomi{height:30px;width:30px;max-width:30px;background:#ff6900;color:#fff;border-radius:9px;font:700 17px Arial,sans-serif;letter-spacing:-1px}
+.brand-wordmark.brand-apple{font-size:14px;letter-spacing:1px}
+.brand-wordmark.brand-realme{font-size:17px;font-weight:800}
+.brand-wordmark.brand-honor{letter-spacing:2px}
+.brand-wordmark.brand-jbl{font-style:italic;font-size:19px}
+.brand-wordmark.brand-infinix{font-weight:400;letter-spacing:0}
+.brand-mark-all{height:34px;width:34px;border-radius:50%;display:grid;place-items:center;background:#f3f3f3;color:#444;font-size:11px;font-weight:700}
+.product-groups{display:block}
+.catalog-type-group{margin:26px 0 32px}
+.catalog-type-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;padding:0 0 10px;border-bottom:1px solid #e8e8e8;margin-bottom:15px}
+.catalog-type-heading>div>span{display:block;color:#999;font-size:8px;margin-bottom:3px}
+.catalog-type-heading h3{font-size:19px;margin:0;letter-spacing:-.3px}
+.catalog-type-heading>small{font-size:8px;color:#999;white-space:nowrap}
+.brand-product-group{margin:18px 0 23px}
+.brand-group-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.brand-group-heading>div{display:flex;align-items:center;gap:9px}
+.brand-group-heading h4{margin:0;font-size:12px}
+.brand-group-heading>small{color:#aaa;font-size:8px}
+.brand-group-mark{max-width:88px;min-width:27px;height:24px;display:inline-flex;align-items:center;justify-content:center;color:#444;font:700 9px Arial,sans-serif;letter-spacing:-.3px}
+.brand-group-mark.brand-xiaomi{width:24px;min-width:24px;background:#ff6900;color:#fff;border-radius:6px;font-size:12px}
+.brand-group-mark.brand-apple{font-size:9px;letter-spacing:.7px}
+.brand-group-mark.brand-samsung{font-size:8px}
+.brand-product-group .product-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media(max-width:900px){.brand-product-group .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){
+  .brand-browser{margin:16px 0;padding:12px 10px 9px}
+  .brand-tile{flex-basis:112px;height:78px}
+  .brand-wordmark{height:28px;font-size:13px}
+  .brand-wordmark.brand-xiaomi{height:27px;width:27px}
+  .catalog-type-heading h3{font-size:16px}
+  .brand-product-group .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .brand-group-heading h4{font-size:11px}
+}
