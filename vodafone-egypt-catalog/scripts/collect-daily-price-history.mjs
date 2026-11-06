@@ -22,7 +22,7 @@ const byKey=new Map(history.daily_series.map(series=>[String(series.product_id)+
 let added=0,updated=0,skipped=0;
 for(const product of products){
   const price=Number(product.price);
-  if(!product.id||!Number.isFinite(price)||price<=0||!/^\\d{4}-\\d{2}-\\d{2}$/.test(product.source_checked_at||"")||product.source_checked_at!==today){
+  if(!product.id||!Number.isFinite(price)||price<=0||!/^\d{4}-\d{2}-\d{2}$/.test(product.source_checked_at||"")||product.source_checked_at!==today){
     skipped++;continue;
   }
   if(!product.source_url&&!product.product_url){skipped++;continue;}
