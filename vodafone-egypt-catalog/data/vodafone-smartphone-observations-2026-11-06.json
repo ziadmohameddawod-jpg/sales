@@ -1,0 +1,34 @@
+{
+  "source": "Vodafone Egypt smart phones listing supplied by user",
+  "checked_at": "2026-11-06",
+  "records": [
+    {
+      "brand": "Xiaomi",
+      "model": "Redmi 15C 4G",
+      "variant": "8GB/256GB",
+      "price": 12499,
+      "old_price": 12999
+    },
+    {
+      "brand": "realme",
+      "model": "Realme C100 Bundle",
+      "variant": "8GB/256GB",
+      "price": 17499,
+      "old_price": null
+    },
+    {
+      "brand": "Infinix",
+      "model": "Infinix Note 60 Pro 5G",
+      "variant": "12GB/256GB",
+      "price": 25999,
+      "old_price": 31222
+    },
+    {
+      "brand": "TECNO",
+      "model": "Camon 50 Ultra 5G",
+      "variant": "12GB/256GB",
+      "price": 28599,
+      "old_price": null
+    }
+  ]
+}
