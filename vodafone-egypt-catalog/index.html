@@ -70,6 +70,11 @@
         <label class="availability-filter"><input type="checkbox" id="availableOnly"><span class="custom-check"></span> المتاح فقط</label>
       </div>
 
+      <div class="brand-browser" aria-label="تصفية حسب الماركة">
+        <div class="brand-browser-heading"><div><b>تسوّق حسب الماركة</b><small>اختار الماركة لعرض منتجاتها داخل النوع المحدد</small></div><span id="brandResultCount">—</span></div>
+        <div class="brand-tiles" id="brandFilters"></div>
+      </div>
+
       <div class="catalog-filters" aria-label="فلاتر السعر والمتجر والتاريخ">
         <label for="storeFilter">المتجر<select id="storeFilter"><option value="">كل المتاجر</option></select></label>
         <label for="dateFilter">تاريخ لقطة السعر<select id="dateFilter"><option value="">كل تواريخ اللقطات</option></select></label>
@@ -80,7 +85,7 @@
       <div id="bestPicks" class="best-picks" aria-label="أفضل خيارات السعر"></div>
 
       <div class="results-line"><span id="resultCount">—</span><button id="resetFilters" class="reset-button">إعادة ضبط الفلاتر ↺</button></div>
-      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+      <div id="productGrid" class="product-groups" aria-live="polite"></div>
       <div id="emptyState" class="empty-state" hidden><span>⌕</span><h3>مفيش نتائج مطابقة</h3><p>جرّب كلمة بحث مختلفة أو امسح الفلاتر.</p><button id="clearSearch" class="button button-dark">عرض كل المنتجات</button></div>
     </section>
 

@@ -1,6 +1,6 @@
 const $ = (id) => document.getElementById(id);
 const state = {
-  products: [], category: "الكل", query: "", availableOnly: false,
+  products: [], category: "الكل", brand: "الكل", query: "", availableOnly: false,
   sort: "featured", store: "Vodafone Egypt", date: "", min: "", max: ""
 };
 let marketRecords = [];
@@ -157,6 +157,7 @@ function applyFilters() {
     const dateMatch = !state.date || listing?.date === state.date;
     const price = listing ? Number(listing.price) : NaN;
     return (state.category === "الكل" || product.category === state.category) &&
+      (state.brand === "الكل" || product.brand === state.brand) &&
       (!state.query || text.includes(normalize(state.query))) &&
       (!state.availableOnly || available(listing)) &&
       (!state.store || !!listing) && dateMatch &&
@@ -221,8 +222,61 @@ function card(product, badges) {
   return '<article class="product-card"><div class="product-media"><span class="product-badge '+escapeHtml(status)+'">'+escapeHtml(statusText)+'</span><div class="recommend-badges">'+tags+'</div>'+visual+(product.image_credit?'<small class="image-credit">صورة توضيحية</small>':"")+'</div><div class="product-info"><div class="product-category">'+escapeHtml(product.category)+' · '+escapeHtml(product.brand)+'</div><h3>'+escapeHtml(product.name_ar)+'</h3><div class="product-variant">'+escapeHtml(product.variant)+'</div><small class="listing-store">'+storeCaption+'</small><div class="price-row"><span class="current-price">'+money(listing?.price)+'</span><span class="currency">جنيه</span></div><div class="listing-source">لقطة السعر: '+escapeHtml(formatDate(listing?.date || product.source_checked_at))+'</div><div class="availability '+escapeHtml(status)+'">'+escapeHtml(availabilityText)+'</div><div class="card-actions"><button class="details-btn" data-details="'+escapeHtml(product.id)+'">التفاصيل والمصادر</button><a class="store-btn" href="'+escapeHtml(product.product_url||product.source_url||"https://eshop.vodafone.com.eg/ar/")+'" target="_blank" rel="noopener" aria-label="افتح صفحة المنتج الرسمية">↗</a></div></div></article>';
 }
 function renderFilters() {
-  const categories = ["الكل", ...new Set(state.products.map(product=>product.category).filter(Boolean))];
-  $("categoryFilters").innerHTML = categories.map(category=>'<button class="chip '+(category===state.category?'active':'')+'" data-category="'+escapeHtml(category)+'">'+escapeHtml(category)+'</button>').join("");
+  const categoryCounts = new Map();
+  state.products.forEach(product => categoryCounts.set(product.category, (categoryCounts.get(product.category) || 0) + 1));
+  const categories = ["الكل", ...categoryCounts.keys()];
+  $("categoryFilters").innerHTML = categories.map(category => {
+    const count = category === "الكل" ? state.products.length : categoryCounts.get(category);
+    return '<button class="chip '+(category===state.category?'active':'')+'" data-category="'+escapeHtml(category)+'" aria-pressed="'+(category===state.category)+'"><span>'+escapeHtml(category)+'</span><small>'+Number(count||0).toLocaleString("ar-EG")+'</small></button>';
+  }).join("");
+
+  const brandCounts = new Map();
+  state.products
+    .filter(product => state.category === "الكل" || product.category === state.category)
+    .forEach(product => brandCounts.set(product.brand, (brandCounts.get(product.brand) || 0) + 1));
+  const brands = [...brandCounts.entries()].sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0], "ar"));
+  if (state.brand !== "الكل" && !brandCounts.has(state.brand)) state.brand = "الكل";
+  const brandTiles = [["الكل", [...brandCounts.values()].reduce((sum,count)=>sum+count,0)], ...brands];
+  $("brandFilters").innerHTML = brandTiles.map(([brand,count]) => {
+    const mark = brand === "الكل" ? '<span class="brand-mark-all">كل</span>' : '<span class="brand-wordmark '+brandClass(brand)+'">'+escapeHtml(brandMark(brand))+'</span>';
+    return '<button class="brand-tile '+(brand===state.brand?'active':'')+'" data-brand="'+escapeHtml(brand)+'" aria-pressed="'+(brand===state.brand)+'">'+mark+'<b>'+escapeHtml(brand)+'</b><small>'+Number(count||0).toLocaleString("ar-EG")+' منتج</small></button>';
+  }).join("");
+  $("brandResultCount").textContent = brands.length.toLocaleString("ar-EG") + " ماركة";
+}
+
+function brandClass(brand) {
+  return "brand-" + normalize(brand).replace(/\s+/g,"-");
+}
+function brandMark(brand) {
+  const marks = {
+    Apple:"APPLE", Samsung:"SAMSUNG", Xiaomi:"mi", realme:"realme",
+    Infinix:"Infinix", HONOR:"HONOR", Huawei:"HUAWEI", Vivo:"vivo",
+    TECNO:"TECNO", Sony:"SONY", Motorola:"MOTOROLA", JBL:"JBL",
+    Anker:"soundcore", Amazfit:"amazfit", Lenovo:"Lenovo",
+    Tornado:"TORNADO", Vodafone:"vodafone", Redragon:"REDRAGON",
+    Marshall:"Marshall", Jabra:"Jabra", Mibro:"Mibro", Oraimo:"oraimo",
+    AUKEY:"AUKEY", Cardoo:"CARDOO", Weofly:"Weofly", Recci:"RECCI"
+  };
+  return marks[brand] || String(brand || "").toUpperCase();
+}
+
+function renderProductGroups(items, badgesFor) {
+  const categoryGroups = new Map();
+  items.forEach(product => {
+    if (!categoryGroups.has(product.category)) categoryGroups.set(product.category, []);
+    categoryGroups.get(product.category).push(product);
+  });
+  return [...categoryGroups.entries()].map(([category, categoryItems]) => {
+    const brandGroups = new Map();
+    categoryItems.forEach(product => {
+      if (!brandGroups.has(product.brand)) brandGroups.set(product.brand, []);
+      brandGroups.get(product.brand).push(product);
+    });
+    const groupsMarkup = [...brandGroups.entries()].map(([brand, brandItems]) =>
+      '<section class="brand-product-group"><div class="brand-group-heading"><div><span class="brand-group-mark '+brandClass(brand)+'">'+escapeHtml(brandMark(brand))+'</span><h4>'+escapeHtml(brand)+'</h4></div><small>'+brandItems.length.toLocaleString("ar-EG")+' منتج</small></div><div class="product-grid">'+brandItems.map(product=>card(product,badgesFor(product))).join("")+'</div></section>'
+    ).join("");
+    return '<section class="catalog-type-group"><div class="catalog-type-heading"><div><span>نوع المنتج</span><h3>'+escapeHtml(category)+'</h3></div><small>'+categoryItems.length.toLocaleString("ar-EG")+' منتج</small></div>'+groupsMarkup+'</section>';
+  }).join("");
 }
 function render() {
   renderFilters();
@@ -239,14 +293,15 @@ function render() {
     if (valueProduct && product.id===valueProduct.id) badges.push({kind:"value",text:"أفضل قيمة سعرية"});
     return badges;
   };
-  $("productGrid").innerHTML = items.map(product=>card(product,badgesFor(product))).join("");
+  $("productGrid").innerHTML = renderProductGroups(items,badgesFor);
   $("resultCount").textContent = "عرض "+items.length.toLocaleString("ar-EG")+" من "+state.products.length.toLocaleString("ar-EG")+" منتج";
   $("emptyState").hidden = items.length !== 0;
   $("productGrid").hidden = items.length === 0;
-  $("activeFilterSummary").textContent = "المتجر: "+(state.store || "كل المتاجر")+" · تاريخ اللقطة: "+(state.date?formatDate(state.date):"كل التواريخ")+" · مؤشر أفضل قيمة يعتمد على الخصم المُسجل والتوفر فقط.";
+  $("activeFilterSummary").textContent = "النوع: "+state.category+" · الماركة: "+state.brand+" · المتجر: "+(state.store || "كل المتاجر")+" · تاريخ اللقطة: "+(state.date?formatDate(state.date):"كل التواريخ")+" · مؤشر أفضل قيمة يعتمد على الخصم المُسجل والتوفر فقط.";
   renderBestPicks(items);
   $("productGrid").querySelectorAll("[data-details]").forEach(button=>button.addEventListener("click",()=>openDetails(button.dataset.details)));
-  $("categoryFilters").querySelectorAll("[data-category]").forEach(button=>button.addEventListener("click",()=>{state.category=button.dataset.category;render();}));
+  $("categoryFilters").querySelectorAll("[data-category]").forEach(button=>button.addEventListener("click",()=>{state.category=button.dataset.category;state.brand="الكل";render();}));
+  $("brandFilters").querySelectorAll("[data-brand]").forEach(button=>button.addEventListener("click",()=>{state.brand=button.dataset.brand;render();}));
 }
 function openDetails(id) {
   const product = state.products.find(item=>String(item.id)===String(id)); if (!product) return;
@@ -308,7 +363,7 @@ $("dateFilter").addEventListener("change",event=>{state.date=event.target.value;
 $("minPrice").addEventListener("input",event=>{state.min=event.target.value;render();});
 $("maxPrice").addEventListener("input",event=>{state.max=event.target.value;render();});
 $("resetFilters").addEventListener("click",()=>{
-  Object.assign(state,{category:"الكل",query:"",availableOnly:false,sort:"featured",store:"Vodafone Egypt",date:"",min:"",max:""});
+  Object.assign(state,{category:"الكل",brand:"الكل",query:"",availableOnly:false,sort:"featured",store:"Vodafone Egypt",date:"",min:"",max:""});
   $("searchInput").value="";$("availableOnly").checked=false;$("sortSelect").value="featured";
   $("storeFilter").value="";$("dateFilter").value="";$("minPrice").value="";$("maxPrice").value="";render();
 });
