@@ -5,210 +5,186 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataPath = path.join(root, "data", "products.json");
 const products = JSON.parse(await fs.readFile(dataPath, "utf8"));
-const PROBE_ONLY = process.argv.includes("--probe");
+const PROBE_ONLY = process.argv.includes("--probe") || process.argv.includes("--dry-run");
 const APPLY = process.argv.includes("--apply");
-const MAX_PAGES = Number(process.env.IMAGE_PROBE_LIMIT || (PROBE_ONLY ? 8 : 160));
-const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0.0.0 Safari/537.36";
+const LIMIT = Math.max(1, Number(process.env.IMAGE_PROBE_LIMIT || 160));
+const USER_AGENT = "SouqScan-Official-Image-Checker/1.0 (+https://ziadmohameddawod-jpg.github.io/sales/)";
 
+const ALIASES = new Map([
+  ["أ","ا"], ["إ","ا"], ["آ","ا"], ["ى","ي"], ["ئ","ي"],
+  ["ايفون","iphone"], ["ابل","apple"], ["شاومي","xiaomi"], ["ريدمي","redmi"],
+  ["ريلمي","realme"], ["سامسونج","samsung"], ["جالكسي","galaxy"], ["جالاكسي","galaxy"],
+  ["برو","pro"], ["ماكس","max"], ["ألترا","ultra"], ["الترا","ultra"],
+  ["لايت","lite"], ["بلس","plus"], ["اير","air"], ["هونر","honor"],
+  ["انفينيكس","infinix"], ["فيفو","vivo"], ["تكنو","tecno"], ["سمارت","smart"],
+  ["نوت","note"], ["إيدج","edge"], ["ايدج","edge"], ["الخامس","5g"], ["الرابع","4g"]
+]);
+const IGNORE = new Set([
+  "bundle","with","buds","bud","headphones","headphone","speaker","portable",
+  "smartphone","phone","device","mobile","ram","storage","gb","tb","dual","sim",
+  "and","the","vodafone","egypt","سماعات","هدية","جراب","ساعة","مروحة","مع"
+]);
+const MODEL_SUFFIXES = new Set(["max","mini","plus","ultra","pro","lite","fe","air","edge","neo","fold","flip","e"]);
+const CAPACITIES = new Set(["64","128","256","512","1024"]);
+
+function normalizeTokens(value) {
+  let text = String(value || "").normalize("NFKC").toLowerCase();
+  for (const [from, to] of ALIASES) text = text.replaceAll(from, to);
+  return text.split(/[^a-z0-9]+/).filter(Boolean);
+}
+function modelTokens(product) {
+  const brand = new Set(normalizeTokens(product.brand));
+  const name = String(product.name_ar || "");
+  const tokens = normalizeTokens(name).filter(token => !brand.has(token) && !IGNORE.has(token));
+  if (/\+\s*$/.test(name) && !tokens.includes("plus")) tokens.push("plus");
+  return [...new Set(tokens)];
+}
 function decodeHtml(value) {
-  return String(value || "")
-    .replace(/&amp;/g, "&").replace(/&#x2F;/gi, "/")
-    .replace(/&quot;/g, '"').replace(/&#39;/g, "'")
-    .replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  return String(value || "").replace(/&amp;/g, "&").replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'").replace(/&#x2F;/gi, "/").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 }
-function attrs(tag) {
-  const out = {};
-  const re = /([a-zA-Z_:][-a-zA-Z0-9_:.]*)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g;
+function attributes(tag) {
+  const result = {};
+  const pattern = /([a-zA-Z_:][-a-zA-Z0-9_:.]*)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g;
   let match;
-  while ((match = re.exec(tag))) out[match[1].toLowerCase()] = decodeHtml(match[2] ?? match[3] ?? match[4] ?? "");
-  return out;
+  while ((match = pattern.exec(tag))) result[match[1].toLowerCase()] = decodeHtml(match[2] ?? match[3] ?? match[4] ?? "");
+  return result;
 }
-function absoluteUrl(value, base) {
-  if (!value || /^(data:|blob:|javascript:)/i.test(value)) return null;
+function metaValue(html, names) {
+  for (const tag of html.match(/<meta\b[^>]*>/gi) || []) {
+    const a = attributes(tag);
+    const key = String(a.property || a.name || a.itemprop || "").toLowerCase();
+    if (names.includes(key) && a.content) return a.content;
+  }
+  return "";
+}
+function imageUrl(value, base) {
   try {
-    const u = new URL(value, base);
-    if (u.protocol !== "https:") return null;
-    u.hash = "";
-    return u.href;
+    const url = new URL(value, base);
+    if (url.protocol !== "https:" || url.hostname !== "eshop.vodafone.com.eg") return null;
+    if (/logo|icon|sprite|placeholder|transparent|pixel|flag|payment|loading|avatar|badge/i.test(url.pathname)) return null;
+    return url.href;
   } catch { return null; }
 }
-function usableImageUrl(value, base) {
-  const url = absoluteUrl(value, base);
-  if (!url) return null;
-  const u = new URL(url);
-  if (/logo|icon|sprite|placeholder|transparent|pixel|flag|payment|loading|avatar|badge/i.test(u.pathname)) return null;
-  if (!/\.(?:jpe?g|png|webp|avif)(?:$|\?)/i.test(url) && !/(?:image|media|product|asset|upload)/i.test(u.pathname)) return null;
-  return url;
-}
-function extractImageCandidates(html, pageUrl) {
-  const candidates = [];
-  const add = (value, source, score) => {
-    const url = usableImageUrl(value, pageUrl);
-    if (!url) return;
-    candidates.push({url, source, score});
-  };
-
-  for (const tag of html.match(/<meta\b[^>]*>/gi) || []) {
-    const a = attrs(tag);
-    const key = (a.property || a.name || a.itemprop || "").toLowerCase();
-    if (["og:image","og:image:url","twitter:image","twitter:image:src","image"].includes(key)) add(a.content, "meta:" + key, 100);
-  }
-
-  for (const tag of html.match(/<link\b[^>]*>/gi) || []) {
-    const a = attrs(tag);
-    if (String(a.rel || "").toLowerCase().includes("image_src")) add(a.href, "link:image_src", 90);
-  }
-
-  for (const tag of html.match(/<img\b[^>]*>/gi) || []) {
-    const a = attrs(tag);
-    const alt = a.alt || "";
-    const value = a["data-zoom-image"] || a["data-large-image"] || a["data-src"] || a["data-original"] || a.src;
-    if (!value) continue;
-    const productLike = /product|device|phone|mobile|watch|tablet|speaker|tv|headphone|earbud|case|router/i.test(alt + " " + (a.class || "") + " " + (a.id || ""));
-    add(value, productLike ? "img:product-like" : "img", productLike ? 80 : 25);
-    if (a.srcset) {
-      const entries = a.srcset.split(",").map(x => x.trim().split(/\s+/)[0]);
-      for (const entry of entries) add(entry, "img:srcset", productLike ? 75 : 20);
-    }
-  }
-
-  for (const tag of html.match(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi) || []) {
-    const body = tag.replace(/^.*?>/s, "").replace(/<\/script>$/i, "");
-    try {
-      const parsed = JSON.parse(body);
-      const visit = (node, depth = 0) => {
-        if (!node || depth > 12) return;
-        if (Array.isArray(node)) return node.forEach(x => visit(x, depth + 1));
-        if (typeof node !== "object") return;
-        if (node.image) {
-          const values = Array.isArray(node.image) ? node.image : [node.image];
-          for (const v of values) add(typeof v === "string" ? v : v?.url || v?.contentUrl, "jsonld:image", 95);
-        }
-        if (node["@graph"]) visit(node["@graph"], depth + 1);
-        for (const [key, value] of Object.entries(node)) if (key !== "image") visit(value, depth + 1);
-      };
-      visit(parsed);
-    } catch {}
-  }
-
-  const unique = new Map();
-  for (const item of candidates.sort((a,b)=>b.score-a.score)) {
-    if (!unique.has(item.url)) unique.set(item.url, item);
-  }
-  return [...unique.values()];
-}
-
-async function fetchPage(url) {
+async function fetchText(url) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 18000);
   try {
     const response = await fetch(url, {
-      signal: controller.signal,
-      redirect: "follow",
-      headers: {
-        "user-agent": USER_AGENT,
-        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "accept-language": "ar-EG,ar;q=0.9,en;q=0.8"
-      }
+      signal: controller.signal, redirect: "follow",
+      headers: {"user-agent": USER_AGENT, "accept-language": "ar-EG,ar;q=0.9,en;q=0.8"}
     });
     if (!response.ok) throw new Error("HTTP " + response.status);
-    const type = response.headers.get("content-type") || "";
-    if (!/text\/html|application\/xhtml\+xml/i.test(type)) throw new Error("Not HTML: " + type);
-    const html = await response.text();
-    return {finalUrl:response.url || url, html};
-  } finally {
-    clearTimeout(timer);
+    if (!/text\/html|application\/xhtml\+xml/i.test(response.headers.get("content-type") || "")) {
+      throw new Error("الرابط لم يرجع صفحة HTML");
+    }
+    return {html: await response.text(), finalUrl: response.url || url};
+  } finally { clearTimeout(timer); }
+}
+async function imageIsLive(url) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 10000);
+  try {
+    let response = await fetch(url, {method:"HEAD", signal:controller.signal, redirect:"follow", headers:{"user-agent":USER_AGENT}});
+    if (!response.ok || !/^image\//i.test(response.headers.get("content-type") || "")) {
+      response = await fetch(url, {method:"GET", signal:controller.signal, redirect:"follow", headers:{"user-agent":USER_AGENT, range:"bytes=0-0"}});
+    }
+    const valid = response.ok && /^image\//i.test(response.headers.get("content-type") || "") &&
+      new URL(response.url || url).hostname === "eshop.vodafone.com.eg";
+    try { await response.body?.cancel(); } catch {}
+    return valid;
+  } catch { return false; }
+  finally { clearTimeout(timer); }
+}
+function capacityTokens(value) {
+  return normalizeTokens(value).filter(token => CAPACITIES.has(token));
+}
+function matchProduct(product, title, image) {
+  const expected = modelTokens(product);
+  const actual = normalizeTokens(title);
+  const missing = expected.filter(token => !actual.includes(token));
+  const extraSuffix = actual.filter(token => MODEL_SUFFIXES.has(token) && !expected.includes(token));
+  if (missing.length || extraSuffix.length) return {ok:false, reason:"model_mismatch", missing, extraSuffix};
+
+  const pageIsBundle = /bundle|باقة/i.test(title);
+  const productIsBundle = /bundle|باقة|هدية|سماعة|ساعة|جراب|مروحة/i.test(product.name_ar || "");
+  if (pageIsBundle && !productIsBundle) return {ok:false, reason:"bundle_mismatch"};
+
+  const wantedCapacity = capacityTokens(product.variant).at(-1);
+  const titleCapacities = capacityTokens(title);
+  const imageName = decodeURIComponent(new URL(image).pathname.split("/").pop() || "");
+  const imageCapacities = capacityTokens(imageName);
+  if (wantedCapacity && titleCapacities.length && !titleCapacities.includes(wantedCapacity)) {
+    return {ok:false, reason:"page_capacity_mismatch"};
   }
+  if (wantedCapacity && imageCapacities.length && !imageCapacities.includes(wantedCapacity)) {
+    return {ok:false, reason:"image_capacity_mismatch"};
+  }
+  return {ok:true};
 }
 
-function normalizeText(value) {
-  return String(value || "").normalize("NFKC").toLowerCase()
-    .replace(/[أإآ]/g,"ا").replace(/[ىي]/g,"ي")
-    .replace(/[^a-z0-9\u0600-\u06ff]+/g," ").trim();
+const uniqueTargets = new Map();
+for (const product of products) {
+  if (product.image || !product.product_url) continue;
+  let url;
+  try {
+    url = new URL(product.product_url);
+    if (url.protocol !== "https:" || !["eshop.vodafone.com.eg","web.vodafone.com.eg"].includes(url.hostname)) continue;
+    if (!url.pathname.includes("/prod/")) continue;
+    url.hash = "";
+  } catch { continue; }
+  const key = url.href;
+  if (!uniqueTargets.has(key)) uniqueTargets.set(key, {url:key, products:[]});
+  uniqueTargets.get(key).products.push(product);
 }
-function scoreMatch(product, alt) {
-  const p = normalizeText(product.name_ar + " " + product.brand);
-  const a = normalizeText(alt);
-  if (!a || !p) return 0;
-  const parts = [...new Set(p.split(/\s+/).filter(x=>x.length>1))];
-  const matched = parts.filter(token=>a.includes(token)).length;
-  return matched / Math.max(1, parts.length);
-}
-
-const officialList = "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones";
-const targets = [];
-const seen = new Set();
-for (const p of products) {
-  const url = p.product_url || (p.source_url?.includes("/prod/") ? p.source_url : null);
-  if (url && !seen.has(url)) { seen.add(url); targets.push({url,products:[p]}); }
-}
-const phoneRows = products.filter(p=>p.category==="هواتف" && !p.image);
-if (phoneRows.length) targets.unshift({url:officialList,products:phoneRows});
-
-const selected = PROBE_ONLY ? targets.slice(0, MAX_PAGES) : targets.slice(0, MAX_PAGES);
-const results = [];
-for (let i=0;i<selected.length;i+=3) {
-  const batch = selected.slice(i,i+3);
-  const pages = await Promise.all(batch.map(async target=>{
+const targets = [...uniqueTargets.values()].slice(0, LIMIT);
+const approved = [];
+const rejected = [];
+for (let i = 0; i < targets.length; i += 3) {
+  const batch = await Promise.all(targets.slice(i, i + 3).map(async target => {
     try {
-      const fetched = await fetchPage(target.url);
-      const images = extractImageCandidates(fetched.html,fetched.finalUrl);
-      const imgTags = (fetched.html.match(/<img\b[^>]*>/gi)||[]).map(tag=>attrs(tag)).filter(a=>a.src||a["data-src"]);
-      const title = (fetched.html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)||[])[1] || "";
-      return {url:target.url,finalUrl:fetched.finalUrl,title:decodeHtml(title).trim(),status:"ok",htmlBytes:fetched.html.length,imageCandidates:images.length,topImages:images.slice(0,12),imgTags:imgTags.slice(0,20).map(a=>({alt:a.alt,src:a.src,dataSrc:a["data-src"],class:a.class})),html:fetched.html,target};
-    } catch(error) {
-      return {url:target.url,status:"error",error:error.message,target};
+      const page = await fetchText(target.url);
+      const titleMatch = page.html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+      const title = decodeHtml(titleMatch?.[1] || "").replace(/\s+/g, " ").trim();
+      const rawImage = metaValue(page.html, ["og:image","og:image:url","twitter:image","twitter:image:src"]);
+      const image = imageUrl(rawImage, page.finalUrl);
+      if (!title || !image) return {target, title, reason:"missing_product_title_or_official_image"};
+      const imageLive = await imageIsLive(image);
+      if (!imageLive) return {target, title, image, reason:"image_not_live"};
+      const matched = target.products.filter(product => matchProduct(product, title, image).ok);
+      const declined = target.products.filter(product => !matchProduct(product, title, image).ok);
+      return {target, title, image, matched, declined};
+    } catch (error) {
+      return {target, reason:error.message};
     }
   }));
-  results.push(...pages);
-  for (const item of pages) {
-    if (item.status==="ok") {
-      const altPairs=(item.imgTags||[]).map(a=>({alt:a.alt||"",url:a.src||a.dataSrc||"",score:0})).map(x=>({...x,score:Math.max(...item.target.products.map(p=>scoreMatch(p,x.alt)),0)}));
-      console.log(JSON.stringify({
-        page:item.url,status:item.status,title:item.title,bytes:item.htmlBytes,
-        candidates:item.imageCandidates,top:item.topImages.slice(0,8),
-        likelyMatches:altPairs.filter(x=>x.score>=0.6).slice(0,8)
-      }));
-    } else console.log(JSON.stringify({page:item.url,status:item.status,error:item.error}));
+  for (const result of batch) {
+    if (result.matched?.length) {
+      for (const product of result.matched) approved.push({id:product.id, image:result.image, page:result.target.url, title:result.title});
+    }
+    if (result.declined?.length || result.reason) {
+      rejected.push({url:result.target.url, ids:(result.declined || result.target.products).map(p=>p.id), reason:result.reason || "product_title_or_variant_mismatch"});
+    }
+    console.log(JSON.stringify({
+      page:result.target.url, title:result.title || "", accepted:(result.matched || []).map(p=>p.id),
+      rejected:(result.declined || []).map(p=>p.id), reason:result.reason || ""
+    }));
   }
 }
-
 if (APPLY) {
-  const byId = new Map();
-  for (const result of results) {
-    if (result.status!=="ok") continue;
-    const listUrl = result.url===officialList;
-    if (listUrl) {
-      for (const attrs of result.imgTags) {
-        const alt=attrs.alt||"";
-        const image=usableImageUrl(attrs["data-zoom-image"]||attrs["data-large-image"]||attrs["data-src"]||attrs.src,result.finalUrl);
-        if (!image) continue;
-        for (const p of result.target.products) {
-          const score=scoreMatch(p,alt);
-          if(score>=0.65) {
-            const previous=byId.get(p.id);
-            if(!previous||score>previous.score) byId.set(p.id,{image,score,source:result.finalUrl,alt});
-          }
-        }
-      }
-    } else if (result.target.products.length===1) {
-      const p=result.target.products[0];
-      const best=result.topImages?.[0];
-      if(best && best.score>=90) byId.set(p.id,{image:best.url,score:best.score/100,source:result.finalUrl,alt:best.source});
-    }
+  const byId = new Map(approved.map(item => [item.id, item]));
+  let updated = 0;
+  for (const product of products) {
+    const item = byId.get(product.id);
+    if (!item || product.image) continue;
+    product.image = item.image;
+    product.image_credit = "Vodafone Egypt eShop";
+    product.source_note = [product.source_note || "", "صورة من صفحة فودافون الرسمية: " + item.page]
+      .filter(Boolean).join(" · ");
+    updated += 1;
   }
-  let changed=0;
-  for (const p of products) {
-    const item=byId.get(p.id);
-    if(!p.image&&item) {
-      p.image=item.image;
-      p.image_credit="Vodafone Egypt product page";
-      p.source_note=[p.source_note||"", "Image extracted from official Vodafone product page: "+item.source].filter(Boolean).join(" ");
-      changed++;
-    }
-  }
-  await fs.writeFile(dataPath,JSON.stringify(products,null,2)+"\n","utf8");
-  console.log(JSON.stringify({applied:changed,total:products.length,remaining:products.filter(p=>!p.image).length}));
-} else if (!PROBE_ONLY) {
-  console.log("Probe complete. Re-run with --apply only after reviewing the source URLs.");
+  if (updated) await fs.writeFile(dataPath, JSON.stringify(products, null, 2) + "\n", "utf8");
+  console.log(JSON.stringify({updated, remainingImages:products.filter(p=>!p.image).length, rejected:rejected.length}));
+} else {
+  console.log(JSON.stringify({dryRun:true, approved:approved.length, remainingImages:products.filter(p=>!p.image).length, rejected:rejected.length}));
 }
