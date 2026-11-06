@@ -19,4 +19,4 @@ for (const page of pages) {
   }
 }
 if (checked < 1) throw new Error("لم يتم العثور على سكربتات مضمنة لفحصها.");
-console.log(\`نجح فحص \${checked} كتلة JavaScript مضمنة في صفحات HTML.\`);
+console.log("نجح فحص " + checked + " كتلة JavaScript مضمنة في صفحات HTML.");
