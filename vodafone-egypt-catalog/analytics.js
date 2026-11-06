@@ -405,6 +405,8 @@
       }).join("");
       const preferred=marketSelectable.find(product=>marketIds.has(product.id));
       if(preferred)$("marketProductSelect").value=preferred.id;
+      const withOffers=marketSelectable.filter(product=>(marketData.comparisons.find(item=>item.product_id===product.id)?.offers||[]).some(offer=>!offer.comparison_status||offer.comparison_status==="same_core_variant")).length;
+      $("marketCoverage").textContent=withOffers+" من "+marketSelectable.length+" منتج لها عروض منافسين مسجلة؛ الباقي يظهر بسعر Vodafone فقط لحين توافر عروض مطابقة.";
       const selectable=products.filter(product=>Number(product.price)>0).slice().sort((a,b)=>
         a.category.localeCompare(b.category,"ar") || a.brand.localeCompare(b.brand,"ar") ||
         a.name_ar.localeCompare(b.name_ar,"ar") || String(a.variant).localeCompare(String(b.variant),"ar"));
