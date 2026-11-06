@@ -219,13 +219,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111113213-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "جراب سيليكون أصلي مع MagSafe. راجع صفحة فودافون لمعرفة اللون والتوفر والسعر الحالي.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/apple-original-iphone-17-pro-max-silicone-case-with-magsafe",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/apple-original-iphone-17-pro-max-silicone-case-with-magsafe",
     "source_checked_at": "2026-11-05",
-    "source_note": "صفحة فودافون الرسمية أظهرت 3,499 جنيه مقابل 4,999 جنيه، والمنتج غير متوفر حالياً."
+    "source_note": "صفحة فودافون الرسمية أظهرت 3,499 جنيه مقابل 4,999 جنيه، والمنتج غير متوفر حالياً. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/apple-original-iphone-17-pro-max-silicone-case-with-magsafe"
   },
   {
     "id": "iphone-16-pro-128",
@@ -276,13 +276,13 @@
     "currency": "EGP",
     "availability": "مخزون محدود",
     "status": "limited",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/1311208649-primary-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "iPhone 16 Pro Max بسعة 512 جيجابايت ولون White Titanium. تظهر صفحة المتجر أن الجهاز متاح بكميات محدودة.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/iphone-16-pro-max",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/iphone-16-pro-max",
     "source_checked_at": "2026-11-05",
-    "source_note": "متجر Vodafone Egypt أظهر 95,999 جنيه لنسخة 512GB مع مخزون محدود."
+    "source_note": "متجر Vodafone Egypt أظهر 95,999 جنيه لنسخة 512GB مع مخزون محدود. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/iphone-16-pro-max"
   },
   {
     "id": "airpods-pro-3",
@@ -314,13 +314,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111112968.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "جراب سيليكون Apple أصلي مع MagSafe لهاتف iPhone 16 Pro. الصفحة الرسمية تشير إلى عدم التوفر حالياً.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/iphone-16-pro-silicone-case-with-magsafe",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/iphone-16-pro-silicone-case-with-magsafe",
     "source_checked_at": "2026-11-05",
-    "source_note": "متجر Vodafone Egypt أظهر 999 جنيه مقارنة بـ2,299 جنيه مع حالة غير متوفر."
+    "source_note": "متجر Vodafone Egypt أظهر 999 جنيه مقارنة بـ2,299 جنيه مع حالة غير متوفر. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/iphone-16-pro-silicone-case-with-magsafe"
   },
   {
     "id": "amazfit-active-watch",
@@ -333,13 +333,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111112366.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Amazfit Active Smart Watch — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/amazfit-active-smart-watch",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/amazfit-active-smart-watch",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/amazfit-active-smart-watch"
   },
   {
     "id": "cardoo-smartwatch-wt665",
@@ -352,13 +352,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/121111111.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Cardoo Smartwatch WT665 — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/cardoo-smartwatch-wt-665",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/cardoo-smartwatch-wt-665",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/cardoo-smartwatch-wt-665"
   },
   {
     "id": "infinix-xw3p-watch",
@@ -371,13 +371,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/999999327.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Infinix XW3P Smart Watch — 2.13-inch — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/infinix-xw-3-p-smart-watch",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/infinix-xw-3-p-smart-watch",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/infinix-xw-3-p-smart-watch"
   },
   {
     "id": "weofly-curve2-watch",
@@ -390,13 +390,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111113408%20(1).png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Weofly Curve 2 Smart Watch — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/weofly-curve-2-smart-watch",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/weofly-curve-2-smart-watch",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/weofly-curve-2-smart-watch"
   },
   {
     "id": "infinix-xw3e-watch",
@@ -409,13 +409,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/999999334.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Infinix XW3E Smart Watch — 1.43-inch — Grey. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/infinix-xw-3-e-smart-watch",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/infinix-xw-3-e-smart-watch",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/infinix-xw-3-e-smart-watch"
   },
   {
     "id": "infinix-xw1-watch",
@@ -428,13 +428,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/image3-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Infinix Smart Watch XW1 — 1.8-inch — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/infinix-smart-watch-xw-1",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/infinix-smart-watch-xw-1",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/infinix-smart-watch-xw-1"
   },
   {
     "id": "mibro-lite3-watch",
@@ -447,13 +447,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111112570-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Mibro Smartwatch Lite 3 — Dark Gray. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/mibro-smartwatch-lite-3",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/mibro-smartwatch-lite-3",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/mibro-smartwatch-lite-3"
   },
   {
     "id": "amazfit-gtr4-watch",
@@ -466,13 +466,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/121127323.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Amazfit Smart Watch GTR 4 — Superspeed Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/amazfit-smart-watch-gtr-4-new",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/amazfit-smart-watch-gtr-4-new",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/amazfit-smart-watch-gtr-4-new"
   },
   {
     "id": "mibro-gs-explorer",
@@ -485,13 +485,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111112575.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Mibro Smartwatch GS Explorer — Desert White. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/mibro-smartwatch-gs-exploer",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/mibro-smartwatch-gs-exploer",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/mibro-smartwatch-gs-exploer"
   },
   {
     "id": "apple-watch-ultra3",
@@ -504,13 +504,13 @@
     "currency": "EGP",
     "availability": "مخزون محدود وقت الفهرسة",
     "status": "limited",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111113078%20(3)-Photoroom.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Apple Watch Ultra 3 — Black with Black Alpine Loop. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/apple-watch-ultra-3-black",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/apple-watch-ultra-3-black",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/apple-watch-ultra-3-black"
   },
   {
     "id": "redmi-watch5-lite",
@@ -523,13 +523,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111112486.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Redmi Watch 5 Lite — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/redmi-watch-5-lite",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/redmi-watch-5-lite",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/redmi-watch-5-lite"
   },
   {
     "id": "redmi-watch3-active",
@@ -542,13 +542,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/acrive3-blk-3-1692341867-1692795594%20(2).jpg?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Redmi Smart Watch 3 Active — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/redmi-smart-watch-3-active-black",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/redmi-smart-watch-3-active-black",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/redmi-smart-watch-3-active-black"
   },
   {
     "id": "lenovo-k11-tablet",
@@ -561,13 +561,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/9559942595%20(1).png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Lenovo K11 11-inch Tablet — 4GB RAM / 128GB + Keyboard & Pen — Luna Grey. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/lenovo-k11-11-inch-tablet-4128---ram-4-gb",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/lenovo-k11-11-inch-tablet-4128---ram-4-gb",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/lenovo-k11-11-inch-tablet-4128---ram-4-gb"
   },
   {
     "id": "ipad-a16-wifi-cell",
@@ -580,13 +580,13 @@
     "currency": "EGP",
     "availability": "مخزون محدود وقت الفهرسة",
     "status": "limited",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/Silver%20(2)-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Apple iPad A16 Wi-Fi + Cellular — 128GB — Blue. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/ipad-a16-wifi-cell",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/ipad-a16-wifi-cell",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/ipad-a16-wifi-cell"
   },
   {
     "id": "xiaomi-tv-a43-2025",
@@ -599,13 +599,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/4444170252.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Xiaomi Smart TV A 43 2025 — 43-inch HD. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/xiaomi-smart-tv-a-43-2025---hd",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/xiaomi-smart-tv-a-43-2025---hd",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/xiaomi-smart-tv-a-43-2025---hd"
   },
   {
     "id": "apple-tv-4k-64",
@@ -618,13 +618,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/4444170158.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Apple TV 4K 3rd Generation — Wi-Fi / 64GB. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/apple-tv-4k-3rd-generation-wifi-with-64gb",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/apple-tv-4k-3rd-generation-wifi-with-64gb",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/apple-tv-4k-3rd-generation-wifi-with-64gb"
   },
   {
     "id": "samsung-tv-65du7000",
@@ -637,13 +637,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/4444170154-3.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Samsung Crystal 4K UHD Smart TV 65DU7000 — 65-inch — 4K UHD. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/samsung-smart-tv-65-inch-crystal-4k-uhd---65du7000",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/samsung-smart-tv-65-inch-crystal-4k-uhd---65du7000",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/samsung-smart-tv-65-inch-crystal-4k-uhd---65du7000"
   },
   {
     "id": "tornado-tv-32es4600",
@@ -656,13 +656,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/4444170259.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Tornado HD Shield DLED Smart TV — 32-inch — Wi-Fi. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/tornado-hd-shield-dled-smart-tv-32-inch-wifi-connection-32es4600e-a",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/tornado-hd-shield-dled-smart-tv-32-inch-wifi-connection-32es4600e-a",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/tornado-hd-shield-dled-smart-tv-32-inch-wifi-connection-32es4600e-a"
   },
   {
     "id": "samsung-tv-55qn90d",
@@ -675,13 +675,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/4444170150.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Samsung Neo QLED 4K Smart TV 55QN90D — 55-inch — Neo QLED 4K. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/samsung-smart-tv-55-inch-neo-qled-4k-quantum-hdr---55qn90d",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/samsung-smart-tv-55-inch-neo-qled-4k-quantum-hdr---55qn90d",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/samsung-smart-tv-55-inch-neo-qled-4k-quantum-hdr---55qn90d"
   },
   {
     "id": "xiaomi-wired-earphone",
@@ -694,13 +694,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/121126522%20(1).png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Xiaomi Wired Earphone with Microphone — Black — TAW/L. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/xiaomi-wired-earphone-with-microphone",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/xiaomi-wired-earphone-with-microphone",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/xiaomi-wired-earphone-with-microphone"
   },
   {
     "id": "huawei-freebuds-se4-anc",
@@ -713,13 +713,13 @@
     "currency": "EGP",
     "availability": "متاح للطلب وقت الفهرسة",
     "status": "in",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111113067-(1).png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Huawei FreeBuds SE 4 ANC — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/huawei-freebuds-se-4-anc",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/huawei-freebuds-se-4-anc",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/huawei-freebuds-se-4-anc"
   },
   {
     "id": "ps5-slim-disk",
@@ -732,13 +732,13 @@
     "currency": "EGP",
     "availability": "متاح للطلب وقت الفهرسة",
     "status": "in",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/image63-3.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Sony PlayStation 5 Slim Edition Console — Disk Edition — 1 Year Warranty. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/play-station-5-slim-edition-console-1-years-official-warranty",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/play-station-5-slim-edition-console-1-years-official-warranty",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/play-station-5-slim-edition-console-1-years-official-warranty"
   },
   {
     "id": "recci-tablet-holder",
@@ -751,13 +751,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/1210008817.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Recci Tablet / Mobile Holder RHO-I01 — White. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/recci-rho-i01-tablet-mobile-bracket-holder",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/recci-rho-i01-tablet-mobile-bracket-holder",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/recci-rho-i01-tablet-mobile-bracket-holder"
   },
   {
     "id": "oraimo-speaker-obs382",
@@ -770,13 +770,13 @@
     "currency": "EGP",
     "availability": "مخزون محدود وقت الفهرسة",
     "status": "limited",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111113354.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Oraimo Portable Speaker OBS-382 Space — Grey. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/oraimo-portable-speaker-obs-382-space---grey",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/oraimo-portable-speaker-obs-382-space---grey",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/oraimo-portable-speaker-obs-382-space---grey"
   },
   {
     "id": "jabra-510-speaker",
@@ -789,13 +789,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/1210008865.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Jabra 510 Portable Speaker — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/jabra-510-portable-speaker",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/jabra-510-portable-speaker",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/jabra-510-portable-speaker"
   },
   {
     "id": "anker-soundcore-glow",
@@ -808,13 +808,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/image98-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Anker Soundcore Glow Portable Speaker — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/anker-soundcore-glow-portable-speaker",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/anker-soundcore-glow-portable-speaker",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/anker-soundcore-glow-portable-speaker"
   },
   {
     "id": "jbl-grip-speaker",
@@ -827,13 +827,13 @@
     "currency": "EGP",
     "availability": "مخزون محدود وقت الفهرسة",
     "status": "limited",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111113365.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "JBL Portable Speaker Grip — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/jbl-portable-speaker-grip",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/jbl-portable-speaker-grip",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/jbl-portable-speaker-grip"
   },
   {
     "id": "marshall-kilburn-ii",
@@ -865,13 +865,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111113509%20(8).png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "AUKEY EP-M3A Wireless Earbuds — White. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/aukey-ep-m3a-wireless-earbuds-6mm5h-playtimeipx4-water-resistance",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/aukey-ep-m3a-wireless-earbuds-6mm5h-playtimeipx4-water-resistance",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/aukey-ep-m3a-wireless-earbuds-6mm5h-playtimeipx4-water-resistance"
   },
   {
     "id": "redragon-h838-headphones",
@@ -884,13 +884,13 @@
     "currency": "EGP",
     "availability": "مخزون محدود وقت الفهرسة",
     "status": "limited",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/9559942789.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Redragon H838 Gaming Headphones — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/redragon-h838-gaming-headphones",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/redragon-h838-gaming-headphones",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/redragon-h838-gaming-headphones"
   },
   {
     "id": "redragon-h510-headphones",
@@ -903,13 +903,13 @@
     "currency": "EGP",
     "availability": "مخزون محدود وقت الفهرسة",
     "status": "limited",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/9559942788-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Redragon H510 RGB Gaming Headphones — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/redragon-h510-rgb-gaming-headphones",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/redragon-h510-rgb-gaming-headphones",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/redragon-h510-rgb-gaming-headphones"
   },
   {
     "id": "redragon-h260-headphones",
@@ -922,13 +922,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/9559942786.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Redragon H260 RGB Gaming Headphones — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/redragon-h260-rgb-gaming-headphones",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/redragon-h260-rgb-gaming-headphones",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/redragon-h260-rgb-gaming-headphones"
   },
   {
     "id": "jbl-tune125bt",
@@ -941,13 +941,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/eCommerce/121126867.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "JBL Tune 125BT Wireless In-Ear Headphones — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/jbl-tune-125bt-wireless-in-ear-headphones",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/jbl-tune-125bt-wireless-in-ear-headphones",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/jbl-tune-125bt-wireless-in-ear-headphones"
   },
   {
     "id": "anker-q11i-headphones",
@@ -960,13 +960,13 @@
     "currency": "EGP",
     "availability": "غير متوفر حالياً",
     "status": "out",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/111113036-(1).png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Anker Soundcore Q11i Wireless Headphones — White. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/anker-soundcore-q11i-wireless-headphones-white",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/anker-soundcore-q11i-wireless-headphones-white",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/anker-soundcore-q11i-wireless-headphones-white"
   },
   {
     "id": "redragon-laptop-cooler",
@@ -979,13 +979,13 @@
     "currency": "EGP",
     "availability": "متاح للطلب وقت الفهرسة",
     "status": "in",
-    "image": null,
-    "image_credit": null,
+    "image": "https://eshop.vodafone.com.eg/ecommerce/api/asset/content/9559942800-1.png?contextRequest=%7B%22forceCatalogForFetch%22:false,%22forceFilterByCatalogIncludeInheritance%22:false,%22forceFilterByCatalogExcludeInheritance%22:false,%22applicationId%22:%2201H5FECVAV4YWT0NGQKXEN1T51%22,%22tenantId%22:%225DF1363059675161A85F576D%22%7D",
+    "image_credit": "Vodafone Egypt product image",
     "description": "Redragon GCP500 Laptop Cooler — Black. راجع صفحة المنتج الرسمية للتأكد من السعر النهائي والمخزون الحالي قبل الشراء.",
     "product_url": "https://eshop.vodafone.com.eg/ar/prod/redragon-gcp500-laptop-cooler",
     "source_url": "https://eshop.vodafone.com.eg/ar/prod/redragon-gcp500-laptop-cooler",
     "source_checked_at": "2026-11-05",
-    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء."
+    "source_note": "بيانات مستخرجة من نتيجة صفحة متجر Vodafone Egypt الرسمية المفهرسة عند إعداد الدفعة بتاريخ 5 نوفمبر 2026. بعض النتائج مفهرسة منذ أسابيع أو أشهر؛ اعتبر السعر مرجعاً تاريخياً وتحقق من صفحة المنتج قبل الشراء. | الصورة من صفحة المنتج الرسمية على متجر فودافون: https://eshop.vodafone.com.eg/ar/prod/redragon-gcp500-laptop-cooler"
   },
   {
     "id": "vodafone-smart-001-xiaomi",
