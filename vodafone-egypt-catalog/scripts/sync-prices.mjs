@@ -115,9 +115,9 @@ function offerMatchesVariant(product, offer) {
   const offerText = textFields(offer);
   const target = parseSpecs(product.variant || "");
   const actual = parseSpecs(offerText);
-  if (target.storage.length && actual.storage.length &&
+  if (target.storage.length &&
       !target.storage.every(value => actual.storage.includes(value))) return false;
-  if (target.ram.length && actual.ram.length &&
+  if (target.ram.length &&
       !target.ram.every(value => actual.ram.includes(value))) return false;
 
   const comparison = clean(offer.comparison_status || "");
@@ -317,6 +317,7 @@ async function runSelfTests() {
   };
   assert.equal(mapOffer(phone, validOffer, "EGP", Date.now())?.status, "in_stock");
   assert.equal(mapOffer(phone, { ...validOffer, variant_note: "256GB Blue" }, "EGP", Date.now()), null);
+  assert.equal(mapOffer(phone, { ...validOffer, variant_note: "Glacier" }, "EGP", Date.now()), null);
   assert.equal(mapOffer(phone, { ...validOffer, last_seen: "2020-01-01T00:00:00Z" }, "EGP", Date.now()), null);
   console.log("نجحت اختبارات مطابقة النسخ وعمر السعر ومصادر المتاجر.");
 }
@@ -353,11 +354,15 @@ async function main() {
       .map(record => [String(record.product_id), record])
   );
   const refreshedRecords = [];
+  const startIndex = Number.isInteger(mapping.next_product_index)
+    ? ((mapping.next_product_index % products.length) + products.length) % products.length
+    : 0;
   let searched = 0;
   let quotaLimited = false;
   const failures = [];
 
-  for (const product of products) {
+  for (let offset = 0; offset < products.length; offset += 1) {
+    const product = products[(startIndex + offset) % products.length];
     if (rateLimitRemaining !== null && rateLimitRemaining <= 0) {
       quotaLimited = true;
       break;
@@ -454,6 +459,7 @@ async function main() {
       : "لم تُحدّث أي منتجات؛ لم يتم تعديل الملفات.");
   }
 
+  mapping.next_product_index = (startIndex + refreshedRecords.length) % products.length;
   const mergedRecords = new Map(previousRows);
   for (const record of refreshedRecords) mergedRecords.set(record.product_id, record);
   const mergedComparisons = products
