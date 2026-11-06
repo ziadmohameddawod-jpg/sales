@@ -78,6 +78,1416 @@
       "store": "B.TECH / drmobile",
       "observations": [],
       "note": "Daily same-SKU seller-specific observations have not yet been collected."
+    },
+    {
+      "product_id": "vodafone-smart-001-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 34999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-002-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 26699,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-003-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 12499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-004-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 28799,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-005-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 16999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-006-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 15999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-007-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 15999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-008-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 14499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-009-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 14499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-010-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 8299,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-011-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 9999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-012-xiaomi",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 9499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-013-realme",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 17499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-014-realme",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 14999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-015-realme",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 24999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-016-realme",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 17299,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-017-realme",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 15499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-018-realme",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 7799,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-019-realme",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 8999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-020-realme",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 12399,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-021-realme",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 7499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-022-infinix",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 25999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-023-infinix",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 13999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-024-infinix",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 13399,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-025-infinix",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 33999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-026-infinix",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 28999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-027-infinix",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 19999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-028-infinix",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 9499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-029-infinix",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 10799,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-030-infinix",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 16499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-031-tecno",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 28599,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-032-tecno",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 9199,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-033-tecno",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 11799,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-034-tecno",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 20999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-035-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 128999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-036-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 142999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-037-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 168999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-038-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 143000,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-039-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 156999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-040-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 182999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-041-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 72999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-042-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 84499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-043-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 59999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-044-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 50999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-045-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 22449,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-046-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 73825,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-047-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 44999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-048-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 12999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-049-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 33999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-050-samsung",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 22999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-051-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 28999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-052-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 53599,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-053-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 22120,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-054-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 23799,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-055-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 9620,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-056-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 8320,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-057-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 13499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-058-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 11888,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-059-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 18999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-060-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 29499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-061-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 33799,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-062-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 8999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-063-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 14799,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-064-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 92250,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-065-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 14450,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-066-honor",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 73950,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-067-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 16999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-068-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 52999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-069-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 94999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-070-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 16999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-071-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 15999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-072-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 27999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-073-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 25999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-074-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 13499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-075-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 17999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-076-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 19999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-077-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 8499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-078-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 13499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-079-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 32999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-080-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 11999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-081-vivo",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 10399,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-082-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 94999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-083-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 87900,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-084-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 74499,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-085-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 59999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-086-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 54999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-087-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 83333,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-088-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 73999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-089-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 179199,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-090-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 119699,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-091-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 109899,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-092-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 69999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-093-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 57999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
+    },
+    {
+      "product_id": "vodafone-smart-094-apple",
+      "store": "Vodafone Egypt",
+      "cadence": "daily",
+      "observations": [
+        {
+          "date": "2026-11-06",
+          "price": 44999,
+          "status": "check",
+          "source": "Vodafone Egypt catalogue",
+          "source_url": "https://eshop.vodafone.com.eg/ar/list?channelId=organicGoogle&c_id=DACS0367&c_medium=Organic&c_source=Google&c_type=Anonymous&categoryUrls=%2Fsmart-phones"
+        }
+      ],
+      "note": "لقطة يومية من كتالوج Vodafone Egypt؛ تُسجل فقط عندما يكون تاريخ فحص المنتج هو تاريخ اليوم في القاهرة."
     }
   ]
 }
