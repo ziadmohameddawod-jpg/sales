@@ -342,21 +342,36 @@ async function loadProducts() {
   } catch (error) { state.products=[]; console.error(error); }
   const latestDate=allDates()[0];
   const lastSync = providerData?.last_successful_sync ? new Date(providerData.last_successful_sync) : null;
+  const partialSync = providerData?.last_partial_sync ? new Date(providerData.last_partial_sync) : null;
   const syncValid = lastSync && Number.isFinite(lastSync.getTime());
+  const partialValid = partialSync && Number.isFinite(partialSync.getTime());
   const syncAgeHours = syncValid ? (Date.now() - lastSync.getTime()) / 3600000 : Infinity;
   const syncLabel = syncValid
     ? new Intl.DateTimeFormat("ar-EG", {dateStyle:"medium",timeStyle:"short",timeZone:"Africa/Cairo"}).format(lastSync)
     : "";
+  const partialLabel = partialValid
+    ? new Intl.DateTimeFormat("ar-EG", {dateStyle:"medium",timeStyle:"short",timeZone:"Africa/Cairo"}).format(partialSync)
+    : "";
   if (syncValid) {
     const isStale = syncAgeHours > Number(providerData.stale_after_hours || 24);
+    const isPartial = providerData.sync_status === "partial";
     const feedStatus = $("feedState").parentElement?.parentElement;
     feedStatus?.classList.toggle("stale", isStale);
-    feedStatus?.classList.toggle("partial", providerData.sync_status === "partial");
-    $("feedState").textContent = isStale ? "مزامنة المنافسين متأخرة" :
-      providerData.sync_status === "partial" ? "آخر مزامنة جزئية للمنافسين" : "آخر مزامنة للمنافسين";
-    $("feedDate").textContent = "Prices by PriceLens · " + syncLabel + " بتوقيت القاهرة · " +
-      Number(providerData.coverage?.current_offers || 0).toLocaleString("ar-EG") + " عرضاً · " +
-      (isStale ? "البيانات أقدم من 24 ساعة" : "تاريخ الرصد موضح لكل عرض");
+    feedStatus?.classList.toggle("partial", isPartial);
+    $("feedState").textContent = isStale ? "آخر نجاح كامل قديم" :
+      isPartial ? "آخر محاولة جزئية — توجد بيانات لم تتحدث" : "آخر مزامنة مكتملة للمنافسين";
+    const coverage = providerData.coverage || {};
+    const partialNote = isPartial
+      ? " · محاولة جزئية " + (partialLabel || "حديثة") + " · فشل " + Number(coverage.products_failed_this_run || 0).toLocaleString("ar-EG") + " · لم تُحدّث " + Number(coverage.products_not_attempted_this_run || 0).toLocaleString("ar-EG")
+      : "";
+    $("feedDate").textContent = "Prices by PriceLens · آخر نجاح كامل: " + syncLabel + " بتوقيت القاهرة · " +
+      Number(coverage.current_offers || 0).toLocaleString("ar-EG") + " عرضاً" + partialNote +
+      (isStale ? " · البيانات أقدم من 24 ساعة" : "");
+  } else if (partialValid) {
+    const feedStatus = $("feedState").parentElement?.parentElement;
+    feedStatus?.classList.add("partial");
+    $("feedState").textContent = "توجد محاولة مزامنة جزئية دون نجاح كامل سابق";
+    $("feedDate").textContent = "آخر محاولة: " + partialLabel + " بتوقيت القاهرة · لم يتم اعتمادها كنجاح كامل";
   } else {
     $("feedState").textContent="لقطات أسعار محفوظة — لا توجد مزامنة ناجحة مسجلة";
     $("feedDate").textContent=latestDate?"أحدث لقطة محفوظة: "+formatDate(latestDate)+" · الأسعار ليست مباشرة":"لا يوجد تاريخ رصد متاح";
