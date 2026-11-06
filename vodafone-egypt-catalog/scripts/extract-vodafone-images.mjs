@@ -83,7 +83,8 @@ async function fetchText(url) {
 }
 
 function capacityTokens(value) {
-  return normalizeTokens(value).filter(token => CAPACITIES.has(token));
+  const text = String(value || "").toLowerCase().replace(/1\\s*t(?:b)?/g, "1024gb");
+  return [...text.matchAll(/(?:^|[^0-9])(64|128|256|512|1024)\\s*(?:gb)?(?:$|[^a-z0-9])/gi)].map(match => match[1]);
 }
 function matchProduct(product, title, image) {
   const expected = modelTokens(product);
