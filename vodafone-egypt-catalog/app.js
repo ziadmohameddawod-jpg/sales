@@ -5,6 +5,9 @@ const state = {
 };
 let marketRecords = [];
 let providerData = null;
+const CATEGORY_ALIASES = {"تلفزيونات وأجهزة بث":"تلفزيونات","إكسسوارات لابتوب":"إكسسوارات"};
+const CATEGORY_ORDER = ["هواتف","تابلت","تلفزيونات","ساعات ذكية","سماعات","سماعات متنقلة","إكسسوارات","راوتر وإنترنت","جيمينج"];
+function compareCategories(a,b){const ai=CATEGORY_ORDER.indexOf(a),bi=CATEGORY_ORDER.indexOf(b);return (ai<0?999:ai)-(bi<0?999:bi)||a.localeCompare(b,"ar");}
 const FALLBACK_IMAGE = {
   "هواتف": brand => brand === "Samsung" ? '<div class="device-art samsung"><i class="lens"></i></div>' : '<div class="device-art"><i class="lens"></i></div>',
   "راوتر وإنترنت": () => '<div class="router-art"></div>',
@@ -126,6 +129,13 @@ function currentListing(product) {
   );
   return offers[0] || null;
 }
+function comparableOfferCount() {
+  const seen = new Set();
+  state.products.forEach(product => offersFor(product).forEach(offer => {
+    seen.add([product.id,offer.store,offer.price,offer.date].join("|"));
+  }));
+  return seen.size;
+}
 function allStores() {
   const stores = state.products.flatMap(product => offersFor(product).map(offer => offer.store));
   return [...new Set(["Vodafone Egypt", ...stores])].sort((a,b)=>a.localeCompare(b));
@@ -200,7 +210,7 @@ function renderBestPicks(items) {
   const picks = [
     {product:lowest,label:"أقل سعر ضمن النتائج",detail:lowest?money(currentListing(lowest).price)+" جنيه"+(availableItems.length?" · توفر مؤكد في اللقطة":" · لا يوجد مخزون مؤكد في النتائج"):"لا توجد نتيجة",kind:"lowest"},
     {product:savings,label:"أكبر توفير مُسجل",detail:savings?"وفر "+money(discount(savings).amount)+" جنيه مقارنة بالسعر السابق":"لا توجد أسعار سابقة مسجلة",kind:"saving"},
-    {product:value,label:"أفضل قيمة سعرية",detail:value?(discount(value).percent?discount(value).percent.toFixed(0)+"% خصم مسجل":"متاح بسعر "+money(currentListing(value)?.price)+" جنيه")+" · مؤشر سعر وتوفر فقط":"—",kind:"value"}
+    {product:value,label:"مؤشر السعر والتوفر",detail:value?(discount(value).percent?discount(value).percent.toFixed(0)+"% خصم مسجل":"متاح بسعر "+money(currentListing(value)?.price)+" جنيه")+" · مؤشر سعر وتوفر فقط":"—",kind:"value"}
   ];
   $("bestPicks").innerHTML = picks.map(pick => pick.product ? '<button class="pick-card '+pick.kind+'" data-details="'+escapeHtml(pick.product.id)+'"><span>'+pick.label+'</span><b>'+escapeHtml(pick.product.name_ar)+'</b><small>'+escapeHtml(pick.detail)+'</small></button>' : '<div class="pick-card muted"><span>'+pick.label+'</span><b>لا توجد بيانات كافية</b><small>'+escapeHtml(pick.detail)+'</small></div>').join("");
   $("bestPicks").querySelectorAll("[data-details]").forEach(button=>button.addEventListener("click",()=>openDetails(button.dataset.details)));
@@ -219,12 +229,12 @@ function card(product, badges) {
     : visualFallback(product.category,product.brand);
   const storeCaption = state.store && state.store !== "Vodafone Egypt" ? 'سعر مرصود لدى '+escapeHtml(label) : 'سعر مرجعي لدى Vodafone Egypt';
   const tags = badges.map(badge=>'<span class="recommend-badge '+badge.kind+'">'+badge.text+'</span>').join("");
-  return '<article class="product-card"><div class="product-media"><span class="product-badge '+escapeHtml(status)+'">'+escapeHtml(statusText)+'</span><div class="recommend-badges">'+tags+'</div>'+visual+(product.image_credit?'<small class="image-credit">صورة توضيحية</small>':"")+'</div><div class="product-info"><div class="product-category">'+escapeHtml(product.category)+' · '+escapeHtml(product.brand)+'</div><h3>'+escapeHtml(product.name_ar)+'</h3><div class="product-variant">'+escapeHtml(product.variant)+'</div><small class="listing-store">'+storeCaption+'</small><div class="price-row"><span class="current-price">'+money(listing?.price)+'</span><span class="currency">جنيه</span></div><div class="listing-source">لقطة السعر: '+escapeHtml(formatDate(listing?.date || product.source_checked_at))+'</div><div class="availability '+escapeHtml(status)+'">'+escapeHtml(availabilityText)+'</div><div class="card-actions"><button class="details-btn" data-details="'+escapeHtml(product.id)+'">التفاصيل والمصادر</button><a class="store-btn" href="'+escapeHtml(product.product_url||product.source_url||"https://eshop.vodafone.com.eg/ar/")+'" target="_blank" rel="noopener" aria-label="افتح صفحة المنتج الرسمية">↗</a></div></div></article>';
+  return '<article class="product-card"><div class="product-media"><span class="product-badge '+escapeHtml(status)+'">'+escapeHtml(statusText)+'</span><div class="recommend-badges">'+tags+'</div>'+visual+(product.image_credit?'<small class="image-credit">مصدر الصورة: '+escapeHtml(product.image_credit)+'</small>':"")+'</div><div class="product-info"><div class="product-category">'+escapeHtml(product.category)+' · '+escapeHtml(product.brand)+'</div><h3>'+escapeHtml(product.name_ar)+'</h3><div class="product-variant">'+escapeHtml(product.variant)+'</div><small class="listing-store">'+storeCaption+'</small><div class="price-row"><span class="current-price">'+money(listing?.price)+'</span><span class="currency">جنيه</span></div><div class="listing-source">لقطة السعر: '+escapeHtml(formatDate(listing?.date || product.source_checked_at))+'</div><div class="availability '+escapeHtml(status)+'">'+escapeHtml(availabilityText)+'</div><div class="card-actions"><button class="details-btn" data-details="'+escapeHtml(product.id)+'">التفاصيل والمصادر</button><a class="store-btn" href="'+escapeHtml(product.product_url||product.source_url||"https://eshop.vodafone.com.eg/ar/")+'" target="_blank" rel="noopener" aria-label="افتح صفحة المنتج الرسمية">↗</a></div></div></article>';
 }
 function renderFilters() {
   const categoryCounts = new Map();
   state.products.forEach(product => categoryCounts.set(product.category, (categoryCounts.get(product.category) || 0) + 1));
-  const categories = ["الكل", ...categoryCounts.keys()];
+  const categories = ["الكل", ...[...categoryCounts.keys()].sort(compareCategories)];
   $("categoryFilters").innerHTML = categories.map(category => {
     const count = category === "الكل" ? state.products.length : categoryCounts.get(category);
     return '<button class="chip '+(category===state.category?'active':'')+'" data-category="'+escapeHtml(category)+'" aria-pressed="'+(category===state.category)+'"><span>'+escapeHtml(category)+'</span><small>'+Number(count||0).toLocaleString("ar-EG")+'</small></button>';
@@ -266,13 +276,13 @@ function renderProductGroups(items, badgesFor) {
     if (!categoryGroups.has(product.category)) categoryGroups.set(product.category, []);
     categoryGroups.get(product.category).push(product);
   });
-  return [...categoryGroups.entries()].map(([category, categoryItems]) => {
+  return [...categoryGroups.entries()].sort((a,b)=>compareCategories(a[0],b[0])).map(([category, categoryItems]) => {
     const brandGroups = new Map();
     categoryItems.forEach(product => {
       if (!brandGroups.has(product.brand)) brandGroups.set(product.brand, []);
       brandGroups.get(product.brand).push(product);
     });
-    const groupsMarkup = [...brandGroups.entries()].map(([brand, brandItems]) =>
+    const groupsMarkup = [...brandGroups.entries()].sort((a,b)=>a[0].localeCompare(b[0],"ar")).map(([brand, brandItems]) =>
       '<section class="brand-product-group"><div class="brand-group-heading"><div><span class="brand-group-mark '+brandClass(brand)+'">'+escapeHtml(brandMark(brand))+'</span><h4>'+escapeHtml(brand)+'</h4></div><small>'+brandItems.length.toLocaleString("ar-EG")+' منتج</small></div><div class="product-grid">'+brandItems.map(product=>card(product,badgesFor(product))).join("")+'</div></section>'
     ).join("");
     return '<section class="catalog-type-group"><div class="catalog-type-heading"><div><span>نوع المنتج</span><h3>'+escapeHtml(category)+'</h3></div><small>'+categoryItems.length.toLocaleString("ar-EG")+' منتج</small></div>'+groupsMarkup+'</section>';
@@ -290,7 +300,7 @@ function render() {
     const badges=[];
     if (Number(currentListing(product)?.price)===lowestPrice && Number.isFinite(lowestPrice)) badges.push({kind:"lowest",text:"أقل سعر"});
     if (biggestSaving && product.id===biggestSaving.id) badges.push({kind:"saving",text:"أكبر توفير"});
-    if (valueProduct && product.id===valueProduct.id) badges.push({kind:"value",text:"أفضل قيمة سعرية"});
+    if (valueProduct && product.id===valueProduct.id) badges.push({kind:"value",text:"مؤشر السعر والتوفر"});
     return badges;
   };
   $("productGrid").innerHTML = renderProductGroups(items,badgesFor);
@@ -326,7 +336,7 @@ async function loadProducts() {
       getJson("data/market.json").catch(()=>({comparisons:[]})),
       getJson("data/price-provider.json").catch(()=>null)
     ]);
-    state.products=products;
+    state.products=products.map(product=>({...product,category:CATEGORY_ALIASES[product.category]||product.category}));
     providerData=provider;
     marketRecords=[...(provider?.comparisons||[]),...(comparisons.comparisons||[]),...(market.comparisons||[])];
   } catch (error) { state.products=[]; console.error(error); }
@@ -348,11 +358,15 @@ async function loadProducts() {
       Number(providerData.coverage?.current_offers || 0).toLocaleString("ar-EG") + " عرضاً · " +
       (isStale ? "البيانات أقدم من 24 ساعة" : "تاريخ الرصد موضح لكل عرض");
   } else {
-    $("feedState").textContent="لا توجد مزامنة آلية مؤكدة";
-    $("feedDate").textContent=latestDate?"آخر لقطة محفوظة: "+formatDate(latestDate)+" · ليست أسعاراً مباشرة":"تاريخ اللقطة غير متاح";
+    $("feedState").textContent="لقطات أسعار محفوظة — لا توجد مزامنة ناجحة مسجلة";
+    $("feedDate").textContent=latestDate?"أحدث لقطة محفوظة: "+formatDate(latestDate)+" · الأسعار ليست مباشرة":"لا يوجد تاريخ رصد متاح";
   }
   $("sourceReviewDate").textContent=syncValid?syncLabel:(latestDate?formatDate(latestDate):"غير معروف");
   $("totalCount").textContent=state.products.length.toLocaleString("ar-EG");
+  $("photoCount").textContent=state.products.filter(product=>!!product.image).length.toLocaleString("ar-EG");
+  $("marketOfferCount").textContent=comparableOfferCount().toLocaleString("ar-EG");
+  $("lastSnapshot").textContent=latestDate?formatDate(latestDate):"—";
+  $("roadmapProductCount").textContent=state.products.length.toLocaleString("ar-EG");
   populateSelectors(); render();
 }
 $("searchInput").addEventListener("input",event=>{state.query=event.target.value.trim();render();});
