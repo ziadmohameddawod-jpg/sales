@@ -284,6 +284,9 @@ async function loadProducts() {
     : "";
   if (syncValid) {
     const isStale = syncAgeHours > Number(providerData.stale_after_hours || 24);
+    const feedStatus = $("feedState").parentElement?.parentElement;
+    feedStatus?.classList.toggle("stale", isStale);
+    feedStatus?.classList.toggle("partial", providerData.sync_status === "partial");
     $("feedState").textContent = isStale ? "مزامنة المنافسين متأخرة" :
       providerData.sync_status === "partial" ? "آخر مزامنة جزئية للمنافسين" : "آخر مزامنة للمنافسين";
     $("feedDate").textContent = "Prices by PriceLens · " + syncLabel + " بتوقيت القاهرة · " +
