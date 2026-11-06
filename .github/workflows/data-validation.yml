@@ -33,6 +33,13 @@ jobs:
           node --check analytics.js
           node --check scripts/sync-prices.mjs
           node --check scripts/validate-data.mjs
+          node --check scripts/extract-vodafone-images.mjs
+
+      - name: Probe official Vodafone product image metadata
+        working-directory: ./vodafone-egypt-catalog
+        env:
+          IMAGE_PROBE_LIMIT: "8"
+        run: node scripts/extract-vodafone-images.mjs --probe
 
       - name: Run sync self-tests
         working-directory: ./vodafone-egypt-catalog
