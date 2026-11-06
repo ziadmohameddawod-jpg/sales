@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - "vodafone-egypt-catalog/scripts/extract-vodafone-images.mjs"
+      - "vodafone-egypt-catalog/data/products.json"
       - ".github/workflows/verified-image-enrichment.yml"
   schedule:
     - cron: "41 3 * * *"
