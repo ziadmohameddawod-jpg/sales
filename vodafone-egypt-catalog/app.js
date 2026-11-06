@@ -161,8 +161,15 @@ function applyFilters() {
     const price = Number(currentListing(product)?.price);
     return Number.isFinite(price) && price > 0 ? price : Infinity;
   };
-  if (state.sort === "price-asc") items.sort((a,b)=>priceOf(a)-priceOf(b));
-  if (state.sort === "price-desc") items.sort((a,b)=>priceOf(b)-priceOf(a));
+  const comparePrice = (a,b,direction) => {
+    const priceA = priceOf(a), priceB = priceOf(b);
+    const validA = Number.isFinite(priceA), validB = Number.isFinite(priceB);
+    if (validA !== validB) return validA ? -1 : 1;
+    if (!validA) return 0;
+    return (priceA - priceB) * direction;
+  };
+  if (state.sort === "price-asc") items.sort((a,b)=>comparePrice(a,b,1));
+  if (state.sort === "price-desc") items.sort((a,b)=>comparePrice(a,b,-1));
   if (state.sort === "savings") items.sort((a,b)=>discount(b).amount-discount(a).amount);
   if (state.sort === "value") items.sort((a,b)=>valueScore(b)-valueScore(a) || priceOf(a)-priceOf(b));
   if (state.sort === "name") items.sort((a,b)=>a.name_ar.localeCompare(b.name_ar,"ar"));
