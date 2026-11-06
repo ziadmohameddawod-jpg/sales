@@ -81,21 +81,7 @@ async function fetchText(url) {
     return {html: await response.text(), finalUrl: response.url || url};
   } finally { clearTimeout(timer); }
 }
-async function imageIsLive(url) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 10000);
-  try {
-    let response = await fetch(url, {method:"HEAD", signal:controller.signal, redirect:"follow", headers:{"user-agent":USER_AGENT}});
-    if (!response.ok || !/^image\//i.test(response.headers.get("content-type") || "")) {
-      response = await fetch(url, {method:"GET", signal:controller.signal, redirect:"follow", headers:{"user-agent":USER_AGENT, range:"bytes=0-0"}});
-    }
-    const valid = response.ok && /^image\//i.test(response.headers.get("content-type") || "") &&
-      true;
-    try { await response.body?.cancel(); } catch {}
-    return valid;
-  } catch { return false; }
-  finally { clearTimeout(timer); }
-}
+
 function capacityTokens(value) {
   return normalizeTokens(value).filter(token => CAPACITIES.has(token));
 }
@@ -149,8 +135,6 @@ for (let i = 0; i < targets.length; i += 3) {
       const rawImage = metaValue(page.html, ["og:image","og:image:url","twitter:image","twitter:image:src"]);
       const image = imageUrl(rawImage, page.finalUrl);
       if (!title || !image) return {target, title, reason:"missing_product_title_or_official_image"};
-      const imageLive = await imageIsLive(image);
-      if (!imageLive) return {target, title, image, reason:"image_not_live"};
       const matched = target.products.filter(product => matchProduct(product, title, image).ok);
       const declined = target.products.filter(product => !matchProduct(product, title, image).ok);
       return {target, title, image, matched, declined};
