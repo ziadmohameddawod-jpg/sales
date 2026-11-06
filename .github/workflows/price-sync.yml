@@ -1,6 +1,12 @@
 name: Price sync every 3 hours
 
 on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/price-sync.yml"
+      - "vodafone-egypt-catalog/scripts/sync-prices.mjs"
+      - "vodafone-egypt-catalog/data/products.json"
   schedule:
     - cron: "17 */3 * * *"
   workflow_dispatch:
