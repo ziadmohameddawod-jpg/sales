@@ -45,7 +45,12 @@ const products = readJson("products.json");
 const market = readJson("market.json");
 const comparisons = readJson("market-comparisons.json");
 const history = readJson("price-history.json");
-const provider = readJson("price-provider.json");
+let provider = null;
+try {
+  provider = JSON.parse(fs.readFileSync(path.join(dataDir, "price-provider.json"), "utf8"));
+} catch (error) {
+  if (error.code !== "ENOENT") errors.push(`تعذر قراءة price-provider.json: ${error.message}`);
+}
 
 if (Array.isArray(products)) {
   const ids = new Set();
