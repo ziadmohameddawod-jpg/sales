@@ -63,6 +63,9 @@ jobs:
     name: Publish refreshed catalog
     if: github.ref == 'refs/heads/main'
     needs: sync
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout latest default branch
