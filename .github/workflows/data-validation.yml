@@ -38,6 +38,10 @@ jobs:
         working-directory: ./vodafone-egypt-catalog
         run: node scripts/sync-prices.mjs --self-test
 
+      - name: Validate the published Google Sheets feed (read-only)
+        working-directory: ./vodafone-egypt-catalog
+        run: node scripts/sync-google-sheet.mjs --dry-run
+
       - name: Validate catalogue data
         working-directory: ./vodafone-egypt-catalog
         run: node scripts/validate-data.mjs

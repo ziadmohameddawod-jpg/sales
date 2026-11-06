@@ -1,0 +1,52 @@
+name: Google Sheets product sync
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "vodafone-egypt-catalog/scripts/sync-google-sheet.mjs"
+      - ".github/workflows/google-sheets-sync.yml"
+  schedule:
+    - cron: "13 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: google-sheets-product-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Fetch and validate the published Google Sheet
+        working-directory: ./vodafone-egypt-catalog
+        run: node scripts/sync-google-sheet.mjs
+
+      - name: Validate the complete catalogue
+        working-directory: ./vodafone-egypt-catalog
+        run: node scripts/validate-data.mjs
+
+      - name: Commit changed product data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vodafone-egypt-catalog/data/products.json
+          if git diff --cached --quiet; then
+            echo "No product changes to commit."
+          else
+            git commit -m "Sync product catalogue from Google Sheets"
+            git push origin HEAD:main
+          fi
