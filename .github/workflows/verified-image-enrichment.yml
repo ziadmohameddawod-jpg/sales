@@ -1,21 +1,12 @@
 name: Verified Vodafone product image enrichment
 
 on:
-  push:
-    branches: ["main"]
-    paths:
-      - "vodafone-egypt-catalog/scripts/extract-vodafone-images.mjs"
-      - "vodafone-egypt-catalog/scripts/probe-vodafone-category.mjs"
-      - "vodafone-egypt-catalog/data/products.json"
-      - ".github/workflows/verified-image-enrichment.yml"
   schedule:
     - cron: "41 3 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: catalog-data-updates
@@ -62,29 +53,3 @@ jobs:
             git push origin HEAD:main
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
-
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    needs: enrich
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-    steps:
-      - name: Checkout latest main
-        uses: actions/checkout@v4
-        with:
-          ref: main
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Build site
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./vodafone-egypt-catalog
-          destination: ./_site
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v5
